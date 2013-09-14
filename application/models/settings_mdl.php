@@ -63,17 +63,6 @@ class settings_mdl extends CI_Model {
 				return false;
 			}
 		}
-			// return true;
-		// else
-			// return false;
-		
-		// $rate = $this->input->post('rate');
-		// $data1 = array(
-				// 'productId'=>$_POST['p_id'],
-				// 'rate'=>$rate
-				// );
-		// $this->db->insert('customerrating',$data1);
-		
 		
 	}
 }
