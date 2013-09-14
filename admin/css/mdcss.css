@@ -1,0 +1,141 @@
+
+/*---------Form design---------*/
+.zFormTbl tr td:first-child
+{
+	text-align: right;
+	padding-right: 5px;
+}
+.zFormTbl tr td:last-child
+{
+	text-align: left;
+	padding-left: 5px;
+}
+
+.zFormTd
+{
+	padding: 10px 0px;
+}
+
+.zFormLbl
+{
+	
+}
+.zSelect
+{
+	border: 1px solid #ccc;
+	padding: 7px 5px;
+	min-width: 40%;
+	background: #fcfcfc;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	-moz-box-shadow: inset 1px 1px 2px #ddd;
+	-webkit-box-shadow: inset 1px 1px 2px #ddd;
+	box-shadow: inset 1px 1px 2px #ddd;
+	color: #666;
+}
+.zradio
+{
+	clear:both;
+}
+.zinput [type="radio"]
+{
+	clear:both;
+}
+.zinput
+{
+	width: 200px;
+	border: 1px solid #ccc;
+	background: #fcfcfc;
+	padding: 8px 5px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	-moz-box-shadow: inset 1px 1px 2px #ddd;
+	-webkit-box-shadow: inset 1px 1px 2px #ddd;
+	box-shadow: inset 1px 1px 2px #ddd;
+	color: #666;
+}
+
+.zButton 
+{
+	width: auto;
+	margin: 0;
+	font-weight: bold;
+	color: #666;
+	border: 1px solid #ccc;
+	background: #eee;
+	padding: 7px 10px;
+	margin: 0 5px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-o-border-radius: 2px;
+}
+
+.zButton:hover
+{
+	background: #ddd;
+	cursor: pointer;
+	color: #333;
+}
+.zSubButton
+{
+	border: 1px solid #333;
+	background: #333;
+	color: #fff;
+	cursor: pointer;
+	padding: 7px 10px;
+	font-weight: bold;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-o-border-radius: 2px;
+	margin: 0 5px;
+}
+.zSubButton:hover
+{
+	background: #111;
+	border: 1px solid #000;
+	color: #fff;	
+}
+
+.zSelect {
+border: 1px solid #ccc;
+padding: 7px 5px;
+min-width: 40%;
+background: #fcfcfc;
+-moz-border-radius: 2px;
+-webkit-border-radius: 2px;
+border-radius: 2px;
+-moz-box-shadow: inset 1px 1px 2px #ddd;
+-webkit-box-shadow: inset 1px 1px 2px #ddd;
+box-shadow: inset 1px 1px 2px #ddd;
+color: #666;
+}
+
+.datepickr
+{
+	text-align: center;
+	width: 120px;
+}
+
+/***NOTIFICATION MESSAGES***/
+.notification {	display: none; height: 51px; overflow: hidden; position: relative; margin-bottom: 20px; -moz-border-radius: 2px; -webkit-border-radius: 2px; border-radius: 2px; 
+	-moz-box-shadow: 1px 1px 2px #ddd;
+}
+.notification p { margin: 14px 10px 0 75px; font-size: 13px; color: #333; }
+.notification a.close { 
+	position: absolute; width: 14px; height: 14px; top: 5px; right: 5px; background-image: url(../images/close.png); background-repeat: no-repeat; }
+.notification a.close:hover { cursor: pointer; }
+.msgalert a.close { background-position: -14px 0; }
+.msgalert a.close:hover { background-position: -14px -14px; }
+.msginfo a.close { background-position: -42px 0; }
+.msginfo a.close:hover { background-position: -42px -14px; }
+.msgsuccess a.close { background-position: -28px 0; }
+.msgsuccess a.close:hover { background-position: -28px -14px; }
+.msgerror a.close { background-position: 0 0; }
+.msgerror a.close:hover { background-position: 0 -14px; }
+
+.msgalert { border: 1px solid #eac572; background: #ffe9ad url(../images/notifications.png) no-repeat 0 -52px; }
+.msginfo { border: 1px solid #99c4ea; background: #d1e4f3 url(../images/notifications.png) no-repeat 0 -156px; }
+.msgsuccess { border: 1px solid #c1d779; background: #effeb9 url(../images/notifications.png) no-repeat 0 -104px; }
+.msgerror { border: 1px solid #e18b7c; background: #fad5cf url(../images/notifications.png) no-repeat 0 0; }

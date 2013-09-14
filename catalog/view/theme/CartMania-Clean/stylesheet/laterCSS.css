@@ -1,0 +1,66 @@
+#latestPrd
+{
+border: 1px solid red;
+width: 930px;
+height: 300px;
+overflow-x: scroll;
+overflow-y: hidden;
+position:relative; display:block;
+    -webkit-perspective:1000px; -moz-perspective:1000px;
+	transform-style: preserve-3d;
+}
+
+.sldPrd *
+{
+	margin:0;
+	padding:0;
+	overflow: hidden;
+}
+
+.sldPrd:hover
+{
+	-webkit-transform: translateX(50px) rotateY(0deg) rotateZ(0deg);
+	-moz-transform: translateX(50px) rotateY(0deg) rotateZ(0deg);
+	transform: translateX(50px) rotateY(0deg) rotateZ(0deg);
+}
+
+.sldPrd:hover~.sldPrd
+{
+	-webkit-transform: translateX(100px) rotateY(-40deg) rotateZ(0deg);
+	-moz-transform: translateX(100px) rotateY(-40deg) rotateZ(0deg);
+	transform: translateX(100px) rotateY(-40deg) rotateZ(0deg);
+}
+.sldPrd
+{
+	width: 200px;
+	height: 245px;
+	float: left;
+	margin: 30px 15px;
+	border: 1px solid;
+	margin: 30px -19px;
+	
+	-webkit-transform: translateX(10px) rotateY(40deg)  rotateZ(0deg);
+	-moz-transform: translateX(10px) rotateY(40deg)  rotateZ(0deg);
+	#position: absolute;
+	
+	-webkit-transition-duration: 1s;
+	-moz-transition-duration: 1s;
+}
+.sldPrd img
+{
+}
+.sldPrd p:first-child
+{
+	border: 1px solid orange;
+}
+
+.sldPrd div
+{
+	width: 200px;
+}
+
+.sldPrd div p
+{
+	width: 200px;
+}
+
