@@ -13,9 +13,18 @@ class settings_mdl extends CI_Model {
 		$query = $this->db->get('tbl_site_settings');
 		
 		$row = $query->row();
+		if($query->num_rows()>0)
+		{
 		$data = array(
 						'value' => $row->$column_name
 					);
+		}
+		else
+		{
+			$data = array(
+						'value' => ""
+					);
+		}
 		return $data;
 	}
 	
