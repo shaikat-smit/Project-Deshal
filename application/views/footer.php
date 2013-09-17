@@ -153,7 +153,7 @@ jQuery(document).ready(function($){
 		
 	// sticky header
 		if ( $(window).width() > 1024) {
-		$("#main_menu").sticky({topSpacing:0});
+		$("#main_menu").sticky({topSpacing:30});
 	}
 	
 });

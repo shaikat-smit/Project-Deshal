@@ -68,9 +68,24 @@
 		
 	<div id="products_grid">
 	
-				
+					<div class="single_grid_product">	
+						<div class="product_med_wrap">
+							<div class="product_meta">৳ 1500</div>
+							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
+							</a>
+						</div>
+					</div>	
+					<div class="single_grid_product">	
+						<div class="product_med_wrap">
+							<div class="product_meta">৳ 1500</div>
+							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
+							</a>
+						</div>
+					</div>	
 		
-		<?
+		<?/*
 			if(isset($products))
 			{
 				foreach ($products->result() as $prod)
@@ -100,7 +115,7 @@
 					-->
 				<?
 				}
-			}?>
+			}*/?>
 
 		<div class="clear"></div>
 	</div>

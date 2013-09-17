@@ -114,14 +114,13 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 		
 		<?php
 		
-		if(isset($category))
-		{
+		
 			$obj = new category_ctl();
 			//$category = $obj->menu_categories();
 			$obj->dynaCatAdd();//Thats right!
 			
 			//exit;
-		}
+		
 		
 		/*
 		foreach($category as $categorylist)
