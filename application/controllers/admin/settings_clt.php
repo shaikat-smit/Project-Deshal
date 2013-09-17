@@ -107,25 +107,106 @@ class settings_clt extends CI_Controller {
 	{
 		if($this->session->userdata('admin_logged_in'))
 		{
-			$this->load->view('admin/settings/editcontactajax');
+			$column_name = "contact_information";
+			$done = $this->settings_mdl->getvalues($column_name);
+			$data['val'] = $done['value'];
+			$this->load->view('admin/settings/editcontactajax',$data);
 		}
 		else
 		{
 			redirect('adminlog');
 		}
 	}
+	
+	public function editsocial()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$column_name = "fb_link";
+			$done = $this->settings_mdl->getvalues($column_name);
+			$data['fb'] = $done['value'];
+			
+			$column_name = "twitter_link";
+			$done = $this->settings_mdl->getvalues($column_name);
+			$data['twt'] = $done['value'];
+			
+			$column_name = "flicker_link";
+			$done = $this->settings_mdl->getvalues($column_name);
+			$data['fli'] = $done['value'];
+			
+			$this->load->view('admin/settings/editsociallinksajax',$data);
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
 	/*submit done.....*/
 	
 	public function editlogodone()
 	{
 		if($this->session->userdata('admin_logged_in'))
 		{
-			
-			
-			$message['status'] = 0;
-			$message['msg'] = 'Something went wrong..Try again';
-			$data['message'] = $message;
-			$this->load->view('admin/settings/editlogoajax');
+			$this->load->library('upload');
+
+			if(!empty($_FILES["userfile"]["name"]))
+			{
+				$userfile = $this->input->post('userfile');
+				
+				$config['upload_path'] = './admin/logo/';
+				$config['allowed_types'] = 'jpg|jpeg|png';
+				$config['max_size'] = '1000';
+				//$config['max_width'] = '1360';
+				//$config['max_height'] = '768';
+				$config['file_name'] = "logo";
+				$this->upload->initialize($config);
+				
+				if(!$this->upload->do_upload())
+				{
+					$message['status'] = 0;
+					$message['msg'] = $this->upload->display_errors();
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+					
+				}
+				else
+				{
+					$fileInfo = $this->upload->data();
+					$imname=$fileInfo['file_name'];
+					
+					$column_name = "logo_dir";
+					$value = $imname ;
+					$done = $this->settings_mdl->update($column_name,$value);
+									
+					if(!$done)
+					{
+						$message['status'] = 0;
+						$message['msg'] = 'Something went wrong..Try again';
+						$data['message'] = $message;
+						$this->load->view('admin/header');
+						$this->load->view('admin/settings/settings_home',$data);
+					}
+					else
+					{
+						$message['status'] = 1;
+						$message['msg'] = 'Logo Changed !!!';
+						$data['message'] = $message;
+						$this->load->view('admin/header');
+						$this->load->view('admin/settings/settings_home',$data);
+					}
+				}
+			//////////////////////////////////
+			}
+			else
+			{
+				$message['status'] = 2;
+				$message['msg'] = 'No changes have been made !!!';
+				$data['message'] = $message;
+				$this->load->view('admin/header');
+				$this->load->view('admin/settings/settings_home',$data);
+			}
 		}
 		else
 		{
@@ -165,7 +246,7 @@ class settings_clt extends CI_Controller {
 				if($done)
 				{
 					$message['status'] = 1;
-					$message['msg'] = 'Tag Line Edited';
+					$message['msg'] = 'Tag Line Updated';
 					$data['message'] = $message;
 					$this->load->view('admin/header');
 					$this->load->view('admin/settings/settings_home',$data);
@@ -219,7 +300,7 @@ class settings_clt extends CI_Controller {
 				if($done)
 				{
 					$message['status'] = 1;
-					$message['msg'] = 'Title Edited';
+					$message['msg'] = 'Title Updated';
 					$data['message'] = $message;
 					$this->load->view('admin/header');
 					$this->load->view('admin/settings/settings_home',$data);
@@ -272,7 +353,7 @@ class settings_clt extends CI_Controller {
 				if($done)
 				{
 					$message['status'] = 1;
-					$message['msg'] = 'Product Gallery Grid Row Edited';
+					$message['msg'] = 'Product Gallery Grid Row Updated';
 					$data['message'] = $message;
 					$this->load->view('admin/header');
 					$this->load->view('admin/settings/settings_home',$data);
@@ -324,7 +405,107 @@ class settings_clt extends CI_Controller {
 				if($done)
 				{
 					$message['status'] = 1;
-					$message['msg'] = 'Latest Product Grid Row Edited';
+					$message['msg'] = 'Latest Product Grid Row Updated';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+				}
+				else
+				{	
+					$message['status'] = 0;
+					$message['msg'] = 'Something went wrong..Please try again !!!';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+				}
+			}
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
+	public function editsocialdone()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			
+			$fb = $this->input->post("fb");
+			$twt = $this->input->post("twt");
+			$fli = $this->input->post("fli");
+			
+			
+			$column_name = "fb_link";
+			$value = $fb ;
+			$done = $this->settings_mdl->update($column_name,$value);
+			
+			$column_name = "twitter_link";
+			$value = $twt ;
+			$done2 = $this->settings_mdl->update($column_name,$value);
+			
+			$column_name = "flicker_link";
+			$value = $fli ;
+			$done3 = $this->settings_mdl->update($column_name,$value);
+			
+			
+			if($done3)
+			{
+				$message['status'] = 1;
+				$message['msg'] = 'Social Links Updated';
+				$data['message'] = $message;
+				$this->load->view('admin/header');
+				$this->load->view('admin/settings/settings_home',$data);
+				
+			}
+			else
+			{	
+				$message['status'] = 0;
+				$message['msg'] = 'Something went wrong..Please try again !!!';
+				$data['message'] = $message;
+				$this->load->view('admin/header');
+				$this->load->view('admin/settings/settings_home',$data);
+			}
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
+	public function editcontactdone()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$config = array(
+					
+                    array(
+                             'field'   => 'contact',
+                             'label'   => 'Contact Information',
+                             'rules'   => 'required'
+                      )
+            );
+			$this->form_validation->set_rules($config); 
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+					$message['status'] = 0;
+					$message['msg'] = 'Field error';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+			}
+			else
+			{
+				$contact = $this->input->post("contact");
+				$column_name = "contact_information";
+				$value = $contact ;
+				
+				$done = $this->settings_mdl->update($column_name,$value);
+				if($done)
+				{
+					$message['status'] = 1;
+					$message['msg'] = 'Contact Information Updated';
 					$data['message'] = $message;
 					$this->load->view('admin/header');
 					$this->load->view('admin/settings/settings_home',$data);

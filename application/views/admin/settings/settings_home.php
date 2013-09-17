@@ -98,6 +98,22 @@
 						}});
 				});
 				
+				$("#social").click(function(){
+				  $(".widgetlist").hide("slow","swing");
+					$("#dvloader").show();
+					
+					$.ajax
+					({
+						type:'POST', 
+						url: '<?=base_url();?>index.php/admin/settings_clt/editsocial',  
+						success: function(response) 
+						{
+							$("#dvloader").hide();
+							$("#back").show();
+							$("#divajax").html(response);
+						}});
+				});
+				
 				$("#back").click(function(){
 				$("#divajax, #back").hide(500, function(){
 				
@@ -165,7 +181,11 @@
 														$('.msgerror').show("slow");
 														
 													}
-														
+													else
+													{
+														$('.msginfo p').text(msg);
+														$('.msginfo').show("slow");
+													}
 												return false;
 											} 
 
