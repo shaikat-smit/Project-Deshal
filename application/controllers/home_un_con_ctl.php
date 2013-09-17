@@ -20,8 +20,9 @@ class home_un_con_ctl extends CI_Controller {
 	public function index()
 	{
 		//$data['current_page'] = "Home";
+		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
+		$this->load->view('header',$data);
 		
-		$this->load->view('header');
 		$this->load->view('home_un_cons');
 		//$this->load->view('home');
 		$this->load->view('footer');

@@ -29,6 +29,170 @@ class settings_clt extends CI_Controller {
 		}
 	}
 	
+	/*calling Pages*/
+	
+	public function editaboutus()
+	{
+		//$data['current_page'] = "Home";
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$column_name = "aboutus_content";
+			$done = $this->settings_mdl->getvalues($column_name);
+			$data['val'] = $done['value'];
+			$this->load->view('admin/header');
+			$this->load->view('admin/settings/editaboutus',$data);
+			//$this->load->view('footer');
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
+	public function editpolicy()
+	{
+		//$data['current_page'] = "Home";
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$column_name = "policy_content";
+			$done = $this->settings_mdl->getvalues($column_name);
+			$data['val'] = $done['value'];
+			$this->load->view('admin/header');
+			$this->load->view('admin/settings/editpolicy',$data);
+			//$this->load->view('footer');
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
+	/*Pages Done*/
+	
+	public function editpolicydone()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$config = array(
+					
+                    array(
+                             'field'   => 'policy',
+                             'label'   => 'Privacy Policy',
+                             'rules'   => 'required'
+                      )
+            );
+			$this->form_validation->set_rules($config); 
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+					$message['status'] = 0;
+					$message['msg'] = 'Field error';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+			}
+			else
+			{
+				$about = $this->input->post("policy");
+				$column_name = "policy_content";
+				$value = $about ;
+				
+				$done = $this->settings_mdl->update($column_name,$value);
+				if($done)
+				{
+					$message['status'] = 1;
+					$message['msg'] = 'Privacy Policy Content Updated...';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+					
+				}
+				else
+				{	
+					$message['status'] = 0;
+					$message['msg'] = 'Something went wrong..Please try again !!!';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+				}
+			}
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	////////////////////////////////////////////
+	public function editaboutdone()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$config = array(
+					
+                    array(
+                             'field'   => 'about',
+                             'label'   => 'About',
+                             'rules'   => 'required'
+                      )
+            );
+			$this->form_validation->set_rules($config); 
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+					$message['status'] = 0;
+					$message['msg'] = 'Field error';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+			}
+			else
+			{
+				$about = $this->input->post("about");
+				$column_name = "aboutus_content";
+				$value = $about ;
+				
+				$done = $this->settings_mdl->update($column_name,$value);
+				if($done)
+				{
+					$message['status'] = 1;
+					$message['msg'] = 'About Us Content Updated...';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+					
+				}
+				else
+				{	
+					$message['status'] = 0;
+					$message['msg'] = 'Something went wrong..Please try again !!!';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+				}
+			}
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	////////////////////////////////////////////
+	
+	public function editcontact()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$column_name = "contact_information";
+			$done = $this->settings_mdl->getvalues($column_name);
+			$data['val'] = $done['value'];
+			$this->load->view('admin/settings/editcontactajax',$data);
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
 	/*calling divs*/
 	
 	public function editlogo()
@@ -96,21 +260,6 @@ class settings_clt extends CI_Controller {
 			$done = $this->settings_mdl->getvalues($column_name);
 			$data['val'] = $done['value'];
 			$this->load->view('admin/settings/editlatestajax',$data);
-		}
-		else
-		{
-			redirect('adminlog');
-		}
-	}
-	
-	public function editcontact()
-	{
-		if($this->session->userdata('admin_logged_in'))
-		{
-			$column_name = "contact_information";
-			$done = $this->settings_mdl->getvalues($column_name);
-			$data['val'] = $done['value'];
-			$this->load->view('admin/settings/editcontactajax',$data);
 		}
 		else
 		{

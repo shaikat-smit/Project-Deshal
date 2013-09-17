@@ -92,14 +92,16 @@ class home_ctl extends CI_Controller {
 			// vaj($this->category_ctl->menu_categories());
 			// echo 's'; exit;
 		}
-		$data['query'] = $this->db->query("select * from product ORDER BY created DESC limit 8");
-		$data['products'] = $this->db->query("select * from product ORDER BY created DESC limit 10");
+		//$data['query'] = $this->db->query("select * from product ORDER BY created DESC limit 8");
+		//$data['products'] = $this->db->query("select * from product ORDER BY created DESC limit 10");
 		
+		
+		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
 		
 		$this->load->view('header',$data);
 		//echo "ok";die;
 		//$this->load->view('menu');//, $data);
-		$this->load->view('home');
+		$this->load->view('home',$data);
 		$this->load->view('footer');
 	}
 	

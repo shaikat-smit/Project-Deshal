@@ -34,14 +34,10 @@
 				  <div style="float: left; display: inline-block; width: 60%;"><b>Address:</b><br />
 					<span class="address">
 					<strong>DESHAL</strong>
-						<br />Level 7, Block A<br />Basundhara City Shopping Mall<br />Panthapath, Dhaka, Bangladesh
+						<br/>
+						<?=$settings->contact_information?>
 					</span>
 				</div>
-				  <div style="float: right; display: inline-block; width: 28%;">
-								<b>Telephone:</b><br />
-					<span class="phone">+88028053172</span>
-					<br />
-				  </div>
 		</div>
 <!--EndFragment-->    
   </div>

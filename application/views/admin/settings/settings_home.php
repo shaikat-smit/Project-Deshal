@@ -211,8 +211,10 @@ getmsg(<? echo $message['status'];?>,'<?=$message['msg'];?>');
                         <li><a href="#" class="message" id="title" >Edit Title</a></li>
                     	<li><a href="#" class="events" id="latest" >Edit Latest Product Row Number</a></li>
                     	<li><a href="#" class="events" id="gallery" >Edit Product Gallery Row Number</a></li>
-                    	<li><a href="#" class="message" id="contact" >Edit Contact Information</a></li>
                     	<li><a href="#" class="message" id="social" >Edit Social Links</a></li>
+                    	<li><a href="#" class="message" id="contact" >Edit Contact Information</a></li>
+                    	<li><a href="<?=base_url();?>index.php/admin/settings_clt/editaboutus" class="message" id="contact" >Edit About Us Content</a></li>
+                    	<li><a href="<?=base_url();?>index.php/admin/settings_clt/editpolicy" class="message" id="contact" >Edit Privacy Policy Content</a></li>
                     </ul>
 					<div style="display:none" id="dvloader"><img src="<?=base_url();?>admin/images/loaders/loader6.gif" /></div>
                 </div><!--content-->

@@ -49,11 +49,11 @@
 				
 								<div id="socnets">
 					<div id="socnets_inner">
-												<a href="#" title="Facebook" class="socnet-facebook"></a>
+												<a href="<?=$settings->fb_link?>" title="Facebook" class="socnet-facebook"></a>
+												<a href="<?=$settings->twitter_link?>" title="Twitter" class="socnet-twitter"></a>
+												<a href="<?=$settings->flicker_link?>" title="Flickr" class="socnet-flickr"></a>
 												<!--
-													<a href="#" title="Twitter" class="socnet-twitter"></a>
 													<a href="#" title="Google+" class="socnet-google"></a>
-													<a href="#" title="Flickr" class="socnet-flickr"></a>
 													<a href="#" title="Forrst" class="socnet-forrst"></a>
 													<a href="#" title="Dribbble" class="socnet-dribbble"></a>
 													<a href="#" title="Tumblr" class="socnet-tumblr"></a>

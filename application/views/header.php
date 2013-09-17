@@ -6,7 +6,7 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>DESHAL | ART and FASHION</title>
+		<title><?=$settings->title?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
 		
 		<link rel="pingback" href="xmlrpc.php" />
@@ -91,7 +91,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 				<div class="container">
 				
 										<a href="<?=base_url();?>" title="Home" class="left the_logo">
-						<img src="<?=base_url();?>/image/data/logodeshal.png" alt="Deshal" id="logo"   style="width: 150px; height: 90px; display: block; margin-top:-20px;"/>
+						<img src="<?=base_url();?>/admin/logo/<?=$settings->logo_dir?>" alt="Deshal" id="logo"   style="width: 150px; height: 90px; display: block; margin-top:-20px;"/>
 					</a>
 						
 					<div id="cart_links">

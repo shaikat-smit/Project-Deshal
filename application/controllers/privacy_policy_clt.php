@@ -20,8 +20,8 @@ class privacy_policy_clt extends CI_Controller {
 	public function index()
 	{
 		//$data['current_page'] = "Home";
-		
-		$this->load->view('header');
+		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
+		$this->load->view('header',$data);
 		//$this->load->view('menu');
 		$this->load->view('privacypolicy');
 		$this->load->view('footer');
