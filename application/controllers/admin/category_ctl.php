@@ -132,6 +132,79 @@ class category_ctl extends CI_Controller {
 	}
 	
 	
+	
+	
+	public function dynaCat($bilai = "")
+	{
+		$arr = array();
+		if($bilai == "")
+			$arr = $this->category_mdl->catListRaw()->result();
+		else
+			$arr = $this->category_mdl->subcatListRaw($bilai)->result();
+		
+		
+		if(count($arr) == 0)return;
+		
+		if($bilai != "")
+			echo '<ul class="sub-menu">';
+		else
+			echo '<ul id="menu-header" class="menu">';
+		
+		
+		foreach ($arr as $row)
+		{
+			echo '<li> <a href="'.base_url().'index.php/home_ctl/temp_grid/'.$row->id.'">'.$row->name.'</a>';
+			$this->dynaCat($row->id);
+			echo '</li>';
+		}
+			
+		echo'</ul>';
+	}
+	
+	
+	public function dynaCatAdd($bilai = "")
+	{
+		$arr = array();
+		if($bilai == "")
+			$arr = $this->category_mdl->catListRaw()->result();
+		else
+			$arr = $this->category_mdl->subcatListRaw($bilai)->result();
+		
+		
+		if(count($arr) == 0)
+		{
+			echo '<ul id="sub-menu" class="menu">';
+				echo '<li><input class="newCatInput mother-'.$bilai.'" type="text"/></li>';//-------
+			echo '</ul>';
+			return;
+		}
+		
+		if($bilai != "")
+		{
+			echo '<ul class="sub-menu">';
+			
+		}
+		else
+			echo '<ul id="menu-header" class="menu">';
+		
+		
+		foreach ($arr as $row)
+		{
+			echo '<li> <a href="'.base_url().'index.php/home_ctl/temp_grid/'.$row->id.'">'.$row->name.'</a>';
+			$this->dynaCatAdd($row->id);
+			echo '</li>';
+		}
+		//if Adding category
+		if($bilai != "")
+			echo '<li><input id="mother-'.$bilai.'" class="newCatInput" type="text"/></li>';//-------
+		//
+		echo'</ul>';
+	}
+	
+	
+	
+	
+	
 	public function assign_prod()
 	{
 		if($_POST)

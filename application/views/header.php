@@ -114,19 +114,27 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 		
 		<?php
 		
-		if(!isset($category))
+		if(isset($category))
 		{
 			$obj = new category_ctl();
-			$category = $obj->menu_categories();
+			//$category = $obj->menu_categories();
+			$obj->dynaCatAdd();//Thats right!
+			
+			//exit;
 		}
+		
+		/*
 		foreach($category as $categorylist)
 		{
 			echo "<li><a>".$categorylist['name']."</a> ";
 			echo '<ul>';
+			echo '<li><input class="newCatInput" type="text"/></li>';//-------
 			foreach($categorylist['data'] as $subcat)
 			{
+				
 				echo '<li><a href="'.base_url().'index.php/home_ctl/temp_grid/'.$subcat['id'].'">'.$subcat['name'].'</a>';
 				echo '<ul class="sub-menu">';
+				echo '<li><input class="newCatInput mother-" type="text"/></li>';//-------
 				foreach($subcat['data'] as $originals)
 				{
 					echo '<li><a href="'.base_url().'index.php/home_ctl/temp_grid/'.$originals['id'].'">'.$originals['name'].'</a></li>';
@@ -135,10 +143,10 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 				echo "</li>";
 				
 			}
-			//echo "</div>";
+			
 			echo "</ul>";
 			echo "</li>";
-		}
+		}*/
 		
 	?>
 	

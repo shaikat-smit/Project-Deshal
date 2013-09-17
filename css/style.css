@@ -490,7 +490,11 @@ span.select {
             top: 40px;
             background-color: #E5E5E5;
         }
-
+#main_menu .newCatInput
+{
+width: 96%;
+margin: -8px;
+}
             #main_menu ul.menu li ul li:hover ul {
                 display: block;
                 top: 0;
