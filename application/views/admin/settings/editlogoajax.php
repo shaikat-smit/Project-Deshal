@@ -70,7 +70,7 @@ getmsg(<? echo $message['status'];?>,'<?=$message['msg'];?>');
 									<label class="zlable" >Upload image:</label>
 								</td>
 								<td class="zFormTd">
-									<input class="zinput" type="file" value="" name="userfile"/>
+									<input class="zinput" type="file" value="" name="userfile" />
 								</td>
 								<td class="zFormTd">
 									<input class="zSubButton" type="submit" value="Submit" />
