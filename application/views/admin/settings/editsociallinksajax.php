@@ -6,7 +6,7 @@
                     <!--123-->
 					<div class="">
 						<table class="zFormTbl" style="width: 80%;">
-						<form action="<?=base_url();?>index.php/admin/settings_clt/editsocialdone" method="post">
+						<form action="<?=base_url();?>index.php/admin/settings/editsocialdone" method="post">
 							<tr>
 								<td class="zFormTd">
 									<label class="zlable" >Facebook link :</label>

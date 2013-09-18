@@ -6,7 +6,7 @@
                     <!--123-->
 					<div class="">
 						<table class="zFormTbl" style="width: 70%;">
-						<form action="<?=base_url();?>index.php/admin/settings_clt/editlogodone" method="post" enctype="multipart/form-data">
+						<form action="<?=base_url();?>index.php/admin/settings/editlogodone" method="post" enctype="multipart/form-data">
 							<tr>
 								<td class="zFormTd">
 									<label class="zlable" >Upload image:</label>

@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class contact_ctl extends CI_Controller {
+class sitemap extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -21,10 +21,10 @@ class contact_ctl extends CI_Controller {
 	{
 		//$data['current_page'] = "Home";
 		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
-		
 		$this->load->view('header',$data);
-		//$this->load->view('menu');
-		$this->load->view('contact');
+		
+		$this->load->view('menu');
+		$this->load->view('sitemap');
 		$this->load->view('footer');
 	}
 }

@@ -7,11 +7,11 @@
                 
                 <div class="content" style="height:550px;">
                 	<ul class="widgetlist">
-                    	<li><a href="<?=base_url();?>index.php/admin/under_cons_clt" class="events">Latest Events</a></li>
-                    	<li><a href="<?=base_url();?>index.php/admin/under_cons_clt" class="message">New Message</a></li>
-                        <li><a href="<?=base_url();?>index.php/admin/under_cons_clt" class="upload">Upload Image</a></li>
-                    	<li><a href="<?=base_url();?>index.php/admin/under_cons_clt" class="events">Statistics</a></li>
-                    	<li><a href="<?=base_url();?>index.php/admin/under_cons_clt" class="message">New Message</a></li>
+                    	<li><a href="<?=base_url();?>index.php/admin/under_cons" class="events">Latest Events</a></li>
+                    	<li><a href="<?=base_url();?>index.php/admin/under_cons" class="message">New Message</a></li>
+                        <li><a href="<?=base_url();?>index.php/admin/under_cons" class="upload">Upload Image</a></li>
+                    	<li><a href="<?=base_url();?>index.php/admin/under_cons" class="events">Statistics</a></li>
+                    	<li><a href="<?=base_url();?>index.php/admin/under_cons" class="message">New Message</a></li>
                     </ul>
                     
                    

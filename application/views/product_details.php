@@ -99,7 +99,7 @@
 				<a id="wTrig" class="button" rel="#write" style="background: #DDD" onclick="toggle_visibility('wRvw')">Write review</a>
 			  
 				<div  id="wRvw" style="display:none; font-family: Trebuchet MS, Arial, Helvetica, sans-serif;margin-top: 15px;">
-					<form name="reviewForm" action="http://localhost/Project-Deshal/index.php/product_details_clt/insert_review" method="POST">
+					<form name="reviewForm" action="http://localhost/Project-Deshal/index.php/product_details/insert_review" method="POST">
 							<table>
 								<tr>
 									<td>User Name :</td>

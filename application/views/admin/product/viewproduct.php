@@ -84,7 +84,7 @@
                             <td class="center"><?=$row->name?></td>
                             <td class="center"><?=$row->price?></td>
                             <td class="center"><?=$row->amount?></td>
-                            <td class="center"><a href="<?=base_url();?>index.php/admin/product_ctl/editProducts/<?=$row->id?>" class="edit">Edit</a> &nbsp; <a href="<?=base_url();?>index.php/admin/product_ctl/deleteProducts/<?=$row->id?>/<?=$row->status?>" class="">Delete</a></td>
+                            <td class="center"><a href="<?=base_url();?>index.php/admin/product/editProducts/<?=$row->id?>" class="edit">Edit</a> &nbsp; <a href="<?=base_url();?>index.php/admin/product/deleteProducts/<?=$row->id?>/<?=$row->status?>" class="">Delete</a></td>
                             <!--<td class="center">X</td>-->
                         </tr>
 					<?}}?>
@@ -128,7 +128,7 @@
                             <td class="center"><?=$row->name?></td>
                             <td class="center"><?=$row->price?></td>
                             <td class="center"><?=$row->amount?></td>
-                            <td class="center"><a href="<?=base_url();?>index.php/admin/product_ctl/editProducts/<?=$row->id?>" class="edit">Edit</a> &nbsp; <a href="<?=base_url();?>index.php/admin/product_ctl/deleteProducts/<?=$row->id?>/<?=$row->status?>" class="">Activate</a></td>
+                            <td class="center"><a href="<?=base_url();?>index.php/admin/product/editProducts/<?=$row->id?>" class="edit">Edit</a> &nbsp; <a href="<?=base_url();?>index.php/admin/product/deleteProducts/<?=$row->id?>/<?=$row->status?>" class="">Activate</a></td>
                             <!--<td class="center">X</td>-->
                         </tr>
 					<?}}?>

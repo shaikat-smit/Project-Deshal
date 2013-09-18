@@ -25,19 +25,19 @@
 								</li>
 								-->
 								<li class="menu-item menu-item-type-post_type menu-item-object-page">
-									<a href="<?=base_url();?>index.php/aboutus_clt">About Us</a>
+									<a href="<?=base_url();?>index.php/aboutus">About Us</a>
 								</li>
 								<li class="menu-item menu-item-type-post_type menu-item-object-page">
-									<a href="<?=base_url();?>index.php/privacy_policy_clt">Privacy Policy</a>
+									<a href="<?=base_url();?>index.php/privacy_policy">Privacy Policy</a>
 								</li>
 								<li class="menu-item menu-item-type-post_type menu-item-object-page">
-									<a href="<?=base_url();?>index.php/terms_clt">Terms &amp; Conditions</a>
+									<a href="<?=base_url();?>index.php/terms">Terms &amp; Conditions</a>
 								</li>
 								<li class="menu-item menu-item-type-post_type menu-item-object-page">
-									<a href="<?=base_url();?>index.php/contact_ctl">Contact Us</a>
+									<a href="<?=base_url();?>index.php/contact">Contact Us</a>
 								</li>
 								<li class="menu-item menu-item-type-post_type menu-item-object-page">
-									<a href="<?=base_url();?>index.php/sitemap_clt">Site Map</a>
+									<a href="<?=base_url();?>index.php/sitemap">Site Map</a>
 								</li>
 								
 							</ul>

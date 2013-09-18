@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class category_ctl extends CI_Controller {
+class category extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -153,7 +153,7 @@ class category_ctl extends CI_Controller {
 		
 		foreach ($arr as $row)
 		{
-			echo '<li> <a href="'.base_url().'index.php/home_ctl/temp_grid/'.$row->id.'">'.$row->name.'</a>';
+			echo '<li> <a href="'.base_url().'index.php/home/temp_grid/'.$row->id.'">'.$row->name.'</a>';
 			$this->dynaCat($row->id);
 			echo '</li>';
 		}
@@ -190,7 +190,7 @@ class category_ctl extends CI_Controller {
 		
 		foreach ($arr as $row)
 		{
-			echo '<li> <a href="'.base_url().'index.php/home_ctl/temp_grid/'.$row->id.'">'.$row->name.'</a>';
+			echo '<li> <a href="'.base_url().'index.php/home/temp_grid/'.$row->id.'">'.$row->name.'</a>';
 			$this->dynaCatAdd($row->id);
 			echo '</li>';
 		}

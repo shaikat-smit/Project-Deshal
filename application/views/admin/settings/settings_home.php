@@ -9,7 +9,7 @@
 					$.ajax
 					({
 						type:'POST', 
-						url: '<?=base_url();?>index.php/admin/settings_clt/editlogo',  
+						url: '<?=base_url();?>index.php/admin/settings/editlogo',  
 						success: function(response) 
 						{
 							$("#dvloader").hide();
@@ -25,7 +25,7 @@
 					$.ajax
 					({
 						type:'POST', 
-						url: '<?=base_url();?>index.php/admin/settings_clt/edittag',  
+						url: '<?=base_url();?>index.php/admin/settings/edittag',  
 						success: function(response) 
 						{
 							$("#dvloader").hide();
@@ -41,7 +41,7 @@
 					$.ajax
 					({
 						type:'POST', 
-						url: '<?=base_url();?>index.php/admin/settings_clt/edittitle',  
+						url: '<?=base_url();?>index.php/admin/settings/edittitle',  
 						success: function(response) 
 						{
 							$("#dvloader").hide();
@@ -57,7 +57,7 @@
 					$.ajax
 					({
 						type:'POST', 
-						url: '<?=base_url();?>index.php/admin/settings_clt/editProductRow',  
+						url: '<?=base_url();?>index.php/admin/settings/editProductRow',  
 						success: function(response) 
 						{
 							$("#dvloader").hide();
@@ -73,7 +73,7 @@
 					$.ajax
 					({
 						type:'POST', 
-						url: '<?=base_url();?>index.php/admin/settings_clt/editlatestRow',  
+						url: '<?=base_url();?>index.php/admin/settings/editlatestRow',  
 						success: function(response) 
 						{
 							$("#dvloader").hide();
@@ -89,7 +89,7 @@
 					$.ajax
 					({
 						type:'POST', 
-						url: '<?=base_url();?>index.php/admin/settings_clt/editcontact',  
+						url: '<?=base_url();?>index.php/admin/settings/editcontact',  
 						success: function(response) 
 						{
 							$("#dvloader").hide();
@@ -105,7 +105,7 @@
 					$.ajax
 					({
 						type:'POST', 
-						url: '<?=base_url();?>index.php/admin/settings_clt/editsocial',  
+						url: '<?=base_url();?>index.php/admin/settings/editsocial',  
 						success: function(response) 
 						{
 							$("#dvloader").hide();
@@ -119,7 +119,7 @@
 				
 					
 					$(".widgetlist").show(1000, function(){
-						var url = "<?=base_url();?>index.php/admin/settings_clt";
+						var url = "<?=base_url();?>index.php/admin/settings";
 						window.location = url;
 					});
 				
@@ -213,8 +213,8 @@ getmsg(<? echo $message['status'];?>,'<?=$message['msg'];?>');
                     	<li><a href="#" class="events" id="gallery" >Edit Product Gallery Row Number</a></li>
                     	<li><a href="#" class="message" id="social" >Edit Social Links</a></li>
                     	<li><a href="#" class="message" id="contact" >Edit Contact Information</a></li>
-                    	<li><a href="<?=base_url();?>index.php/admin/settings_clt/editaboutus" class="message" id="contact" >Edit About Us Content</a></li>
-                    	<li><a href="<?=base_url();?>index.php/admin/settings_clt/editpolicy" class="message" id="contact" >Edit Privacy Policy Content</a></li>
+                    	<li><a href="<?=base_url();?>index.php/admin/settings/editaboutus" class="message" id="contact" >Edit About Us Content</a></li>
+                    	<li><a href="<?=base_url();?>index.php/admin/settings/editpolicy" class="message" id="contact" >Edit Privacy Policy Content</a></li>
                     </ul>
 					<div style="display:none" id="dvloader"><img src="<?=base_url();?>admin/images/loaders/loader6.gif" /></div>
                 </div><!--content-->

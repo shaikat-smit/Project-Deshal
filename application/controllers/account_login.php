@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class terms_clt extends CI_Controller {
+class account_login extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,10 +20,10 @@ class terms_clt extends CI_Controller {
 	public function index()
 	{
 		//$data['current_page'] = "Home";
-		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
-		$this->load->view('header',$data);
-		//$this->load->view('menu');
-		$this->load->view('terms');
+		
+		$this->load->view('header');
+		$this->load->view('menu');
+		$this->load->view('account_login');
 		$this->load->view('footer');
 	}
 }

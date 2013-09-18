@@ -46,7 +46,7 @@ jQuery(document).ready(function() {
 					<div class="contenttitle radiusbottom0">
 						<h2 class="form"><span>Edit	Privacy Policy Page Content</span></h2>
 					</div><!--contenttitle-->
-					<form action="<?=base_url();?>index.php/admin/settings_clt/editpolicydone" method="post">
+					<form action="<?=base_url();?>index.php/admin/settings/editpolicydone" method="post">
 					<textarea id="wysiwyg2" cols="" rows="15" name="policy" ><?if(isset($val)){echo $val;}?></textarea> 
 					<input class="zSubButton" type="submit" value="Submit" />
 					</form>

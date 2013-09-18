@@ -12,7 +12,7 @@ function addCat()
 	if(catname != "")
 	{
 		jQuery.ajax({
-			url: "<?php echo base_url();?>index.php/admin/category_ctl/addCategory",
+			url: "<?php echo base_url();?>index.php/admin/category/addCategory",
 			type: 'POST',
 			data: {
 					"catname" : catname,
@@ -71,7 +71,7 @@ function addCat()
                     <br />
                     <!--123-->
 					<div class="">
-						<form action="<?php echo base_url();?>index.php/admin/category_ctl/addCategory" method="POST">
+						<form action="<?php echo base_url();?>index.php/admin/category/addCategory" method="POST">
 							<table class="zFormTbl" style="width: 70%;">
 								<tr>
 									<td colspan="2">

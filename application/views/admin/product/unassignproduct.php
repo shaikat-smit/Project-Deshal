@@ -158,7 +158,7 @@ getmsg(<? if(isset($message)){echo $message['status'];?>,<? echo "'".$message['m
 									var data = "code="+code;
 									
 									jQuery.ajax({
-											url: "<?php echo base_url();?>index.php/admin/product_ctl/getunassigncode",
+											url: "<?php echo base_url();?>index.php/admin/product/getunassigncode",
 											type: 'POST',
 											data: data,
 

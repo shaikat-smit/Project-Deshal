@@ -56,7 +56,7 @@
 									if(catId != "")
 									{
 										jQuery.ajax({
-											url: "<?php echo base_url();?>index.php/admin/category_ctl/getSubcatList",
+											url: "<?php echo base_url();?>index.php/admin/category/getSubcatList",
 											type: 'POST',
 											data: {
 													"catId" : catId
@@ -139,7 +139,7 @@
 									if(catId != "" && newSub != "")
 									{
 										jQuery.ajax({
-											url: "<?php echo base_url();?>index.php/admin/category_ctl/addSubCategory",
+											url: "<?php echo base_url();?>index.php/admin/category/addSubCategory",
 											type: 'POST',
 											data: postData,
 

@@ -44,7 +44,7 @@
 		$i = 1;
 		if(!isset($category))
 		{
-			$obj = new category_ctl();
+			$obj = new category();
 			$category = $obj->menu_categories();
 		}
 		foreach($category as $categorylist)
@@ -55,11 +55,11 @@
 			
 			foreach($categorylist['data'] as $subcat)
 			{
-				echo '<ul> <li><h3><a href="'.base_url().'index.php/home_ctl/temp_grid/'.$subcat['id'].'">'.$subcat['name'].'</a></h3></li>';//echo $subcat['id'];//echo $subcat['name'];
+				echo '<ul> <li><h3><a href="'.base_url().'index.php/home/temp_grid/'.$subcat['id'].'">'.$subcat['name'].'</a></h3></li>';//echo $subcat['id'];//echo $subcat['name'];
 				
 				foreach($subcat['data'] as $originals)
 				{
-					echo '<li><a href="'.base_url().'index.php/home_ctl/temp_grid/'.$originals['id'].'">'.$originals['name'].'</a></li>';// echo $originals['id'];// echo $originals['name'];
+					echo '<li><a href="'.base_url().'index.php/home/temp_grid/'.$originals['id'].'">'.$originals['name'].'</a></li>';// echo $originals['id'];// echo $originals['name'];
 				}
 				echo "</ul>";
 				

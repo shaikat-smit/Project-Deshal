@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class product_details_clt extends CI_Controller {
+class product_details extends CI_Controller {
 
-	function Product_details_clt()
+	function Product_details()
 	{
 		parent::__construct();
 		$this->load->helper('form');
@@ -16,8 +16,8 @@ class product_details_clt extends CI_Controller {
 		//$data['current_page'] = "Home";
 		
 		
-		$this->load->library('../controllers/admin/category_ctl');
-		$data['category'] = $this->category_ctl->menu_categories();//$category;
+		$this->load->library('../controllers/admin/category');
+		$data['category'] = $this->category->menu_categories();//$category;
 		$this->load->view('header');
 		$this->load->view('menu');
 		$this->load->view('product_details');

@@ -46,7 +46,7 @@ jQuery(document).ready(function() {
 					<div class="contenttitle radiusbottom0">
 						<h2 class="form"><span>Edit	About Us Page Content</span></h2>
 					</div><!--contenttitle-->
-					<form action="<?=base_url();?>index.php/admin/settings_clt/editaboutdone" method="post">
+					<form action="<?=base_url();?>index.php/admin/settings/editaboutdone" method="post">
 					<textarea id="wysiwyg2" cols="" rows="15" name="about" ><?if(isset($val)){echo $val;}?></textarea> 
 					<input class="zSubButton" type="submit" value="Submit" />
 					</form>

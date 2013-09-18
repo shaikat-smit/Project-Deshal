@@ -1,4 +1,4 @@
-<?php include_once('application/controllers/admin/category_ctl.php');?>
+<?php include_once('application/controllers/admin/category.php');?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
 	
@@ -96,7 +96,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 						
 					<div id="cart_links">
 						<ul>
-							<li><a href="<?=base_url();?>index.php/admin/dashboard_ctl" title="Log In">Log In</a></li>
+							<li><a href="<?=base_url();?>index.php/admin/dashboard" title="Log In">Log In</a></li>
 							<!--	<li><a href="store/cart/index.html" title="cart" id="head_cart">Your Cart(<span id="header_cart_count">0</span>)</a></li>-->
 						</ul>
 					</div>
@@ -115,7 +115,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 		<?php
 		
 		
-			$obj = new category_ctl();
+			$obj = new category();
 			//$category = $obj->menu_categories();
 			$obj->dynaCatAdd();//Thats right!
 			
@@ -131,12 +131,12 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 			foreach($categorylist['data'] as $subcat)
 			{
 				
-				echo '<li><a href="'.base_url().'index.php/home_ctl/temp_grid/'.$subcat['id'].'">'.$subcat['name'].'</a>';
+				echo '<li><a href="'.base_url().'index.php/home/temp_grid/'.$subcat['id'].'">'.$subcat['name'].'</a>';
 				echo '<ul class="sub-menu">';
 				echo '<li><input class="newCatInput mother-" type="text"/></li>';//-------
 				foreach($subcat['data'] as $originals)
 				{
-					echo '<li><a href="'.base_url().'index.php/home_ctl/temp_grid/'.$originals['id'].'">'.$originals['name'].'</a></li>';
+					echo '<li><a href="'.base_url().'index.php/home/temp_grid/'.$originals['id'].'">'.$originals['name'].'</a></li>';
 				}
 				echo '</ul>';
 				echo "</li>";

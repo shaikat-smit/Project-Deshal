@@ -38,7 +38,7 @@
 	<div class="header radius3" style="border-top-style:solid;border-top-width:10px;border-top-color:#EF1800;">
     	<div class="headerinner">
         	
-            <a href="<?=base_url();?>index.php/admin/dashboard_ctl"><img style="margin-top:-18px;" src="<?=base_url();?>/image/data/logodeshal1.png" alt="" /></a>
+            <a href="<?=base_url();?>index.php/admin/dashboard"><img style="margin-top:-18px;" src="<?=base_url();?>/image/data/logodeshal1.png" alt="" /></a>
             
               
             <div class="headright">
@@ -72,7 +72,7 @@
                     <div class="userdrop">
                         <ul>
                             <li><a href="<?=base_url();?>admin/#">Profile</a></li>
-                            <li><a href="<?=base_url();?>index.php/admin/settings_clt">Site Settings</a></li>
+                            <li><a href="<?=base_url();?>index.php/admin/settings">Site Settings</a></li>
                             <li><a href="<?=base_url();?>index.php/adminlog/logout">Logout</a></li>
                         </ul>
                     </div><!--userdrop-->
@@ -92,35 +92,35 @@
             
               	<div class="leftmenu">
             		<ul>
-                    	<li class="current"><a href="<?=base_url();?>index.php/admin/dashboard_ctl" class="dashboard"><span>Dashboard</span></a></li>
+                    	<li class="current"><a href="<?=base_url();?>index.php/admin/dashboard" class="dashboard"><span>Dashboard</span></a></li>
                         <li><a nohref="#" class="widgets menudrop"><span>Categories</span></a>
 							<ul>
-                            	<li><a href="<?=base_url();?>index.php/admin/category_ctl"><span>Add category</span></a></li>
-                            	<li><a href="<?=base_url();?>index.php/admin/category_ctl/subcat"><span>Add sub-category</span></a></li>
+                            	<li><a href="<?=base_url();?>index.php/admin/category"><span>Add category</span></a></li>
+                            	<li><a href="<?=base_url();?>index.php/admin/category/subcat"><span>Add sub-category</span></a></li>
                                 <!--<li><a href="wizard.html"><span>Modify</span></a></li>-->
                             </ul>
 						</li>
 						
                         <li><a nohref="#" class="dashboard menudrop"><span>Products</span></a>
 							<ul>
-                            	<li><a href="<?=base_url();?>index.php/admin/product_ctl"><span>Add products</span></a></li>
-                            	<li><a href="<?=base_url();?>index.php/admin/product_ctl/assign"><span>Assign products</span></a></li>
-                            	<!--<li><a href="<?=base_url();?>index.php/admin/product_ctl/assignint"><span>Assign Int. products</span></a></li>-->
-                            	<li><a href="<?=base_url();?>index.php/admin/product_ctl/unassign"><span>Unassign products</span></a></li>
-                            	<li><a href="<?=base_url();?>index.php/admin/product_ctl/ViewProducts"><span>View products</span></a></li>
+                            	<li><a href="<?=base_url();?>index.php/admin/product"><span>Add products</span></a></li>
+                            	<li><a href="<?=base_url();?>index.php/admin/product/assign"><span>Assign products</span></a></li>
+                            	<!--<li><a href="<?=base_url();?>index.php/admin/product/assignint"><span>Assign Int. products</span></a></li>-->
+                            	<li><a href="<?=base_url();?>index.php/admin/product/unassign"><span>Unassign products</span></a></li>
+                            	<li><a href="<?=base_url();?>index.php/admin/product/ViewProducts"><span>View products</span></a></li>
                             </ul>
 						</li>
-                      <li><a href="<?=base_url();?>index.php/admin/under_cons_clt" class="dashboard"><span>Reports</span></a></li>
-                        <li><a href="<?=base_url();?>index.php/admin/under_cons_clt" class="dashboard menudrop"><span>Sales</span></a>
+                      <li><a href="<?=base_url();?>index.php/admin/under_cons" class="dashboard"><span>Reports</span></a></li>
+                        <li><a href="<?=base_url();?>index.php/admin/under_cons" class="dashboard menudrop"><span>Sales</span></a>
 							<ul>
-                            	<li><a href="<?=base_url();?>index.php/admin/under_cons_clt"><span>Orders</span></a></li>
-                            	<li><a href="<?=base_url();?>index.php/admin/under_cons_clt"><span>Returns</span></a></li>
-                                <li><a href="<?=base_url();?>index.php/admin/under_cons_clt"><span>Customers</span></a>
+                            	<li><a href="<?=base_url();?>index.php/admin/under_cons"><span>Orders</span></a></li>
+                            	<li><a href="<?=base_url();?>index.php/admin/under_cons"><span>Returns</span></a></li>
+                                <li><a href="<?=base_url();?>index.php/admin/under_cons"><span>Customers</span></a>
 									
 								</li>
-                                <li><a href="<?=base_url();?>index.php/admin/under_cons_clt"><span>Offers</span></a></li>
-                                <li><a href="<?=base_url();?>index.php/admin/under_cons_clt"><span>Discounts</span></a></li>
-                                <li><a href="<?=base_url();?>index.php/admin/under_cons_clt"><span>Modify</span></a></li>
+                                <li><a href="<?=base_url();?>index.php/admin/under_cons"><span>Offers</span></a></li>
+                                <li><a href="<?=base_url();?>index.php/admin/under_cons"><span>Discounts</span></a></li>
+                                <li><a href="<?=base_url();?>index.php/admin/under_cons"><span>Modify</span></a></li>
                             </ul>
 						</li>
 						</li>

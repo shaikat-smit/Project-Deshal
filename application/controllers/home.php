@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class home_ctl extends CI_Controller {
+class home extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -88,8 +88,8 @@ class home_ctl extends CI_Controller {
 			}
 			//vaj($category);
 			$data['category'] = $category;
-			//$this->load->controller('category_ctl');
-			// vaj($this->category_ctl->menu_categories());
+			//$this->load->controller('category');
+			// vaj($this->category->menu_categories());
 			// echo 's'; exit;
 		}
 		//$data['query'] = $this->db->query("select * from product ORDER BY created DESC limit 8");
@@ -105,11 +105,11 @@ class home_ctl extends CI_Controller {
 		$this->load->view('footer');
 	}
 	
-	function temp_grid($val)  // Home_ctl/temp_grid
+	function temp_grid($val)  // Home/temp_grid
 	{
 		
-		// $this->load->library('../controllers/category_ctl');
-		// $data['category'] = $this->category_ctl->menu_categories();
+		// $this->load->library('../controllers/category');
+		// $data['category'] = $this->category->menu_categories();
 		//$data['category'] = $category;
 	
 				$data['products'] = $this->db->query("select * from product where id in (select productId from productincatagory where categoryId = ".$val.");");

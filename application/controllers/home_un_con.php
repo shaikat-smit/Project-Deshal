@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class under_cons_clt extends CI_Controller {
+class home_un_con extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,16 +20,14 @@ class under_cons_clt extends CI_Controller {
 	public function index()
 	{
 		//$data['current_page'] = "Home";
-		if($this->session->userdata('admin_logged_in'))
-		{
-			$this->load->view('admin/header');
-			//$this->load->view('menu');
-			$this->load->view('admin/under_cons');
-			//$this->load->view('footer');
-		}
-		else
-		{
-			redirect('adminlog');
-		}
+		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
+		$this->load->view('header',$data);
+		
+		$this->load->view('home_un_cons');
+		//$this->load->view('home');
+		$this->load->view('footer');
 	}
 }
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

@@ -71,7 +71,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ 1500</div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+							<a href="http://localhost/Project-Deshal/index.php/product_details/product/39" title="test product" class="single_product_image_link">
 								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -79,7 +79,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ 1500</div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+							<a href="http://localhost/Project-Deshal/index.php/product_details/product/39" title="test product" class="single_product_image_link">
 								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -88,7 +88,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ 1500</div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+							<a href="http://localhost/Project-Deshal/index.php/product_details/product/39" title="test product" class="single_product_image_link">
 								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -97,7 +97,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ 1500</div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+							<a href="http://localhost/Project-Deshal/index.php/product_details/product/39" title="test product" class="single_product_image_link">
 								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -106,7 +106,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ 1500</div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+							<a href="http://localhost/Project-Deshal/index.php/product_details/product/39" title="test product" class="single_product_image_link">
 								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -115,7 +115,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ 1500</div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+							<a href="http://localhost/Project-Deshal/index.php/product_details/product/39" title="test product" class="single_product_image_link">
 								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -124,7 +124,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ 1500</div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+							<a href="http://localhost/Project-Deshal/index.php/product_details/product/39" title="test product" class="single_product_image_link">
 								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -133,7 +133,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ 1500</div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+							<a href="http://localhost/Project-Deshal/index.php/product_details/product/39" title="test product" class="single_product_image_link">
 								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -142,7 +142,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ 1500</div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+							<a href="http://localhost/Project-Deshal/index.php/product_details/product/39" title="test product" class="single_product_image_link">
 								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -151,7 +151,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ 1500</div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details_clt/product/39" title="test product" class="single_product_image_link">
+							<a href="http://localhost/Project-Deshal/index.php/product_details/product/39" title="test product" class="single_product_image_link">
 								<img width="560" height="560" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -168,7 +168,7 @@
 					<div class="single_grid_product">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳<?=$prod->price?></div>
-							<a href="<?=base_url();?>index.php/product_details_clt/product/<?=$prod->id?>" title="<?=$prod->name?>" class="single_product_image_link">
+							<a href="<?=base_url();?>index.php/product_details/product/<?=$prod->id?>" title="<?=$prod->name?>" class="single_product_image_link">
 								<img width="560" height="560" src="<?=base_url();?>itemimages/<?=$prod->mainImageUrl?>" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
@@ -177,7 +177,7 @@
 					
 					<!--
 					<td>
-						<a style="text-decoration: none;" href="<?=base_url();?>index.php/product_details_clt/product/<?=$prod->id?>">
+						<a style="text-decoration: none;" href="<?=base_url();?>index.php/product_details/product/<?=$prod->id?>">
 						<div class="new" style="">
 							<p class="pname"><a href=""></a></p>
 							<p class="pname"><?=$prod->name?></p>

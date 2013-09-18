@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class sitemap_clt extends CI_Controller {
+class dashboard extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,12 +20,17 @@ class sitemap_clt extends CI_Controller {
 	public function index()
 	{
 		//$data['current_page'] = "Home";
-		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
-		$this->load->view('header',$data);
-		
-		$this->load->view('menu');
-		$this->load->view('sitemap');
-		$this->load->view('footer');
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$this->load->view('admin/header');
+			//$this->load->view('menu');
+			$this->load->view('admin/dashboard');
+			//$this->load->view('footer');
+		}
+		else
+		{
+			redirect('adminlog');
+		}
 	}
 }
 

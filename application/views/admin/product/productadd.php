@@ -20,7 +20,7 @@
 						({ 
 
 							type: "POST",
-							url: '<?=base_url();?>index.php/admin/product_ctl/getAddForm',
+							url: '<?=base_url();?>index.php/admin/product/getAddForm',
 							data: form.serialize(),
 							success: function(msg) {
 							jQuery("#view").html(msg);

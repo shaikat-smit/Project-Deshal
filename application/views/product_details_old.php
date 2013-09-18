@@ -178,9 +178,9 @@
 			foreach ($products->result() as $prod)
 			{?>
 				<td style="width: 25%;">
-					<a href="<?=base_url();?>index.php/product_details_clt/product/<?=$prod->id?>" style="text-decoration: none; color: #666">
+					<a href="<?=base_url();?>index.php/product_details/product/<?=$prod->id?>" style="text-decoration: none; color: #666">
 					<div class="new" style="">
-						<!--<p class="pname"><a href="<?=base_url();?>index.php/product_details_clt/product/<?=$prod->id?>"><?=$prod->name?></a></p>-->
+						<!--<p class="pname"><a href="<?=base_url();?>index.php/product_details/product/<?=$prod->id?>"><?=$prod->name?></a></p>-->
 						<p class="pname"><?=$prod->name?></p>
 						<div class="pprice"><p style="">৳<?=$prod->price?></p><span style="text-align:left;">CODE: <?=$prod->code?></span></div>
 						<img src="<?=base_url();?>itemimages/<?=$prod->mainImageUrl?>" />

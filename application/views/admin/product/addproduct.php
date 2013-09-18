@@ -21,7 +21,7 @@
                     <!--123-->
 					<div class="">
 						<table class="zFormTbl" style="width: 70%;">
-						<?=form_open_multipart('admin/product_ctl/getAddForm')?>
+						<?=form_open_multipart('admin/product/getAddForm')?>
 							<tr>
 									<td colspan="2">
 										<div class="notification msginfo">

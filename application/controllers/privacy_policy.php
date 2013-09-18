@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class dashboard_ctl extends CI_Controller {
+class privacy_policy extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -20,17 +20,11 @@ class dashboard_ctl extends CI_Controller {
 	public function index()
 	{
 		//$data['current_page'] = "Home";
-		if($this->session->userdata('admin_logged_in'))
-		{
-			$this->load->view('admin/header');
-			//$this->load->view('menu');
-			$this->load->view('admin/dashboard');
-			//$this->load->view('footer');
-		}
-		else
-		{
-			redirect('adminlog');
-		}
+		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
+		$this->load->view('header',$data);
+		//$this->load->view('menu');
+		$this->load->view('privacypolicy');
+		$this->load->view('footer');
 	}
 }
 

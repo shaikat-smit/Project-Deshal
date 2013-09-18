@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class settings_clt extends CI_Controller {
+class settings extends CI_Controller {
 
-	function settings_clt()
+	function settings()
 	{
 		parent::__construct();
 		$this->load->helper('form');

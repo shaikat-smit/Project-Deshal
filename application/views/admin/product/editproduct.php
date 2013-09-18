@@ -20,7 +20,7 @@
                     <!--123-->
 					<div class="">
 						<table class="zFormTbl" style="width: 70%;">
-						<?=form_open_multipart('admin/product_ctl/getEditForm')?>
+						<?=form_open_multipart('admin/product/getEditForm')?>
 							<tr>
 									<td colspan="2">
 										<div class="notification msginfo">

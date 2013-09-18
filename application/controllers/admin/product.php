@@ -1,8 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class product_ctl extends CI_Controller {
+class product extends CI_Controller {
 
-	function product_ctl()
+	function product()
 	{
 		parent::__construct();
 		$this->load->helper('form');
@@ -436,7 +436,7 @@ class product_ctl extends CI_Controller {
 			$config['enable_query_strings'] = TRUE;
 			$config['query_string_segment'] = 'offset';
 			
-			$config['base_url'] = base_url().'index.php/admin/product_ctl/assign'.'?';
+			$config['base_url'] = base_url().'index.php/admin/product/assign'.'?';
 			$config['total_rows'] = $this->db->query("select count(*) as total from product ORDER BY created DESC;")->row()->total;
 			
 			$config['per_page'] = $limit;
@@ -470,7 +470,7 @@ class product_ctl extends CI_Controller {
 			$config['enable_query_strings'] = TRUE;
 			$config['query_string_segment'] = 'offset';
 			
-			$config['base_url'] = base_url().'index.php/admin/product_ctl/ViewProducts'.'?';
+			$config['base_url'] = base_url().'index.php/admin/product/ViewProducts'.'?';
 			$config['total_rows'] = $this->db->query("select count(*) as total from product ORDER BY created DESC;")->row()->total;
 			
 			$config['per_page'] = $limit;
@@ -907,7 +907,7 @@ class product_ctl extends CI_Controller {
 		if($delete)
 		{
 			//$this->ViewProducts();
-			redirect('admin/product_ctl/ViewProducts');
+			redirect('admin/product/ViewProducts');
 		}
 		//echo $delete;
 	}
@@ -925,7 +925,7 @@ class product_ctl extends CI_Controller {
 			$config['enable_query_strings'] = TRUE;
 			$config['query_string_segment'] = 'offset';
 			
-			$config['base_url'] = base_url().'index.php/admin/product_ctl/unassign'.'?';
+			$config['base_url'] = base_url().'index.php/admin/product/unassign'.'?';
 			$config['total_rows'] = $this->db->query("select count(*) as total from product ORDER BY created DESC;")->row()->total;
 			
 			$config['per_page'] = $limit;
@@ -984,7 +984,7 @@ class product_ctl extends CI_Controller {
 			$config['enable_query_strings'] = TRUE;
 			$config['query_string_segment'] = 'offset';
 			
-			$config['base_url'] = base_url().'index.php/admin/product_ctl/unassign'.'?';
+			$config['base_url'] = base_url().'index.php/admin/product/unassign'.'?';
 			$config['total_rows'] = $this->db->query("select count(*) as total from product ORDER BY created DESC;")->row()->total;
 			
 			$config['per_page'] = $limit;
@@ -1021,7 +1021,7 @@ class product_ctl extends CI_Controller {
 			$config['enable_query_strings'] = TRUE;
 			$config['query_string_segment'] = 'offset';
 			
-			$config['base_url'] = base_url().'index.php/admin/product_ctl/assign'.'?';
+			$config['base_url'] = base_url().'index.php/admin/product/assign'.'?';
 			$config['total_rows'] = $this->db->query("select count(*) as total from product ORDER BY created DESC;")->row()->total;
 			
 			$config['per_page'] = $limit;
