@@ -134,7 +134,7 @@ class category extends CI_Controller {
 	
 	
 	
-	public function dynaCat($bilai = "")
+	public function dynaCat($bilai = "")//SHOW
 	{
 		$arr = array();
 		if($bilai == "")
@@ -162,6 +162,53 @@ class category extends CI_Controller {
 	}
 	
 	
+	public function dynaCatAdd($bilai = "")//CHANGE
+	{
+		$arr = array();
+		if($bilai == "")
+			$arr = $this->category_mdl->catListRaw()->result();
+		else
+			$arr = $this->category_mdl->subcatListRaw($bilai)->result();
+		
+		
+		if(count($arr) == 0)
+		{
+			echo '<ul class="sub-menu">';
+				echo '<li><input class="newCatInput mother-'.$bilai.'" type="text" placeholder="Add new"/>';
+				echo '<textarea  class="newCatDesc" placeholder="Description" style="vertical-align: top;" rows="1" cols="25" value=""></textarea></li>';//-------
+			echo '</ul>';
+			return;
+		}
+		
+		if($bilai != "")
+		{
+			echo '<ul class="sub-menu">';
+			
+		}
+		else
+			echo '<ul id="menu-header" class="menu particular">';
+		
+		
+		foreach ($arr as $row)
+		{
+			echo '<li id="parent-'.$row->id.'"> <a href="'.base_url().'index.php/home/temp_grid/'.$row->id.'">'.$row->name.'</a>';
+			$this->dynaCatAdd($row->id);
+			echo '</li>';
+		}
+		//if Adding category
+		if($bilai != "")
+			echo '<li><input id="mother-'.$bilai.'" class="newCatInput" type="text" placeholder="Add new"/>';
+			echo '<textarea  class="newCatDesc" placeholder="Description"  style="vertical-align: top;" rows="1" cols="25" value=""></textarea> </li>';//-------
+		//
+		echo'</ul>';
+	}
+	
+	
+	public function addCatAJAX()
+	{
+		
+	}
+	/*
 	public function dynaCatAdd($bilai = "")
 	{
 		$arr = array();
@@ -173,7 +220,7 @@ class category extends CI_Controller {
 		
 		if(count($arr) == 0)
 		{
-			echo '<ul id="sub-menu" class="menu">';
+			echo '<ul class="sub-menu">';
 				echo '<li><input class="newCatInput mother-'.$bilai.'" type="text"/></li>';//-------
 			echo '</ul>';
 			return;
@@ -200,7 +247,7 @@ class category extends CI_Controller {
 		//
 		echo'</ul>';
 	}
-	
+	*/
 	
 	
 	

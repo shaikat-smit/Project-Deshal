@@ -108,8 +108,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 <div class="container">
 <div id="menu_wrap">
 <div class="menu-header-container">
-	<ul id="menu-header" class="menu">
-		
+	
 	
 		
 		<?php
@@ -117,9 +116,9 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 		
 			$obj = new category();
 			//$category = $obj->menu_categories();
-			$obj->dynaCatAdd();//Thats right!
+			$obj->dynaCat();//Thats right!
+			//$obj->dynaCatAdd();//Thats right!
 			
-			//exit;
 		
 		
 		/*
@@ -149,7 +148,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 		
 	?>
 	
-	</ul>
+	
 	</div>
 </div>
 
