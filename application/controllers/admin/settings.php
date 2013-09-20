@@ -207,6 +207,18 @@ class settings extends CI_Controller {
 		}
 	}
 	
+	public function editbanner()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$this->load->view('admin/settings/editbannerajax');
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
 	public function edittag()
 	{
 		if($this->session->userdata('admin_logged_in'))
@@ -260,6 +272,21 @@ class settings extends CI_Controller {
 			$done = $this->settings_mdl->getvalues($column_name);
 			$data['val'] = $done['value'];
 			$this->load->view('admin/settings/editlatestajax',$data);
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
+	public function editcontactaddress()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$column_name = "contact_email";
+			$done = $this->settings_mdl->getvalues($column_name);
+			$data['val'] = $done['value'];
+			$this->load->view('admin/settings/edicontactaddressajax',$data);
 		}
 		else
 		{
@@ -555,6 +582,59 @@ class settings extends CI_Controller {
 				{
 					$message['status'] = 1;
 					$message['msg'] = 'Latest Product Grid Row Updated';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+				}
+				else
+				{	
+					$message['status'] = 0;
+					$message['msg'] = 'Something went wrong..Please try again !!!';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+				}
+			}
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
+	public function editcaddressdone()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$config = array(
+					
+                    array(
+                             'field'   => 'emailaddress',
+                             'label'   => 'Email',
+                             'rules'   => 'required|valid_email'
+                      )
+            );
+			$this->form_validation->set_rules($config); 
+			
+			if ($this->form_validation->run() == FALSE)
+			{
+					$message['status'] = 0;
+					$message['msg'] = 'Field error';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+			}
+			else
+			{
+				$number = $this->input->post("emailaddress");
+				$column_name = "contact_email";
+				$value = $number ;
+				
+				$done = $this->settings_mdl->update($column_name,$value);
+				if($done)
+				{
+					$message['status'] = 1;
+					$message['msg'] = 'Contact Email Address Updated';
 					$data['message'] = $message;
 					$this->load->view('admin/header');
 					$this->load->view('admin/settings/settings_home',$data);

@@ -1,111 +1,30 @@
-	<!--this file includes the aviaslider: -->
-	<script type='text/javascript' src='<?=base_url()?>slider/js/jquery.aviaSlider.js'></script>
-	
-	<!--this file includes the activation call for the avia slider. You should edit here: -->
-	<script type='text/javascript'>
-	jQuery(document).ready(function(){
-						
-// here you can see the slide options I used in the demo page. depending on the id of the slider a different setup gets activated
-jQuery('#frontpage-slider').aviaSlider({	blockSize: {height: 80, width:80},
-transition: 'slide',
-display: 'all',
-transitionOrder: ['diagonaltop', 'diagonalbottom','topleft', 'bottomright', 'random']
-});
 
-																								
-});
-
-	</script>
-<style>
-.aviaslider{ 
-height:1480px; 	/*this changes the height of the image slider*/
-width:auto;
-overflow: hidden;
-position: relative;
-background: #fff url(<?=base_url()?>slider/images/layout/preload.gif) center center no-repeat;
-}
-
-.aviaslider li, .aviaslider .featured{
-display: block;
-width:100%;
-height:100%;
-position: absolute;
-top:0;
-left:0;
-z-index: 1;
-}
-
-.js_active .aviaslider li, .js_active .aviaslider .featured{
-display:none;
-}
-
-.aviaslider img, .aviaslider a img, .aviaslider a{
-border:none;
-text-decoration: none;
-}
-
-.feature_excerpt{
-width:auto;
-position: absolute;
-display: block;
-bottom: 0;
-left:0;
-z-index: 2;
-padding:14px 15px;
-font-size: 11.5px;
-line-height:1.5em;
-cursor: pointer;
-background: #000;
-color: #fff;
-}
-
-.feature_excerpt strong{
-display: block;
-font-size: 15px;
-padding-bottom: 3px;
-}
-
-
-
-</style>
-	
-	
 			<div class="wrapper" id="content"> <!-- #content ends in footer.php -->
 				<div class="container">
-<div class="wrapper" id="featured_wrap">
+		<div class="wrapper" id="featured_wrap">
 					
 									
-<div class="single_featured featured_first">
+			<div class="single_featured featured_first">
 	<div class="featured_content">
 		
-		<!--<div class="featured_image_wrap">
+		<div class="featured_image_wrap">
 			
 						<img width="1480" height="720" src="<?=base_url()?>img/banner/bigtile.jpg" class="jewel attachment-featured_large wp-post-image " alt="" />						
 						<div class="featured_desc">
 				
 								<p>Just a little bit of information. This is optional. This slide does not have a link.</p>
 								
-						</div>
+			</div>
 						
-		</div>-->
-		<div class="featured_image_wrap">
-		<ul class="aviaslider" id="frontpage-slider">
-					<li><a href="<?=base_url()?>slider/images/slides/bigtile.jpg" title="" ><img src="<?=base_url()?>slider/images/slides/bigtile.jpg" alt="A heading of your choice 1:: This is the image description defined in your alt tag" /></a></li>
-					<li><a href="<?=base_url()?>slider/images/slides/test2.jpg" title=""><img src="<?=base_url()?>slider/images/slides/test2.jpg" alt="A heading of your choice 2:: This is the image description defined in your alt tag" /></a></li>
-		</ul>
-		<div class="featured_desc">
-				
-								<p>Just a little bit of information. This is optional. This slide does not have a link.</p>
-								
 		</div>
-		</div>
+
 		<div class="clear"></div>
 	</div>
 </div>			
 						
 					
 									
-<div class="single_featured featured_second">
+			<div class="single_featured featured_second">
 	<div class="featured_content">
 		
 		<div class="featured_image_wrap">
@@ -120,7 +39,7 @@ padding-bottom: 3px;
 						
 					
 									
-<div class="single_featured featured_second">
+			<div class="single_featured featured_second">
 	<div class="featured_content">
 		
 		<div class="featured_image_wrap">

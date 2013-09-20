@@ -58,7 +58,7 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 <link rel="alternate" type="application/rss+xml" title="Haute &raquo; Comments Feed" href="<?=base_url()?>feed/comments/feed/index.html" />
 <link rel="alternate" type="application/rss+xml" title="Haute &raquo; Home Comments Feed" href="<?=base_url()?>feed/home/feed/index.html" />
 <link rel='stylesheet' id='jquery-fancybox-css'  href='<?=base_url()?>css/jquery.fancybox-1.3.4039c.css?ver=3.6' type='text/css' media='all' />
-<link rel='stylesheet' id='css-merriweather-css'  href='http://fonts.googleapis.com/css?family=Merriweather%3A300%2C400%2C700%2C900&amp;ver=3.6' type='text/css' media='all' />
+<!--<link rel='stylesheet' id='css-merriweather-css'  href='http://fonts.googleapis.com/css?family=Merriweather%3A300%2C400%2C700%2C900&amp;ver=3.6' type='text/css' media='all' />-->
 <script type='text/javascript' src='<?=base_url()?>js/jquery3e5a.js?ver=1.10.2'></script>
 <script type='text/javascript' src='<?=base_url()?>js/jquery-migrate.min1576.js?ver=1.2.1'></script>
 <script type='text/javascript' src='<?=base_url()?>js/jquery-ui.min039c.js?ver=3.6'></script>
@@ -72,16 +72,7 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="wp-includes/wlwmanifest.xml" /> 
 <meta name="generator" content="WordPress 3.6" />
 <link rel='canonical' href='index.html' />
-<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-19161846-17']);
-_gaq.push(['_trackPageview']);
-(function() {
-var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-})();
-</script>
+
 <meta name="generator" content="Cart66 Professional 1.5.1.3" />
 		
 			</head>
