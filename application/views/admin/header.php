@@ -1,3 +1,4 @@
+<?php include_once('application/controllers/admin/category.php');?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
@@ -24,6 +25,10 @@
 <script type="text/javascript" src="<?=base_url();?>admin/js/plugins/jquery.flot.resize.min.js"></script>
 <script type="text/javascript" src="<?=base_url();?>admin/js/plugins/jquery-ui-1.8.16.custom.min.js"></script>
 <script type="text/javascript" src="<?=base_url();?>admin/js/custom/general.js"></script>
+
+<!--Mahmud-->
+<script type='text/javascript' src='<?=base_url()?>js/jquery-migrate.min1576.js?ver=1.2.1'></script>
+<script type='text/javascript' src='<?=base_url()?>js/jquery.mobilemenu039c.js?ver=3.6'></script>
 
 <!--[if lt IE 9]>
 	<script src="<?=base_url();?>admin/http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>

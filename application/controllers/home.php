@@ -115,8 +115,12 @@ class home extends CI_Controller {
 				$data['products'] = $this->db->query("select * from product where id in (select productId from productincatagory where categoryId = ".$val.");");
 				$x = $this->db->query("select * from category where id = ".$val.";");
 		$data['categoryName']= $x->row()->name;
-		$this->load->view('header');//, $data);
+		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
+		$this->load->view('header', $data);//, $data);
 		//$this->load->view('menu');//, $data);
+		
+		
+		//vaj($data['settings']->logo_dir);
 		$this->load->view('product_grid', $data);
 		$this->load->view('footer');
 	}

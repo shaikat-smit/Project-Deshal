@@ -99,8 +99,7 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 <div class="container">
 <div id="menu_wrap">
 <div class="menu-header-container">
-	<ul id="menu-header" class="menu">
-		
+	
 	
 		
 		<?php
@@ -108,9 +107,9 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 		
 			$obj = new category();
 			//$category = $obj->menu_categories();
-			$obj->dynaCatAdd();//Thats right!
+			$obj->dynaCat();//Thats right!
+			//$obj->dynaCatAdd();//Thats right!
 			
-			//exit;
 		
 		
 		/*
@@ -140,7 +139,7 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 		
 	?>
 	
-	</ul>
+	
 	</div>
 </div>
 
