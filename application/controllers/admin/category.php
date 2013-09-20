@@ -173,39 +173,44 @@ class category extends CI_Controller {
 		
 		if(count($arr) == 0)
 		{
-			echo '<ul class="sub-menu">';//Adding sub-category right
-				echo '<li id="mother-'.$bilai.'"><input class="newCatInput" type="text" placeholder="Add new"/>';
-				echo '<textarea  class="newCatDesc" placeholder="Description" style="vertical-align: top;" rows="1" cols="25" value=""></textarea></li>';
+			echo '<ul class="sub-menu">';//Adding NEW sub-category right
+				echo '<li id="mother-'.$bilai.'"  class="new">';
+					echo '<input class="newCatInput" type="text" placeholder="Add new"/>';
+					echo '<textarea  class="newCatDesc" placeholder="Description" style="vertical-align: top;" rows="1" cols="25" value=""></textarea>';
+				echo '</li>';
 			echo '</ul>';
 			return;
 		}
 		
 		if($bilai != "")
-		{
 			echo '<ul class="sub-menu">';
-			
-		}
 		else
 			echo '<ul id="menu-header" class="menu particular">';
 		
 		
 		foreach ($arr as $row)
 		{
-			//echo '<li id="parent-'.$row->id.'"> <a href="'.base_url().'index.php/home/temp_grid/'.$row->id.'">'.$row->name.'</a>'; Skipping this bitch to stay on same page.
-			echo '<li id="parent-'.$row->id.'"> <a href="#">'.$row->name.'</a>';
-			$this->dynaCatAdd($row->id);
+			echo '<li id="he-'.$row->id.'"  class="edit">';//Edit existing sub-cats
+				echo '<a href="#"> '.$row->name.'</a>';
+				echo '<input class="newCatInput editField" type="text" style="display:none;" value="'.$row->name.'"/>';
+				echo '<textarea  class="newCatDesc editField" style="display:none;" rows="1" cols="25" >'.$row->discription.'</textarea>';
+				$this->dynaCatAdd($row->id);
 			echo '</li>';
 		}
-		//Adding sub-category down
-		if($bilai != "")
-		{	echo '<li id="mother-'.$bilai.'"><input id="mother-'.$bilai.'" class="newCatInput" type="text" placeholder="Add new"/>';
-			echo '<textarea  class="newCatDesc" placeholder="Description"  style="vertical-align: top;" rows="1" cols="25" value=""></textarea> </li>';//-------
+		
+		if($bilai != "")//Adding NEW sub-category down
+		{	echo '<li id="mother-'.$bilai.'" class="new">';
+				echo '<input id="mother-'.$bilai.'" class="newCatInput" type="text" placeholder="Add new"/>';
+				echo '<textarea  class="newCatDesc " placeholder="Description" rows="1" cols="25" value=""></textarea>';
+			echo '</li>';
 		}
 		
-		if($bilai == "")//top level adding (orphans!)
+		if($bilai == "")//top level NEW adding (orphans!)
 		{
-			echo '<li id="mother-'. 0 .'" ><input class="newCatInput" type="text" placeholder="Add new"/>';
-			echo '<textarea  class="newCatDesc" placeholder="Description"  style="vertical-align: top;" rows="1" cols="25" value=""></textarea> </li></ul>';//-------
+			echo '<li id="mother-'. 0 .'" class="new">';
+				echo '<input class="newCatInput" type="text" placeholder="Add new" />';
+				echo '<textarea  class="newCatDesc" placeholder="Description"  rows="1" cols="25" value=""></textarea>';
+			echo '</li></ul>';
 		}
 		else
 			echo'</ul>';
@@ -226,10 +231,40 @@ class category extends CI_Controller {
 	
 	
 	
-	public function addCatAJAX()
+	public function addNewCatAJAX()
 	{
-		
+		if(isset($_POST['hisMother']) && isset($_POST['catname']) && isset($_POST['desc']))
+		{
+			$data['name'] = $_POST['catname'];
+			$data['discription'] = $_POST['desc'];
+			$data['rootCategoryId'] = $_POST['hisMother'];
+			
+			echo $this->category_mdl->addCategoryAJAX($data);  /// 0/1
+		}
 	}
+	
+	public function editCatAJAX()
+	{
+		if(isset($_POST['himself']) && isset($_POST['catname']) && isset($_POST['desc']))
+		{
+			$data['name'] = $_POST['catname'];
+			$data['discription'] = $_POST['desc'];
+			$data['id'] = $_POST['himself'];
+			
+			echo $this->category_mdl->editCategoryAJAX($data);  /// 0/1
+		}
+	}
+	
+	public function deleteCatAJAX()
+	{
+		if( isset($_POST['himself']) )
+		{
+			$data['id'] = $_POST['himself'];
+			
+			echo $this->category_mdl->deleteCategoryAJAX($data);  /// 0/1
+		}
+	}
+		
 	/*
 	public function dynaCatAdd($bilai = "")
 	{

@@ -33,6 +33,43 @@ class category_mdl extends CI_Model  {
 			return 0;
 	}
 	
+	public function addCategoryAJAX($data)
+	{
+		if($this->db->insert('category', $data))
+		{
+			
+			return mysql_insert_id();
+		}
+		else
+			return 0;
+	}
+	
+	public function editCategoryAJAX($para)
+	{
+		$data = array(
+		   'name' => $para['name'],
+		   'discription' => $para['discription']
+		);
+
+		$this->db->where('id', $para['id']);
+		
+		if($this->db->update('category', $data))
+			return 1;
+		else
+			return 0;
+	}
+	
+	public function deleteCategoryAJAX($para)
+	{
+		$this->db->where('id', $para['id']);
+		
+		
+		if($this->db->delete('category'))
+			return 1;
+		else
+			return 0;
+	}
+	
 	public function addSubcategory($data)
 	{
 		if($this->db->insert('category', $data))
@@ -57,7 +94,7 @@ class category_mdl extends CI_Model  {
 	function subcatListRaw($categoryId)
 	{
 
-		$this->db->select("id ,name");
+		$this->db->select("id ,name, discription");
 		$this->db->where('rootCategoryId', $categoryId);
 		$result = $this->db->get('category');
 		
@@ -81,7 +118,7 @@ class category_mdl extends CI_Model  {
 	function catListRaw()
 	{
 
-		$this->db->select("id ,name");
+		$this->db->select("id ,name, discription");
 		$this->db->where('rootCategoryId', 0);
 		$result = $this->db->get('category');
 		

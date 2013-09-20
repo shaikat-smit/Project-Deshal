@@ -148,6 +148,11 @@ margin: 36px -169px !important;
 
 }
 
+
+.editField
+{
+display: none;
+}
 	
 </style>
       
@@ -159,7 +164,7 @@ margin: 36px -169px !important;
 	
 	
 	
-
+	/*
 	function addCat()
 	{
 		var catname = jQuery('#catname').val();
@@ -205,7 +210,271 @@ margin: 36px -169px !important;
 			jQuery('.msgalert').show("slow");
 		}
 	}	
+	*/
+	
+	function addNewCat(hisMother, hisName, hisDesc)
+	{
+		
+		
+		if(hisMother != "" && hisName != "")
+		{
+			jQuery.ajax({
+				url: "<?php echo base_url();?>index.php/admin/category/addNewCatAJAX",
+				type: 'POST',
+				data: {
+						"hisMother" : hisMother,
+						"catname" : hisName,
+						"desc" : hisDesc
+					  },
 
+				success: function(response, status, xhr)
+				{
+					if(response >= 1)
+					{
+						// jQuery('#mother-'+hisMother).prepend('<a href=""> '+hisName+'</a>');//.html(hisName);
+						// jQuery('#mother-'+hisMother).children('.newCatInput, .newCatDesc').hide();
+						// jQuery('#mother-'+hisMother).attr('id', 'he-'+response);
+						refreshCatSilent();
+						jQuery('.msgsuccess p').text('Successfully added!');
+						jQuery('.msgsuccess').show("fast");
+						
+					}
+					else
+					{
+						jQuery('.msgerror p').text('Failed! Try again.');
+						jQuery('.msgerror').show("fast");
+					}
+					//console.log(response);
+				},      
+				error: function (xhr, ajaxOptions, thrownError)
+				{
+					jQuery('.msgerror p').text('Failed! Try again.');
+					jQuery('.msgerror').show("fast");
+				}
+			});
+		}
+		else
+		{
+			jQuery('.msgalert p').text('Category name field is empty!');
+			jQuery('.msgalert').show("fast");
+		}
+	}
+	
+	function editCat(himself, hisName, hisDesc)
+	{
+		
+		
+		if(himself != "" && hisName != "")
+		{
+			jQuery.ajax({
+				url: "<?php echo base_url();?>index.php/admin/category/editCatAJAX",
+				type: 'POST',
+				data: {
+						"himself" : himself,
+						"catname" : hisName,
+						"desc" : hisDesc
+					  },
+
+				success: function(response, status, xhr)
+				{
+					if(response == 1)
+					{
+						jQuery('#he-'+himself).children('a').html(hisName);
+						jQuery('.msgsuccess p').text('Successfully editted!');
+						jQuery('.msgsuccess').show("fast");
+					}
+					else
+					{
+						jQuery('.msgerror p').text('Failed! Try again.');
+						jQuery('.msgerror').show("fast");
+					}
+					//console.log(response);
+				},      
+				error: function (xhr, ajaxOptions, thrownError)
+				{
+					jQuery('.msgerror p').text('Failed! Try again.');
+					jQuery('.msgerror').show("fast");
+				}
+			});
+		}
+		else
+		{
+			jQuery('.msgalert p').text('Category name field is empty!');
+			jQuery('.msgalert').show("fast");
+		}
+	}
+	
+	function deleteCat(himself, hisName, hisDesc)
+	{
+		
+		
+		if(himself != "")
+		{
+			jQuery.ajax({
+				url: "<?php echo base_url();?>index.php/admin/category/deleteCatAJAX",
+				type: 'POST',
+				data: {
+						"himself" : himself
+					  },
+
+				success: function(response, status, xhr)
+				{
+					if(response == 1)
+					{
+						jQuery('#he-'+himself).children('a').html(hisName);
+						jQuery('#he-'+himself).hide('slow');
+						console.log(himself+"--");
+						jQuery('.msgsuccess p').text('Successfully deleted!');
+						jQuery('.msgsuccess').show("fast");
+					}
+					else
+					{
+						jQuery('.msgerror p').text('Failed! Try again.');
+						jQuery('.msgerror').show("fast");
+					}
+					//console.log(response);
+				},      
+				error: function (xhr, ajaxOptions, thrownError)
+				{
+					jQuery('.msgerror p').text('Failed! Try again.');
+					jQuery('.msgerror').show("fast");
+				}
+			});
+		}
+		else
+		{
+			jQuery('.msgalert p').text('Category name field is empty!');
+			jQuery('.msgalert').show("fast");
+		}
+	}
+	
+	function refreshCatSilent()
+	{
+		
+		
+			jQuery.ajax({
+				url: "<?php echo base_url();?>index.php/admin/category/dynaCatAdd",
+				type: 'POST',
+
+				success: function(response, status, xhr)
+				{
+					console.log(response);
+					jQuery('#main_menu').html(response);
+					
+					jQuery("#main_menu ul li ul").css({display: "none"}); // Opera Fix
+	jQuery("#main_menu ul li").hover(function(){
+		jQuery(this).find('ul:first').css({visibility: "visible",display: "none"}).show(300);
+		},function(){
+		jQuery(this).find('ul:first').css({visibility: "hidden"});
+		jQuery('.editField').hide('slow').parent().children('a').show('fast');
+		jQuery('.newCatDesc').hide();
+	});
+	
+	
+	var CtrlDown = false;
+	jQuery('.newCatInput').focusin(function() {
+		jQuery(this).parent().children('.newCatDesc').show('10');
+	})
+	
+	// .focusout(function() {
+		// jQuery(this).parent().children('.newCatDesc').hide('5');
+	// });
+	
+	
+	
+	
+	jQuery('#main_menu li a').click(function(event) {
+		//jQuery(this)
+		//console.log(jQuery(this).html()); logs: <a> & <textarea>
+		//console.log(jQuery(this).parent().attr('id').split("-")[1]);
+		//console.log(jQuery(this).parent());
+		//console.log();
+		
+		
+	
+		jQuery('.editField').hide('slow').parent().children('a').show('fast');
+		jQuery('.newCatDesc').hide();
+		
+		jQuery(this).parent().find('ul').css({visibility: "hidden"});
+		jQuery(this).hide('5').parent().children('.newCatInput, .newCatDesc').fadeIn('20').css({'z-index' : '1000'});
+		jQuery(this).parent().find('.newCatInput').focus();
+		
+		
+	
+		
+	});
+	
+	
+	jQuery('.newCatInput, .newCatDesc').keydown(function(event){
+
+		//13 -> Enter
+		//17 -> Ctrl
+		//46 -> Del
+		
+		if(event.which == 17)	CtrlDown = true;
+		
+		
+		
+	}).keyup(function(event){
+		
+		
+		
+		if(event.which == 17)	CtrlDown = false;
+		
+		if(event.which == 13)
+		{
+			//console.log('----------EDIT----------');
+			if(jQuery(this).parent().hasClass('new'))
+			{
+				var mother = jQuery(this).parent().attr('id').split('-')[1];
+				var hisName   = jQuery(this).parent().children('.newCatInput').val();
+				var hisDesc   = jQuery(this).parent().children('.newCatDesc').val();
+				
+				//console.log("mother:"+mother+" name:"+name+" desc:"+desc);
+				addNewCat(mother, hisName, hisDesc);
+				
+			}
+			else
+			{
+				//console.log('UPDATE '+jQuery(this).parent().attr('id')+" HIS");
+				var himself = jQuery(this).parent().attr('id').split('-')[1];
+				var hisName   = jQuery(this).parent().children('.newCatInput').val();
+				var hisDesc   = jQuery(this).parent().children('.newCatDesc').val();
+				
+				//console.log("himself:"+himself+" name:"+name+" desc:"+desc);
+				editCat(himself, hisName, hisDesc);
+				
+			}
+			
+		}
+		else if(CtrlDown == true && event.which == 46)
+		{
+			//console.log('----------DELETE----------');
+			if(confirm("Are you sure you want to delete this category????"))
+			{
+				//console.log('UPDATE '+jQuery(this).parent().attr('id')+" HIS");
+				var himself = jQuery(this).parent().attr('id').split('-')[1];
+				var hisName   = jQuery(this).parent().children('.newCatInput').val();
+				var hisDesc   = jQuery(this).parent().children('.newCatDesc').val();
+				
+				//console.log("himself:"+himself+" name:"+name+" desc:"+desc);
+				deleteCat(himself, hisName, hisDesc);
+			}
+		}
+		
+	});
+					
+				},      
+				error: function (xhr, ajaxOptions, thrownError)
+				{
+					jQuery('.msgerror p').text('Failed! Try again.');
+					jQuery('.msgerror').show("fast");
+				}
+			});
+		
+		
+	}
+	
 
 
 
@@ -261,7 +530,7 @@ margin: 36px -169px !important;
 									</td>
 								</tr>
 								<tr>
-									<td class="zFormTd" colspan="2" style="text-align: left;">
+									<td class="zFormTd" id="catBox" colspan="2" style="text-align: left;">
 										<!--<label class="zlable" >Category name:</label>
 										<input id="catname" class="zinput" type="text" value=""/>-->
 										<div id="main_menu" style="border-top:1px solid #DFDFDF; border-bottom:1px solid #DFDFDF;">
@@ -319,7 +588,7 @@ margin: 36px -169px !important;
 	// load mobile menu
 	//jQuery('#main_menu ul.menu').mobileMenu();
 	
-  
+	
 	
 	// Children Flyout on Menu
 	jQuery("#main_menu ul li ul").css({display: "none"}); // Opera Fix
@@ -327,10 +596,12 @@ margin: 36px -169px !important;
 		jQuery(this).find('ul:first').css({visibility: "visible",display: "none"}).show(300);
 		},function(){
 		jQuery(this).find('ul:first').css({visibility: "hidden"});
+		jQuery('.editField').hide('slow').parent().children('a').show('fast');
+		jQuery('.newCatDesc').hide();
 	});
 	
 	
-	
+	var CtrlDown = false;
 	jQuery('.newCatInput').focusin(function() {
 		jQuery(this).parent().children('.newCatDesc').show('10');
 	})
@@ -340,27 +611,89 @@ margin: 36px -169px !important;
 	// });
 	
 	
-	jQuery('#main_menu li a').click(function() {
+	
+	
+	jQuery('#main_menu li a').click(function(event) {
 		//jQuery(this)
 		//console.log(jQuery(this).html()); logs: <a> & <textarea>
 		//console.log(jQuery(this).parent().attr('id').split("-")[1]);
-		console.log(jQuery(this).parent());
+		//console.log(jQuery(this).parent());
+		//console.log();
 		
-		var hisParent = jQuery(this).parent().attr('id').split("-")[1];
 		
-		
-		//var editTools = '<li id="mother-'+hisParent+'"><input class="newCatInput" type="text" placeholder="Add new"/>';
-		var editTools = '<input class="newCatInput" type="text" />';
-		editTools += '<textarea  class="newCatDesc" style="vertical-align: top;" rows="1" cols="25" value=""></textarea>';
+	
+		jQuery('.editField').hide('slow').parent().children('a').show('fast');
+		jQuery('.newCatDesc').hide();
 		
 		jQuery(this).parent().find('ul').css({visibility: "hidden"});
-		jQuery(this).hide().parent().prepend(editTools).find('.newCatInput, .newCatDesc').fadeIn('10').css({'z-index' : '1000'});
+		jQuery(this).hide('5').parent().children('.newCatInput, .newCatDesc').fadeIn('20').css({'z-index' : '1000'});
+		jQuery(this).parent().find('.newCatInput').focus();
 		
-		//jQuery(this).fadeOut('1');
 		
-		
+	
 		
 	});
+	
+	
+	jQuery('.newCatInput, .newCatDesc').keydown(function(event){
+
+		//13 -> Enter
+		//17 -> Ctrl
+		//46 -> Del
+		
+		if(event.which == 17)	CtrlDown = true;
+		
+		
+		
+	}).keyup(function(event){
+		
+		
+		
+		if(event.which == 17)	CtrlDown = false;
+		
+		if(event.which == 13)
+		{
+			//console.log('----------EDIT----------');
+			if(jQuery(this).parent().hasClass('new'))
+			{
+				var mother = jQuery(this).parent().attr('id').split('-')[1];
+				var hisName   = jQuery(this).parent().children('.newCatInput').val();
+				var hisDesc   = jQuery(this).parent().children('.newCatDesc').val();
+				
+				//console.log("mother:"+mother+" name:"+name+" desc:"+desc);
+				addNewCat(mother, hisName, hisDesc);
+				
+			}
+			else
+			{
+				//console.log('UPDATE '+jQuery(this).parent().attr('id')+" HIS");
+				var himself = jQuery(this).parent().attr('id').split('-')[1];
+				var hisName   = jQuery(this).parent().children('.newCatInput').val();
+				var hisDesc   = jQuery(this).parent().children('.newCatDesc').val();
+				
+				//console.log("himself:"+himself+" name:"+name+" desc:"+desc);
+				editCat(himself, hisName, hisDesc);
+				
+			}
+			
+		}
+		else if(CtrlDown == true && event.which == 46)
+		{
+			//console.log('----------DELETE----------');
+			if(confirm("Are you sure you want to delete this category????"))
+			{
+				//console.log('UPDATE '+jQuery(this).parent().attr('id')+" HIS");
+				var himself = jQuery(this).parent().attr('id').split('-')[1];
+				var hisName   = jQuery(this).parent().children('.newCatInput').val();
+				var hisDesc   = jQuery(this).parent().children('.newCatDesc').val();
+				
+				//console.log("himself:"+himself+" name:"+name+" desc:"+desc);
+				deleteCat(himself, hisName, hisDesc);
+			}
+		}
+		
+	});
+	
 	
 	
 	
