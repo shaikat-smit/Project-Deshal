@@ -77,7 +77,7 @@ li
             display: none;
             margin: 0 0 0 -10px;
             padding: 0;
-            z-index: 900;
+            z-index: -10;
             float: none;
             height: auto;
             position: absolute;
@@ -133,15 +133,19 @@ display: none;
         border: none
     }
 
-.particular li:last-child input
+.particular > li > input
 {
-width: 80%;
-margin: 5px;
+#width: 150px !important;
+#margin: 5px !important;
+width: 164px !important;
+margin: 5px !important;
 }
-.particular li:last-child textarea
+.particular > li > textarea
 {
-display: block;
-margin: -4px 5px;
+#margin: -4px 5px !important;
+width: 164px !important;
+margin: 36px -169px !important;
+
 }
 
 	
@@ -263,7 +267,7 @@ margin: -4px 5px;
 										<div id="main_menu" style="border-top:1px solid #DFDFDF; border-bottom:1px solid #DFDFDF;">
 												<?php
 													$obj = new category();
-													$obj->dynaCat();//Thats right!
+													$obj->dynaCatAdd();//Thats right!
 												?>		
 										</div>
 										
@@ -329,7 +333,36 @@ margin: -4px 5px;
 	
 	jQuery('.newCatInput').focusin(function() {
 		jQuery(this).parent().children('.newCatDesc').show('10');
+	})
+	
+	// .focusout(function() {
+		// jQuery(this).parent().children('.newCatDesc').hide('5');
+	// });
+	
+	
+	jQuery('#main_menu li a').click(function() {
+		//jQuery(this)
+		//console.log(jQuery(this).html()); logs: <a> & <textarea>
+		//console.log(jQuery(this).parent().attr('id').split("-")[1]);
+		console.log(jQuery(this).parent());
+		
+		var hisParent = jQuery(this).parent().attr('id').split("-")[1];
+		
+		
+		//var editTools = '<li id="mother-'+hisParent+'"><input class="newCatInput" type="text" placeholder="Add new"/>';
+		var editTools = '<input class="newCatInput" type="text" />';
+		editTools += '<textarea  class="newCatDesc" style="vertical-align: top;" rows="1" cols="25" value=""></textarea>';
+		
+		jQuery(this).parent().find('ul').css({visibility: "hidden"});
+		jQuery(this).hide().parent().prepend(editTools).find('.newCatInput, .newCatDesc').fadeIn('10').css({'z-index' : '1000'});
+		
+		//jQuery(this).fadeOut('1');
+		
+		
+		
 	});
+	
+	
 	
 	
 	

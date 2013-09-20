@@ -173,9 +173,9 @@ class category extends CI_Controller {
 		
 		if(count($arr) == 0)
 		{
-			echo '<ul class="sub-menu">';
-				echo '<li><input class="newCatInput mother-'.$bilai.'" type="text" placeholder="Add new"/>';
-				echo '<textarea  class="newCatDesc" placeholder="Description" style="vertical-align: top;" rows="1" cols="25" value=""></textarea></li>';//-------
+			echo '<ul class="sub-menu">';//Adding sub-category right
+				echo '<li id="mother-'.$bilai.'"><input class="newCatInput" type="text" placeholder="Add new"/>';
+				echo '<textarea  class="newCatDesc" placeholder="Description" style="vertical-align: top;" rows="1" cols="25" value=""></textarea></li>';
 			echo '</ul>';
 			return;
 		}
@@ -191,17 +191,39 @@ class category extends CI_Controller {
 		
 		foreach ($arr as $row)
 		{
-			echo '<li id="parent-'.$row->id.'"> <a href="'.base_url().'index.php/home/temp_grid/'.$row->id.'">'.$row->name.'</a>';
+			//echo '<li id="parent-'.$row->id.'"> <a href="'.base_url().'index.php/home/temp_grid/'.$row->id.'">'.$row->name.'</a>'; Skipping this bitch to stay on same page.
+			echo '<li id="parent-'.$row->id.'"> <a href="#">'.$row->name.'</a>';
 			$this->dynaCatAdd($row->id);
 			echo '</li>';
 		}
-		//if Adding category
+		//Adding sub-category down
 		if($bilai != "")
-			echo '<li><input id="mother-'.$bilai.'" class="newCatInput" type="text" placeholder="Add new"/>';
+		{	echo '<li id="mother-'.$bilai.'"><input id="mother-'.$bilai.'" class="newCatInput" type="text" placeholder="Add new"/>';
 			echo '<textarea  class="newCatDesc" placeholder="Description"  style="vertical-align: top;" rows="1" cols="25" value=""></textarea> </li>';//-------
-		//
-		echo'</ul>';
+		}
+		
+		if($bilai == "")//top level adding (orphans!)
+		{
+			echo '<li id="mother-'. 0 .'" ><input class="newCatInput" type="text" placeholder="Add new"/>';
+			echo '<textarea  class="newCatDesc" placeholder="Description"  style="vertical-align: top;" rows="1" cols="25" value=""></textarea> </li></ul>';//-------
+		}
+		else
+			echo'</ul>';
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public function addCatAJAX()
