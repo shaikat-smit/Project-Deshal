@@ -236,27 +236,27 @@ display: none;
 						// jQuery('#mother-'+hisMother).attr('id', 'he-'+response);
 						refreshCatSilent();
 						jQuery('.msgsuccess p').text('Successfully added!');
-						jQuery('.msgsuccess').show("fast");
+						jQuery('.msgsuccess').fadeIn("slow").delay(2000).fadeOut('slow');
 						
 					}
 					else
 					{
 						jQuery('.msgerror p').text('Failed! Try again.');
-						jQuery('.msgerror').show("fast");
+						jQuery('.msgerror').fadeIn("slow").delay(2000).fadeOut('slow');
 					}
 					//console.log(response);
 				},      
 				error: function (xhr, ajaxOptions, thrownError)
 				{
 					jQuery('.msgerror p').text('Failed! Try again.');
-					jQuery('.msgerror').show("fast");
+					jQuery('.msgerror').fadeIn("slow").delay(2000).fadeOut('slow');
 				}
 			});
 		}
 		else
 		{
 			jQuery('.msgalert p').text('Category name field is empty!');
-			jQuery('.msgalert').show("fast");
+			jQuery('.msgalert').fadeIn("slow").delay(2000).fadeOut('slow');
 		}
 	}
 	
@@ -281,26 +281,26 @@ display: none;
 					{
 						jQuery('#he-'+himself).children('a').html(hisName);
 						jQuery('.msgsuccess p').text('Successfully editted!');
-						jQuery('.msgsuccess').show("fast");
+						jQuery('.msgsuccess').fadeIn("slow").delay(2000).fadeOut('slow');
 					}
 					else
 					{
 						jQuery('.msgerror p').text('Failed! Try again.');
-						jQuery('.msgerror').show("fast");
+						jQuery('.msgerror').fadeIn("slow").delay(2000).fadeOut('slow');
 					}
 					//console.log(response);
 				},      
 				error: function (xhr, ajaxOptions, thrownError)
 				{
 					jQuery('.msgerror p').text('Failed! Try again.');
-					jQuery('.msgerror').show("fast");
+					jQuery('.msgerror').fadeIn("slow").delay(2000).fadeOut('slow');
 				}
 			});
 		}
 		else
 		{
 			jQuery('.msgalert p').text('Category name field is empty!');
-			jQuery('.msgalert').show("fast");
+			jQuery('.msgalert').fadeIn("slow").delay(2000).fadeOut('slow');
 		}
 	}
 	
@@ -325,26 +325,26 @@ display: none;
 						jQuery('#he-'+himself).hide('slow');
 						console.log(himself+"--");
 						jQuery('.msgsuccess p').text('Successfully deleted!');
-						jQuery('.msgsuccess').show("fast");
+						jQuery('.msgsuccess').fadeIn("slow").delay(2000).fadeOut('slow');
 					}
 					else
 					{
 						jQuery('.msgerror p').text('Failed! Try again.');
-						jQuery('.msgerror').show("fast");
+						jQuery('.msgerror').fadeIn("slow").delay(2000).fadeOut('slow');
 					}
 					//console.log(response);
 				},      
 				error: function (xhr, ajaxOptions, thrownError)
 				{
 					jQuery('.msgerror p').text('Failed! Try again.');
-					jQuery('.msgerror').show("fast");
+					jQuery('.msgerror').fadeIn("slow").delay(2000).fadeOut('slow');
 				}
 			});
 		}
 		else
 		{
 			jQuery('.msgalert p').text('Category name field is empty!');
-			jQuery('.msgalert').show("fast");
+			jQuery('.msgalert').fadeIn("slow").delay(2000).fadeOut('slow');
 		}
 	}
 	
