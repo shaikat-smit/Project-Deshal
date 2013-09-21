@@ -108,7 +108,7 @@
 						
                         <li><a nohref="#" class="dashboard menudrop"><span>Products</span></a>
 							<ul>
-                            	<li><a href="<?=base_url();?>index.php/admin/product"><span>Add products</span></a></li>
+                            	<li><a href="<?=base_url();?>index.php/admin/product/new_product"><span>Add products</span></a></li>
                             	<li><a href="<?=base_url();?>index.php/admin/product/assign"><span>Assign products</span></a></li>
                             	<!--<li><a href="<?=base_url();?>index.php/admin/product/assignint"><span>Assign Int. products</span></a></li>-->
                             	<li><a href="<?=base_url();?>index.php/admin/product/unassign"><span>Unassign products</span></a></li>
