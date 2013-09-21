@@ -8,7 +8,7 @@ class product extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('date');
 		$this->load->helper('url');
-                $this->load->library('form_validation');
+        $this->load->library('form_validation');
 		$this->load->model('product_add_mdl');
 		$this->load->model('product_mdl');
 		
@@ -1041,22 +1041,6 @@ class product extends CI_Controller {
 		//$data['categoryList'] = $this->category_mdl->catList();
 		$this->load->view('admin/product/assignintproduct', $data);
 	}
-        
-        public function new_product()
-	{
-		if($this->session->userdata('admin_logged_in'))
-		{//$data['current_page'] = "Home";
-			$this->load->view('admin/header');
-			$this->load->view('admin/product/new_product');
-		}
-		else
-		{
-			redirect('adminlog');
-		}
-	}
-        
-        
-        
 }
 
 /* End of file welcome.php */

@@ -114,6 +114,38 @@
 						}});
 				});
 				
+				$("#contactaddress").click(function(){
+				  $(".widgetlist").hide("slow","swing");
+					$("#dvloader").show();
+					
+					$.ajax
+					({
+						type:'POST', 
+						url: '<?=base_url();?>index.php/admin/settings/editcontactaddress',  
+						success: function(response) 
+						{
+							$("#dvloader").hide();
+							$("#back").show();
+							$("#divajax").html(response);
+						}});
+				});
+				
+				$("#banner").click(function(){
+				  $(".widgetlist").hide("slow","swing");
+					$("#dvloader").show();
+					
+					$.ajax
+					({
+						type:'POST', 
+						url: '<?=base_url();?>index.php/admin/settings/editbanner',  
+						success: function(response) 
+						{
+							$("#dvloader").hide();
+							$("#back").show();
+							$("#divajax").html(response);
+						}});
+				});
+				
 				$("#back").click(function(){
 				$("#divajax, #back").hide(500, function(){
 				
@@ -207,12 +239,14 @@ getmsg(<? echo $message['status'];?>,'<?=$message['msg'];?>');
 					<input class="zSubButton" type="button" value="&nbsp;Back&nbsp;" style="display:none" id="back" onclick="back()"/>
                 	<ul class="widgetlist">
                     	<li><a href="#" class="upload" id="logo">Change Logo</a></li>
+                    	<li><a href="#" class="upload" id="banner">Change Banner Images</a></li>
                     	<li><a href="#" class="message" id="tag" >Edit Tag Line</a></li>
                         <li><a href="#" class="message" id="title" >Edit Title</a></li>
                     	<li><a href="#" class="events" id="latest" >Edit Latest Product Row Number</a></li>
                     	<li><a href="#" class="events" id="gallery" >Edit Product Gallery Row Number</a></li>
                     	<li><a href="#" class="message" id="social" >Edit Social Links</a></li>
                     	<li><a href="#" class="message" id="contact" >Edit Contact Information</a></li>
+                    	<li><a href="#" class="message" id="contactaddress" >Edit Contact Address</a></li>
                     	<li><a href="<?=base_url();?>index.php/admin/settings/editaboutus" class="message" id="contact" >Edit About Us Content</a></li>
                     	<li><a href="<?=base_url();?>index.php/admin/settings/editpolicy" class="message" id="contact" >Edit Privacy Policy Content</a></li>
                     </ul>
