@@ -171,5 +171,90 @@ class product_add_mdl extends CI_Model {
 			return false;
 		}
 	}
+	
+	function insertProduct($data)
+	{
+        $insert = $this->db->insert('tbl_product',$data);
+        if($insert)
+			return $this->db->insert_id();
+		else
+			return false;
+		// $data = array(
+							// 'id' => $row->id
+						// );
+			// return $data;
+	}
+	
+	function insertfields($data)
+	{
+        $insert = $this->db->insert('tbl_product_info',$data);
+        if($insert)
+			return true;
+		else
+			return false;
+		
+	}
+	
+	function insertsize($data)
+	{
+		$this->db->where($data);
+		$query = $this->db->get('tbl_size');
+        
+		if($query->num_rows()<1)
+		{
+			$insert = $this->db->insert('tbl_size',$data);
+			if($insert)
+				return $this->db->insert_id();
+			else
+				return false;
+		}
+		else
+		{
+			$row = $query->row();
+			return $row->id;
+		}
+	}
+	
+	function insertquantity($data)
+	{
+        $insert = $this->db->insert('tbl_size_color_product',$data);
+        if($insert)
+			return true;
+		else
+			return false;
+		
+	}
+	function insertcolor($data)
+	{
+		$this->db->where($data);
+		$query = $this->db->get('tbl_color');
+        
+		if($query->num_rows()<1)
+		{
+			$insert = $this->db->insert('tbl_color',$data);
+			if($insert)
+				return $this->db->insert_id();
+			else
+				return false;
+		}
+		else
+		{
+			$row = $query->row();
+			return $row->id;
+		}
+        
+		
+	}
+	
+	function insertProductInCategory($data)
+	{
+        $insert = $this->db->insert('tbl_productincatagory',$data);
+        if($insert)
+			return true;
+		else
+			return false;
+		
+	}
+	
 }
 ?>

@@ -8,10 +8,10 @@ class product extends CI_Controller {
 		$this->load->helper('form');
 		$this->load->helper('date');
 		$this->load->helper('url');
-                $this->load->library('form_validation');
+        $this->load->library('form_validation');
 		$this->load->model('product_add_mdl');
 		$this->load->model('product_mdl');
-		
+		$this->load->model('category_mdl');
 	}
 	
 	
@@ -437,7 +437,7 @@ class product extends CI_Controller {
 			$config['query_string_segment'] = 'offset';
 			
 			$config['base_url'] = base_url().'index.php/admin/product/assign'.'?';
-			$config['total_rows'] = $this->db->query("select count(*) as total from product ORDER BY created DESC;")->row()->total;
+			$config['total_rows'] = $this->db->query("select count(*) as total from tbl_product ORDER BY created DESC;")->row()->total;
 			
 			$config['per_page'] = $limit;
 			$config['num_links'] = 3;//4
@@ -449,7 +449,7 @@ class product extends CI_Controller {
 		
 		
 		
-		$data['query'] = $this->db->query("select * from product ORDER BY created DESC  LIMIT ".$offset.", ".$limit.";");
+		$data['query'] = $this->db->query("select * from tbl_product ORDER BY created DESC  LIMIT ".$offset.", ".$limit.";");
 		
 		$this->load->view('admin/header');
 		$this->load->model('category_mdl');
@@ -1054,9 +1054,280 @@ class product extends CI_Controller {
 			redirect('adminlog');
 		}
 	}
-        
-        
-        
+	
+    public function dynaCat($bilai = "")//SHOW
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$arr = array();
+			if($bilai == "")
+				$arr = $this->category_mdl->catListRaw()->result();
+			else
+				$arr = $this->category_mdl->subcatListRaw($bilai)->result();
+			
+			
+			if(count($arr) == 0)return;
+			
+			if($bilai != "")
+				echo '<ul class="">';
+			else
+				echo '<ul id="mother" class="">';
+			
+			
+			foreach ($arr as $row)
+			{
+				// echo '<li><span class="formwrapper"><input type="checkbox" id="ui-accordian-accordian-header-0">'.$row->name.'';
+				echo '<li><input  type="checkbox" class="tree"/><span></span><input type="checkbox" id="'.$row->id.'" class="chkBox" checked="checked" name="catlist[]" value="'.$row->id.'"/>'.$row->name.'';
+				$this->dynaCat($row->id);
+				echo '</li>';
+			}
+				
+			echo'</ul>';
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}  
+	
+	public function addNewProduct()//--------------------------------PRODUCT ADD-------------------------------------------------------
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			
+			//Step 1
+			$config = array(
+			
+			array(
+					 'field'   => 'price',
+					 'label'   => 'Price',
+					 'rules'   => 'required'
+			  ),
+			array(
+					 'field'   => 'title',
+					 'label'   => 'Title',
+					 'rules'   => 'required'
+			  ),
+			array(
+					 'field'   => 'code',
+					 'label'   => 'Code',
+					 'rules'   => 'required'
+			  )
+			 );
+			$this->form_validation->set_rules($config); 
+
+			if ($this->form_validation->run() == FALSE)
+			{
+					$message['status'] = 0;
+					$message['msg'] = 'Field error';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/product/new_product',$data);
+				
+			}
+			else
+			{
+				$temp['code'] = $this->input->post('code');
+				$temp['title'] = $this->input->post('title');
+				$temp['description'] = $this->input->post('description');
+				$temp['int_available'] = $this->input->post('int_available_flag');
+				$temp['archive'] = $this->input->post('archiveFlag');
+				$temp['archived_desc'] = $this->input->post('archived_desc');
+				$temp['stock_available'] = $this->input->post('stock_quan');
+				$temp['price'] = $this->input->post('price');
+				
+				$img_date = date("Y_m_d_H_i_s");
+				$product_image = $temp['title'].'_'.$img_date;
+				
+				$this->db->where('code',$temp['code']);
+				$check_code = $this->db->get('tbl_product ');
+				
+				if($check_code->num_rows()>0)
+				{
+					$message['status'] = 0;
+					$message['msg'] = 'This product code already added to another product..Please Enter Unique code..';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/product/new_product',$data);
+				}
+				else
+				{
+				
+					$this->load->library('upload');
+					///////////////
+					if(!empty($_FILES["userfile"]["name"]))
+					{//////////////////////////////////
+						$userfile = $this->input->post('userfile');
+						
+						$config['upload_path'] = './itemimages/';
+						$config['allowed_types'] = 'jpg|jpeg|png';
+						$config['max_size'] = '1000';
+						//$config['max_width'] = '1360';
+						//$config['max_height'] = '768';
+						$config['file_name'] = $product_image;
+						$this->upload->initialize($config);
+						
+						if(!$this->upload->do_upload())
+						{
+							$message['status'] = 0;
+							$message['msg'] = $this->upload->display_errors();
+							$data['message'] = $message;
+							$this->load->view('admin/header');
+							$this->load->view('admin/product/new_product',$data);
+							
+						}
+						else
+						{
+							$fileInfo = $this->upload->data();
+							$temp['main_image'] = $fileInfo['file_name'];
+
+							$w = $fileInfo['image_width'];
+							$h = $fileInfo['image_height'];
+							$make_h = (300*$h)/$w;
+							//echo $make_width;exit;
+							$product_image_thumb = $this->creatthumb($temp['main_image'],$make_h);
+							
+							if($product_image_thumb)
+							{
+								$product_id = $this->product_add_mdl->insertProduct($temp);
+								
+								$session_data = array(
+									'product_id' => $product_id,
+								);
+								$this->session->set_userdata($session_data);
+							}
+							else
+							{
+								$message['status'] = 0;
+								$message['msg'] = 'Something went wrong..Not Thumed';
+								$data['message'] = $message;
+								$this->load->view('admin/header');
+								$this->load->view('admin/product/new_product',$data);
+							}
+						}
+					}
+					else
+					{
+						$temp['main_image'] = 'no_image.jpg';
+						$product_id = $this->product_add_mdl->insertProduct($temp);
+						$session_data = array(
+									'product_id' => $product_id,
+								);
+						$this->session->set_userdata($session_data);
+					}
+					
+					
+					//Step 2 images
+					
+					
+					
+					//Step 3 fields
+					$product_id = $this->session->userdata('product_id');
+					$field_name = $this->input->post('field_name');
+					$field_value = $this->input->post('value_name');
+					
+					$arrlengthfield = count($field_name);
+					for ($i = 0; $i < $arrlengthfield; $i++) 
+					{
+						$datafield = array(
+									'product_id' => $product_id,
+									'field_name' => $field_name[$i],
+									'field_value' => $field_value[$i]
+								);
+						$done = $this->product_add_mdl->insertfields($datafield);
+					}
+		
+					
+					//Step 4 size color quantity
+					$product_id = $this->session->userdata('product_id');
+					$sizes = $this->input->post('size');
+					$weight = $this->input->post('weight');
+					$length = $this->input->post('length');
+					$width = $this->input->post('width');
+					$height = $this->input->post('height');
+					$color = $this->input->post('color');
+					$quantity = $this->input->post('quantity');
+					
+					//$new_size= array();
+					$arrlength = count($sizes);
+					for ($i = 0; $i < $arrlength; $i++) 
+					{
+						//print $sizes[$i].'<br/>';
+						$data = array(
+									'size' => $sizes[$i],
+									'weight' => $weight[$i],
+									'length' => $length[$i],
+									'width' => $width[$i],
+									'hight' => $height[$i]
+								);
+						$size_id = $this->product_add_mdl->insertsize($data);
+						$data2 = array(
+								'color' => $color[$i]
+								);
+						$color_id = $this->product_add_mdl->insertcolor($data2);
+						
+						$data3 = array(
+								'product_id' => $product_id,
+								'size_id' => $size_id,
+								'color_id' => $color_id,
+								'quantity' => $quantity[$i],
+								);
+						
+						$set_quantity = $this->product_add_mdl->insertquantity($data3);
+						
+						//array_push($new_size , $size_id);
+					}//end size array loop	
+					
+					
+					//step 5 assign
+					$catlist = $this->input->post('catlist');
+					
+					$arrlengthcatlist = count($catlist);
+					for ($i = 0; $i < $arrlengthcatlist; $i++) 
+					{
+						$datacate = array(
+									'product_id' => $product_id,
+									'categoryId' => $catlist[$i]
+								);
+						$done = $this->product_add_mdl->insertProductInCategory($datacate);
+					}
+					
+					$message['status'] = 1;
+					$message['msg'] = $temp['title'].' Added Successfully..';
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/product/new_product',$data);
+					
+				}//end check code
+			}//end form validation
+			
+			//vaj($_POST);
+			
+			
+			
+			//works
+			/*$sizes = $this->input->post('size');
+			  if (is_array($sizes)) {
+				foreach ($sizes as $s => $k) {
+				  echo "Size is : " . $k . "<br/>";
+				}
+			  } else {
+				echo "Owner is not array";
+			  }
+			*/
+			/*if(isset($_POST['userfile']))
+			{
+				$invite = $_POST['userfile'];
+				print_r($invite);
+			}
+			*/
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+		
+	}
 }
 
 /* End of file welcome.php */
