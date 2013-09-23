@@ -69,7 +69,7 @@
                     <thead>
                         <tr>
                             <th class="head0">Product Code</th>
-                            <th class="head1">Name</th>
+                            <th class="head1">Title</th>
                             <th class="head0">Price</th>
                             <th class="head0">Amount</th>
                             <th class="head1">Action</th>
@@ -78,16 +78,16 @@
                     </thead>
                     <tbody>
 					<?php foreach ($query->result() as $row){
-					if($row->status == 0){?>
+					?>
                         <tr>
                             <td class="center"><?=$row->code?></td>
-                            <td class="center"><?=$row->name?></td>
+                            <td class="center"><?=$row->title?></td>
                             <td class="center"><?=$row->price?></td>
-                            <td class="center"><?=$row->amount?></td>
-                            <td class="center"><a href="<?=base_url();?>index.php/admin/product/editProducts/<?=$row->id?>" class="edit">Edit</a> &nbsp; <a href="<?=base_url();?>index.php/admin/product/deleteProducts/<?=$row->id?>/<?=$row->status?>" class="">Delete</a></td>
+                            <td class="center"><?=$row->stock_available?></td>
+                            <td class="center"><!--<a href="<?=base_url();?>index.php/admin/product/editProducts/<?=$row->id?>" class="edit">Edit</a>--> <a href="<?=base_url();?>index.php/admin/product/deleteProducts/<?=$row->id?>" class="">Delete</a></td>
                             <!--<td class="center">X</td>-->
                         </tr>
-					<?}}?>
+					<?}?>
 					<tr>
 						<td colspan='5' class="paginationLinks" style="padding: 32px 0; text-align: right;"> <?php echo $pages;?> </td>
 					</tr>
@@ -113,7 +113,7 @@
                     <thead>
                         <tr>
                             <th class="head0">Product Code</th>
-                            <th class="head1">Name</th>
+                            <th class="head1">Title</th>
                             <th class="head0">Price</th>
                             <th class="head0">Amount</th>
                             <th class="head1">Action</th>
@@ -122,16 +122,16 @@
                     </thead>
                     <tbody>
 					<?php foreach ($query->result() as $row){
-					if($row->status == 1){?>
+					?>
                         <tr>
                             <td class="center"><?=$row->code?></td>
-                            <td class="center"><?=$row->name?></td>
+                            <td class="center"><?=$row->title?></td>
                             <td class="center"><?=$row->price?></td>
-                            <td class="center"><?=$row->amount?></td>
-                            <td class="center"><a href="<?=base_url();?>index.php/admin/product/editProducts/<?=$row->id?>" class="edit">Edit</a> &nbsp; <a href="<?=base_url();?>index.php/admin/product/deleteProducts/<?=$row->id?>/<?=$row->status?>" class="">Activate</a></td>
+                            <td class="center"><?=$row->stock_available?></td>
+                            <td class="center"><!--<a href="<?=base_url();?>index.php/admin/product/editProducts/<?=$row->id?>" class="edit">Edit</a> -->&nbsp; <a href="<?=base_url();?>index.php/admin/product/deleteProducts/<?=$row->id?>" class="">Activate</a></td>
                             <!--<td class="center">X</td>-->
                         </tr>
-					<?}}?>
+					<?}?>
 					<tr>
 						<td colspan='5' class="paginationLinks" style="padding: 32px 0; text-align: right;"> <?php echo $pages;?> </td>
 					</tr>

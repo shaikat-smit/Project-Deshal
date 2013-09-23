@@ -471,7 +471,7 @@ class product extends CI_Controller {
 			$config['query_string_segment'] = 'offset';
 			
 			$config['base_url'] = base_url().'index.php/admin/product/ViewProducts'.'?';
-			$config['total_rows'] = $this->db->query("select count(*) as total from product ORDER BY created DESC;")->row()->total;
+			$config['total_rows'] = $this->db->query("select count(*) as total from tbl_product ORDER BY created DESC;")->row()->total;
 			
 			$config['per_page'] = $limit;
 			$config['num_links'] = 3;//4
@@ -483,7 +483,7 @@ class product extends CI_Controller {
 		
 		
 		
-		$data['query'] = $this->db->query("select * from product ORDER BY created DESC  LIMIT ".$offset.", ".$limit.";");
+		$data['query'] = $this->db->query("select * from tbl_product ORDER BY created DESC  LIMIT ".$offset.", ".$limit.";");
 		
 		$this->load->view('admin/header');
 		//$this->load->model('category_mdl');
@@ -1215,14 +1215,52 @@ class product extends CI_Controller {
 								);
 						$this->session->set_userdata($session_data);
 					}
-					
+					$product_id = $this->session->userdata('product_id');
 					
 					//Step 2 images
-					
-					
-					
+					/*
+					$subimages = $this->input->post('usersubfile');
+					$arrlen = count($subimages);
+					print($arrlen);exit;
+					for ($i = 0; $i < $arrlen; $i++) 
+					{	
+						$this->load->library('upload');
+						$img_date = date("Y_m_d_H_i_s");
+						$sub_image = $product_id.'_'.$img_date;
+				
+						$config['upload_path'] = './itemsubimages/';
+						$config['allowed_types'] = 'jpg|jpeg|png';
+						$config['max_size'] = '1000';
+						
+						$config['file_name'] = $sub_image;
+						$this->upload->initialize($config);
+						
+						if(!$this->upload->do_upload())
+						{
+							$message['status'] = 0;
+							$message['msg'] = $this->upload->display_errors();
+							$data['message'] = $message;
+							$this->load->view('admin/header');
+							$this->load->view('admin/product/addproduct',$data);
+							
+						}
+						else
+						{
+							$fileInfo = $this->upload->data();
+							$temp['sub_image'] = $fileInfo['file_name'];
+							
+							$dataimg = array(
+									'product_id' => $product_id,
+									'image_dir' => $temp['sub_image'],
+									
+								);
+							$done = $this->product_add_mdl->insertimages($dataimg);
+						}
+
+					}
+					*/
 					//Step 3 fields
-					$product_id = $this->session->userdata('product_id');
+					
 					$field_name = $this->input->post('field_name');
 					$field_value = $this->input->post('value_name');
 					

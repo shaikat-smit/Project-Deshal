@@ -1,39 +1,43 @@
 <div class="wrapper" id="content"> <!-- #content ends in footer.php -->
 <div class="container">
 		<div id="single_product_page">
-			<div class="post-46 products type-products status-publish hentry">
+			<div class="post-40 products type-products status-publish hentry">
 				<h2 class="post_title">
-				test product				</h2>
-				<div id="product_images">
+				<?=$details->title?>			</h2>
+				<div id="product_images" >
 					<a id="main_product_image" class="lightboxNOOOO">
 						<!--<span class="preview"></span>-->
-						<img width="460" height="372" src="http://localhost/Project-Deshal/itemimages/test_product2013_06_29_19_06_40.jpg" class="attachment-product_main wp-post-image" alt="" />
+						<img width="460" height="372" src="http://localhost/Project-Deshal/itemimages/<?=$details->main_image?>" class="attachment-product_main wp-post-image" alt="" />
 					</a>
 
 					<!--<div class="single-product-meta">
 						<span>Product Categories: <a href="../../types/shirts-women/index.html" rel="tag">Shirts</a>, <a href="../../types/women/index.html" rel="tag">Women</a></span>
 					</div>-->
 				</div><!-- end #product_images -->
+				
+				<?php if($details->archived_desc == NULL)
+				{?>
 				<form id='cartButtonForm_1' class="Cart66CartButton" method="post" action="" >
 						<input type='hidden' name='task' id="task_1" value='addToCart' />
 						<input type='hidden' name='cart66ItemId' value='1' />
 						<input type='hidden' name='product_url' value='index.html' />
 						<span class="Cart66Price Cart66PriceBlock">
 							<span class="Cart66PriceLabel">Price: </span>
-							<span class="Cart66CurrencySymbol Cart66CurrencySymbolbefore">৳</span><span class="Cart66PreDecimal">1500</span>
+							<span class="Cart66CurrencySymbol Cart66CurrencySymbolbefore">৳</span><span class="Cart66PreDecimal"><?=$details->price?></span>
 							<span class="Cart66CurrencySymbol Cart66CurrencySymbolAfter"></span>
 						</span>
 						<span class="Cart66UserQuantity">
 							<label for="Cart66UserQuantityInput_1">Quantity: </label>
 							<input id="Cart66UserQuantityInput_1" name="item_quantity" value="1" size="4"/>
 						</span>
-															<select name="options_1" id="options_1" class="cart66Options options_1">
-								<option value="">n/a</option>									</select>
+								<select name="options_1" id="options_1" class="cart66Options options_1">
+								<option value="">Color</option>									
+								</select>
 														
 						
-						
-															<select name="options_2" id="options_2" class="cart66Options options_1">
-								<option value="">n/a</option>									</select>
+								<select name="options_2" id="options_2" class="cart66Options options_1">
+								<option value="">Size</option>									
+								</select>
 														
 						
 						
@@ -44,9 +48,8 @@
 						<input type="button" name="close" value="OK" id="close" class="Cart66ButtonSecondary modalClose" />
 					</div> 
 					</form>
-				
-				<div id="product_info" class="entry-content" style="border-top: 1px solid #ddd;">
-				
+				<?}?>
+				<div id="product_info" class="entry-content" style="">
 					<h2>Product information</h2>
 					<style>
 						 .pAttrb
@@ -57,10 +60,19 @@
 					
 					<!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis. Nam magna enim, accumsan eu, blandit sed, blandit a, eros.</p>-->
 					<p>
-						<div class="pAttrb"><b>Artist: </b>n/a</div>
-						<div class="pAttrb"><b>Fabric: </b>100% Silk</div>
-						<div class="pAttrb"><b>Colors: </b>n/a</div>
-						<div class="pAttrb"><b>Sizes: </b>n/a</div>
+					<?php if($details->archived_desc == NULL)
+					{ 
+						if(isset($fields))
+						{
+						foreach($fields->result() as $row)
+						{?>
+							<div class="pAttrb"><b><?=$row->field_name?> : </b><?=$row->field_value?></div>
+						<?}}
+					}
+					else
+					{?>
+						<div class="pAttrb"><?=$details->archived_desc?></div>
+					<?}?>
 					</p>
 				</div><!-- end #product_info -->
 				<div class="clear"></div>

@@ -195,6 +195,16 @@ class product_add_mdl extends CI_Model {
 		
 	}
 	
+	function insertimages($data)
+	{
+        $insert = $this->db->insert('tbl_image',$data);
+        if($insert)
+			return true;
+		else
+			return false;
+		
+	}
+	
 	function insertsize($data)
 	{
 		$this->db->where($data);

@@ -97,7 +97,9 @@ class home extends CI_Controller {
 		
 		
 		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
-		
+		$totimg = $data['settings']->latest_product_row*5;
+		$data['prod'] = $this->db->query("select * from tbl_product ORDER BY created DESC limit ".$totimg."");
+				
 		$this->load->view('header',$data);
 		//echo "ok";die;
 		//$this->load->view('menu');//, $data);
@@ -112,14 +114,13 @@ class home extends CI_Controller {
 		// $data['category'] = $this->category->menu_categories();
 		//$data['category'] = $category;
 	
-				$data['products'] = $this->db->query("select * from product where id in (select productId from productincatagory where categoryId = ".$val.");");
-				$x = $this->db->query("select * from category where id = ".$val.";");
+		$data['products'] = $this->db->query("select * from tbl_product where id in (select product_id from tbl_productincatagory where categoryId = ".$val.");");
+		$x = $this->db->query("select * from category where id = ".$val.";");
 		$data['categoryName']= $x->row()->name;
 		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
 		$this->load->view('header', $data);//, $data);
 		//$this->load->view('menu');//, $data);
-		
-		
+
 		//vaj($data['settings']->logo_dir);
 		$this->load->view('product_grid', $data);
 		$this->load->view('footer');

@@ -39,7 +39,6 @@
 <body class="loggedin">
 
 	<!-- START OF HEADER -->
-	<hr/>
 	<div class="header radius3" style="border-top-style:solid;border-top-width:10px;border-top-color:#EF1800;">
     	<div class="headerinner">
         	
@@ -98,25 +97,17 @@
               	<div class="leftmenu">
             		<ul>
                     	<li class="current"><a href="<?=base_url();?>index.php/admin/dashboard" class="dashboard"><span>Dashboard</span></a></li>
-                        <li><a nohref="#" class="widgets menudrop"><span>Categories</span></a>
-							<ul>
-                            	<li><a href="<?=base_url();?>index.php/admin/category"><span>Add category</span></a></li>
-                            	<li><a href="<?=base_url();?>index.php/admin/category/subcat"><span>Add sub-category</span></a></li>
-                                <!--<li><a href="wizard.html"><span>Modify</span></a></li>-->
-                            </ul>
+                        <li><a class="dashboard" href="<?=base_url();?>index.php/admin/category"><span>Category</span></a>
 						</li>
 						
                         <li><a nohref="#" class="dashboard menudrop"><span>Products</span></a>
 							<ul>
                             	<li><a href="<?=base_url();?>index.php/admin/product/new_product"><span>Add products</span></a></li>
-                            	<li><a href="<?=base_url();?>index.php/admin/product/assign"><span>Assign products</span></a></li>
-                            	<!--<li><a href="<?=base_url();?>index.php/admin/product/assignint"><span>Assign Int. products</span></a></li>-->
-                            	<li><a href="<?=base_url();?>index.php/admin/product/unassign"><span>Unassign products</span></a></li>
                             	<li><a href="<?=base_url();?>index.php/admin/product/ViewProducts"><span>View products</span></a></li>
                             </ul>
 						</li>
-                      <li><a href="<?=base_url();?>index.php/admin/under_cons" class="dashboard"><span>Reports</span></a></li>
-                        <li><a href="<?=base_url();?>index.php/admin/under_cons" class="dashboard menudrop"><span>Sales</span></a>
+                      
+                       <!-- <li><a href="<?=base_url();?>index.php/admin/under_cons" class="dashboard menudrop"><span>Sales</span></a>
 							<ul>
                             	<li><a href="<?=base_url();?>index.php/admin/under_cons"><span>Orders</span></a></li>
                             	<li><a href="<?=base_url();?>index.php/admin/under_cons"><span>Returns</span></a></li>
@@ -127,7 +118,7 @@
                                 <li><a href="<?=base_url();?>index.php/admin/under_cons"><span>Discounts</span></a></li>
                                 <li><a href="<?=base_url();?>index.php/admin/under_cons"><span>Modify</span></a></li>
                             </ul>
-						</li>
+						</li>-->
 						</li>
                     </ul>
                         

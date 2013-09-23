@@ -146,6 +146,22 @@
 						}});
 				});
 				
+				$("#gridwh").click(function(){
+				  $(".widgetlist").hide("slow","swing");
+					$("#dvloader").show();
+					
+					$.ajax
+					({
+						type:'POST', 
+						url: '<?=base_url();?>index.php/admin/settings/editgridwh',  
+						success: function(response) 
+						{
+							$("#dvloader").hide();
+							$("#back").show();
+							$("#divajax").html(response);
+						}});
+				});
+				
 				$("#back").click(function(){
 				$("#divajax, #back").hide(500, function(){
 				
@@ -244,6 +260,7 @@ getmsg(<? echo $message['status'];?>,'<?=$message['msg'];?>');
                         <li><a href="#" class="message" id="title" >Edit Title</a></li>
                     	<li><a href="#" class="events" id="latest" >Edit Latest Product Row Number</a></li>
                     	<li><a href="#" class="events" id="gallery" >Edit Product Gallery Row Number</a></li>
+                    	<li><a href="#" class="events" id="gridwh" >Edit Gallery Image Width & Height</a></li>
                     	<li><a href="#" class="message" id="social" >Edit Social Links</a></li>
                     	<li><a href="#" class="message" id="contact" >Edit Contact Information</a></li>
                     	<li><a href="#" class="message" id="contactaddress" >Edit Contact Address</a></li>

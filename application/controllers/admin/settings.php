@@ -207,6 +207,18 @@ class settings extends CI_Controller {
 		}
 	}
 	
+	public function editgridwh()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$this->load->view('admin/settings/editgridwhajax');
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
 	public function editbanner()
 	{
 		if($this->session->userdata('admin_logged_in'))
@@ -682,6 +694,46 @@ class settings extends CI_Controller {
 			{
 				$message['status'] = 1;
 				$message['msg'] = 'Social Links Updated';
+				$data['message'] = $message;
+				$this->load->view('admin/header');
+				$this->load->view('admin/settings/settings_home',$data);
+				
+			}
+			else
+			{	
+				$message['status'] = 0;
+				$message['msg'] = 'Something went wrong..Please try again !!!';
+				$data['message'] = $message;
+				$this->load->view('admin/header');
+				$this->load->view('admin/settings/settings_home',$data);
+			}
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
+	public function editgriddone()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			
+			$gridimg_width = $this->input->post("gridimg_width");
+			$gridimg_height = $this->input->post("gridimg_height");
+			
+			$column_name = "gridimg_width";
+			$value = $gridimg_width ;
+			$done = $this->settings_mdl->update($column_name,$value);
+			
+			$column_name = "gridimg_height";
+			$value = $gridimg_height ;
+			$done2 = $this->settings_mdl->update($column_name,$value);
+
+			if($done2)
+			{
+				$message['status'] = 1;
+				$message['msg'] = 'Grid Images size edited...';
 				$data['message'] = $message;
 				$this->load->view('admin/header');
 				$this->load->view('admin/settings/settings_home',$data);

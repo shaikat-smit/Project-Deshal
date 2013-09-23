@@ -21,8 +21,8 @@
 						<div class="single_grid_product">	
 							<div class="product_med_wrap">
 								<div class="product_meta">৳<?=$prod->price?></div>
-								<a href="<?=base_url();?>index.php/product_details/product/<?=$prod->id?>" title="<?=$prod->name?>" class="single_product_image_link">
-									<img width="560" height="560" src="<?=base_url();?>itemimages/<?=$prod->mainImageUrl?>" class="attachment-product_med wp-post-image" alt="" />
+								<a href="<?=base_url();?>index.php/product_details/details/<?=$prod->id?>" title="<?=$prod->title?>" class="single_product_image_link">
+									<img width="<?=$settings->gridimg_width;?>" height="<?=$settings->gridimg_height;?>" src="<?=base_url();?>itemimages/<?=$prod->main_image?>" class="attachment-product_med wp-post-image" alt="" />
 								</a>
 							</div>
 						</div>

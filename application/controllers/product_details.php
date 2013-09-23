@@ -15,16 +15,30 @@ class product_details extends CI_Controller {
 	{
 		//$data['current_page'] = "Home";
 		
+		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
 		
-		$this->load->library('../controllers/admin/category');
-		$data['category'] = $this->category->menu_categories();//$category;
-		$this->load->view('header');
-		$this->load->view('menu');
+		$this->load->view('header',$data);
 		$this->load->view('product_details');
 		$this->load->view('footer');
 		
 		
 	}
+	
+	public function details($product_id='')
+	{
+		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
+		$data['details'] = $this->db->query("select * from tbl_product where id=".$product_id."")->row();
+		
+		$data['fields'] = $this->db->query("select * from tbl_product_info where product_id=".$product_id."");
+		//vaj($data['fields']);
+		$this->load->view('header',$data);
+		$this->load->view('product_details');
+		$this->load->view('footer');
+		
+		
+	}
+	
+	
 	
 	public function product($pid = '')
 	{
@@ -50,7 +64,7 @@ class product_details extends CI_Controller {
 			$data['getreview'] = $this->db->query("SELECT * FROM reviewrating where productId=".$result['id']." ");
 			$data['countRvw'] = $data['getreview']->result_array();
 			
-			$data['products'] = $this->db->query("select * from product ORDER BY created DESC limit 5");
+			$data['products'] = $this->db->query("select * from tbl_product ORDER BY created DESC limit 5");
 			
 			$this->load->view('product_details',$data);
 			$this->load->view('footer');
@@ -91,7 +105,7 @@ class product_details extends CI_Controller {
 			$data['getreview'] = $this->db->query("SELECT * FROM reviewrating where productId=".$_POST['p_id']." ORDER BY created DESC limit 3");
 			//echo $data['getreview'];exit;
 			
-			$data['products'] = $this->db->query("select * from product ORDER BY created DESC limit 5");
+			$data['products'] = $this->db->query("select * from tbl_product ORDER BY created DESC limit 5");
 			//$this->product($_POST['p_id']);
 			// $this->load->view('product_details',$data);
 			// $this->load->view('footer');

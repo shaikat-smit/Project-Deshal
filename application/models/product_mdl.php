@@ -10,7 +10,7 @@ class product_mdl extends CI_Model {
 	function fetchproduct($value)
 	{
 		$this->db->where('id',$value);
-		$query = $this->db->get('product');
+		$query = $this->db->get('tbl_product');
 		
 		if($query->num_rows()<1)
 		{
