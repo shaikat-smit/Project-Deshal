@@ -72,7 +72,7 @@ padding-bottom: 3px;
 	
 			<div class="wrapper" id="content"> <!-- #content ends in footer.php -->
 				<div class="container">
-<div class="wrapper" id="featured_wrap">
+<div class="wrapper" id="featured_wrap" style="width: 100%;">
 					
 									
 <div class="single_featured featured_first">
@@ -204,7 +204,7 @@ padding-bottom: 3px;
 	
 			
 		<div id="all_products_call">
-		<a href="" title="(in future)">
+		<a href="" title="">
 			View All Products &rarr;
 		</a>
 	</div>

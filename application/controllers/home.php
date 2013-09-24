@@ -113,14 +113,53 @@ class home extends CI_Controller {
 		// $this->load->library('../controllers/category');
 		// $data['category'] = $this->category->menu_categories();
 		//$data['category'] = $category;
-	
-		$data['products'] = $this->db->query("select * from tbl_product where id in (select product_id from tbl_productincatagory where categoryId = ".$val.");");
+		
+		//---------------------------------- (PAGINATION) ----------------------------------
+		
+		$data['curnt_cat_id'] = $val;
+		//$admin_setting_row = 3; //admin's settings value can be given here..
+		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
+		$limit = $data['settings']->latest_product_row*5;
+		$offset = 0;
+		
+		$data['prev_page'] = 'none';
+		$data['next_page'] = 'true';
+		$total_rows = $this->db->query("select  count(*) as total from tbl_product where id in (select product_id from tbl_productincatagory where categoryId = ".$val.")")->row()->total;
+		
+		if(($offset + $limit) > $total_rows )
+				$data['next_page'] = 'none';
+		
+		if(isset($_GET['offset']) && $_GET['offset'] != '')//if pagination is active
+		{
+			$offset 		= $_GET['offset'];
+			$data['offset'] = $_GET['offset'];
+
+			if($offset > 0)
+			 	$data['prev_page'] = 'true';
+			if(($offset + $limit) > $total_rows )
+				$data['next_page'] = 'none';
+			
+		}
+		
+		
+		//---------------------------------- (PAGINATION) ----------------------------------
+		
+		// echo '---Total: '.$total_rows; echo '<br/>';
+		// echo '---Prev: '.$data['prev_page']; echo '<br/>';
+		// echo '---Next: '.$data['next_page']; echo '<br/>';
+		// echo '---Off:'.$offset.'--L:'.$limit; exit;
+		
+		
+		$data['offset'] = $offset;
+		$data['per_page'] = $limit;
+		$data['products'] = $this->db->query("select * from tbl_product where id in (select product_id from tbl_productincatagory where categoryId = ".$val.") LIMIT ".$offset.", ".$limit.";");
 		$x = $this->db->query("select * from category where id = ".$val.";");
 		$data['categoryName']= $x->row()->name;
 		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
 		$this->load->view('header', $data);//, $data);
 		//$this->load->view('menu');//, $data);
 
+		
 		//vaj($data['settings']->logo_dir);
 		$this->load->view('product_grid', $data);
 		$this->load->view('footer');
