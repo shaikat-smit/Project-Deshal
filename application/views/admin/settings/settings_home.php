@@ -146,6 +146,22 @@
 						}});
 				});
 				
+                                $("#mainbanner").click(function(){
+				  $(".widgetlist").hide("slow","swing");
+					$("#dvloader").show();
+					
+					$.ajax
+					({
+						type:'POST', 
+						url: '<?=base_url();?>index.php/admin/settings/editbannermain',  
+						success: function(response) 
+						{
+							$("#dvloader").hide();
+							$("#back").show();
+							$("#divajax").html(response);
+						}});
+				});
+				
 				$("#gridwh").click(function(){
 				  $(".widgetlist").hide("slow","swing");
 					$("#dvloader").show();
@@ -255,7 +271,7 @@ getmsg(<? echo $message['status'];?>,'<?=$message['msg'];?>');
 					<input class="zSubButton" type="button" value="&nbsp;Back&nbsp;" style="display:none" id="back" onclick="back()"/>
                 	<ul class="widgetlist">
                     	<li><a href="#" class="upload" id="logo">Change Logo</a></li>
-                    	<li><a href="#" class="upload" id="banner">Change Banner Images</a></li>
+                    	<li><a href="#" class="upload" id="mainbanner">Change Main Banner Images</a></li>
                     	<li><a href="#" class="message" id="tag" >Edit Tag Line</a></li>
                         <li><a href="#" class="message" id="title" >Edit Title</a></li>
                     	<li><a href="#" class="events" id="latest" >Edit Latest Product Row Number</a></li>

@@ -99,6 +99,7 @@ class home extends CI_Controller {
 		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
 		$totimg = $data['settings']->latest_product_row*5;
 		$data['prod'] = $this->db->query("select * from tbl_product ORDER BY created DESC limit ".$totimg."");
+                $data['banner'] = $this->db->query("select * from tbl_slider");
 				
 		$this->load->view('header',$data);
 		//echo "ok";die;

@@ -219,6 +219,7 @@ class settings extends CI_Controller {
 		}
 	}
 	
+	
 	public function editbanner()
 	{
 		if($this->session->userdata('admin_logged_in'))
@@ -230,6 +231,97 @@ class settings extends CI_Controller {
 			redirect('adminlog');
 		}
 	}
+	
+	
+	public function editbannermain()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$this->load->view('admin/settings/editbannermainajax');
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
+	public function editbannerdone()
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{
+			$img_date = date("Y_m_d_H_i_s");
+			$this->load->library('upload');
+
+			if(!empty($_FILES["userfile"]["name"]))
+			{
+				$userfile = $this->input->post('userfile');
+				
+				$config['upload_path'] = './slider/images/slides/';
+				$config['allowed_types'] = 'jpg|jpeg|png';
+				$config['max_size'] = '1000';
+				//$config['max_width'] = '1360';
+				//$config['max_height'] = '768';
+				$config['file_name'] = "banneerimg_".$img_date;
+				$this->upload->initialize($config);
+				
+				if(!$this->upload->do_upload())
+				{
+					$message['status'] = 0;
+					$message['msg'] = $this->upload->display_errors();
+					$data['message'] = $message;
+					$this->load->view('admin/header');
+					$this->load->view('admin/settings/settings_home',$data);
+					
+				}
+				else
+				{
+					$fileInfo = $this->upload->data();
+					$imname=$fileInfo['file_name'];
+					
+					//$column_name = "banner";
+					//$value = $imname ;
+					//$done = $this->settings_mdl->update($column_name,$value);
+					
+					$data = array(
+						'main_image_dir' => $imname,
+						);
+					$done = $this->db->insert('tbl_slider',$data);
+					
+					if(!$done)
+					{
+						$message['status'] = 0;
+						$message['msg'] = 'Something went wrong..Try again';
+						$data['message'] = $message;
+						$this->load->view('admin/header');
+						$this->load->view('admin/settings/settings_home',$data);
+					}
+					else
+					{
+						$message['status'] = 1;
+						$message['msg'] = 'Banner Slider Added !!!';
+						$data['message'] = $message;
+						$this->load->view('admin/header');
+						$this->load->view('admin/settings/settings_home',$data);
+					}
+				}
+			//////////////////////////////////
+			}
+			else
+			{
+				$message['status'] = 2;
+				$message['msg'] = 'No changes have been made !!!';
+				$data['message'] = $message;
+				$this->load->view('admin/header');
+				$this->load->view('admin/settings/settings_home',$data);
+			}
+		}
+		else
+		{
+			redirect('adminlog');
+		}
+	}
+	
+
 	
 	public function edittag()
 	{

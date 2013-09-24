@@ -902,8 +902,16 @@ class product extends CI_Controller {
 	
 	function deleteProducts($product_id='',$status = '')
 	{
+		$this->db->where('id',$product_id);
+		$delete = $this->db->delete('tbl_product');
+		$this->db->where('id',$product_id);
+		$delete2 = $this->db->delete('tbl_size_color_product');
+		$this->db->where('id',$product_id);
+		$delete3 = $this->db->delete('tbl_product_info');
+		$this->db->where('id',$product_id);
+		$delete4 = $this->db->delete('tbl_productincatagory');
 		
-		$delete = $this->product_add_mdl->deleteProduct($product_id,$status);
+		
 		if($delete)
 		{
 			//$this->ViewProducts();
@@ -1389,6 +1397,7 @@ class product extends CI_Controller {
 	{
 		if($this->session->userdata('admin_logged_in'))
 		{//$data['current_page'] = "Home";
+			
 			
 			$this->load->view('admin/header');
 			$this->load->view('admin/product/edit_product');

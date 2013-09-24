@@ -31,13 +31,22 @@ class product_details extends CI_Controller {
 		
 		$data['fields'] = $this->db->query("select * from tbl_product_info where product_id=".$product_id."");
 		
+		$cate = $this->db->query("select * from tbl_productincatagory where product_id=".$product_id."")->result();
+		if(count($cate) != 0)
+{
+
+		foreach($cate as $row)
+		{
+			$cat[] = $this->db->query("select * from category where id = ".$row->categoryId."")->row();
+		}
+		
+		$data['proincate'] = $cat;
+}
 		$data['colorsize'] = $this->db->query("select * from tbl_size s, tbl_color c , tbl_size_color_product al where c.id=al.color_id and s.id = al.size_id and product_id=".$product_id."");
 		//vaj($data['colorsize']->result());
 		$this->load->view('header',$data);
 		$this->load->view('product_details',$data);
 		$this->load->view('footer');
-		
-		
 	}
 	
 	
@@ -99,21 +108,27 @@ class product_details extends CI_Controller {
 		}
 		else
 		{
-                        $data = $this->getValues($_POST['p_id']);
-			$data['details'] = $result ;
-			
-			//$this->load->view('header');
-			// $this->load->view('menu');
-			$data['getreview'] = $this->db->query("SELECT * FROM reviewrating where productId=".$_POST['p_id']." ORDER BY created DESC limit 3");
-			//echo $data['getreview'];exit;
-			
-			$data['products'] = $this->db->query("select * from tbl_product ORDER BY created DESC limit 5");
-			//$this->product($_POST['p_id']);
-			// $this->load->view('product_details',$data);
-			// $this->load->view('footer');
-			
-			//redirect(base_url());
-			redirect(base_url('/index.php/product_details/product/'.$_POST['p_id']));
+                       $data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
+		$data['details'] = $this->db->query("select * from tbl_product where id=".$product_id."")->row();
+		
+		$data['fields'] = $this->db->query("select * from tbl_product_info where product_id=".$product_id."");
+		
+		$cate = $this->db->query("select * from tbl_productincatagory where product_id=".$product_id."")->result();
+		if(count($cate) != 0)
+{
+
+		foreach($cate as $row)
+		{
+			$cat[] = $this->db->query("select * from category where id = ".$row->categoryId."")->row();
+		}
+		
+		$data['proincate'] = $cat;
+}
+		$data['colorsize'] = $this->db->query("select * from tbl_size s, tbl_color c , tbl_size_color_product al where c.id=al.color_id and s.id = al.size_id and product_id=".$product_id."");
+		//vaj($data['colorsize']->result());
+		$this->load->view('header',$data);
+		$this->load->view('product_details',$data);
+		$this->load->view('footer');
 		}
 		
 

@@ -1,3 +1,6 @@
+<script type='text/javascript' src='<?=base_url();?>/js/fancybox/jquery.fancybox-1.3.4.pack039c.js?ver=3.6'></script>
+<script type='text/javascript' src='<?=base_url();?>/js/jquery.mobilemenu039c.js?ver=3.6'></script>
+<script type='text/javascript' src='<?=base_url();?>/js/jquery.sticky039c.js?ver=3.6'></script>
 <div class="wrapper" id="content"> <!-- #content ends in footer.php -->
 <div class="container">
 		<div id="single_product_page">
@@ -5,14 +8,18 @@
 				<h2 class="post_title">
 				<?=$details->title?>			</h2>
 				<div id="product_images" >
-					<a id="main_product_image" class="lightboxNOOOO">
-						<!--<span class="preview"></span>-->
+					<a id="main_product_image" href="<?=base_url();?>/itemimages/<?=$details->main_image?>" class="lightbox">
+						<span class="preview"></span>
 						<img width="460" height="372" src="<?=base_url();?>/itemimages/<?=$details->main_image?>" class="attachment-product_main wp-post-image" alt="" />
 					</a>
 
-					<!--<div class="single-product-meta">
-						<span>Product Categories: <a href="../../types/shirts-women/index.html" rel="tag">Shirts</a>, <a href="../../types/women/index.html" rel="tag">Women</a></span>
-					</div>-->
+					<div class="single-product-meta">
+						<span>Product Categories: 
+						<?php if(isset($proincate)){ foreach($proincate as $row){?>
+						<a href="<?=base_url();?>index.php/home/temp_grid/<?=$row->id?>" rel="tag"><?=$row->name?></a>
+						,
+						<?}}?>
+					</div>
 				</div><!-- end #product_images -->
 				<?php if($details->archived_desc == NULL)
 				{?>
@@ -123,7 +130,7 @@
 				<a id="wTrig" class="button" rel="#write" style="background: #DDD" onclick="toggle_visibility('wRvw')">Write review</a>
 			  
 				<div  id="wRvw" style="display:none; font-family: Trebuchet MS, Arial, Helvetica, sans-serif;margin-top: 15px;">
-					<form name="reviewForm" action="http://localhost/Project-Deshal/index.php/product_details/insert_review" method="POST">
+					<form name="reviewForm" action="#" method="POST">
 							<table>
 								<tr>
 									<td>User Name :</td>
@@ -245,6 +252,35 @@ if (atpos<1 || dotpos<atpos+2 || dotpos+2>=x.length)
 		  }
 	}
 	
+	// Fancybox
+	jQuery(".lightbox").fancybox({
+		'transitionIn'		: 'fade',
+		'transitionOut'		: 'fade',
+		'showNavArrows' 	: 'true'
+	});
+	
+	jQuery(".lightbox").attr('rel', 'gallery').fancybox();
+	
+	if(!$.browser.msie){
+		// Animates new products widget on hover
+		$("#recent_products").delegate("a", "mouseover mouseout", function(e) {
+			if (e.type == 'mouseover') {
+				jQuery("#recent_products a").not(this).dequeue().animate({opacity: "0.5"}, 300);
+			} else {
+				jQuery("#recent_products a").not(this).dequeue().animate({opacity: "1"}, 300);
+			}
+		});
+	};
+	
+	// Add divs and classes
+	jQuery('<div class="clear"></div>').insertAfter('.Cart66ButtonPrimary, #Cart66AccountLogin');
+	jQuery('.Cart66UpdateTotalButton').parent().addClass('update_total_td');
+	jQuery('#couponCode').parent().addClass('add_coupon_td');
+		
+	// sticky header
+		if ( jQuery(window).width() > 1024) {
+		jQuery("#main_menu").sticky({topSpacing:30});
+	}
 </script>
 			<div class="clear"></div>
 		</div><!-- end #single_product_page -->

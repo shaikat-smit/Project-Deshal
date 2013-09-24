@@ -90,8 +90,9 @@ padding-bottom: 3px;
 		</div>-->
 		<div class="featured_image_wrap">
 		<ul class="aviaslider" id="frontpage-slider">
-					<li><a href="<?=base_url()?>slider/images/slides/bigtile.jpg" title="" ><img src="<?=base_url()?>slider/images/slides/bigtile.jpg" alt="A heading of your choice 1:: This is the image description defined in your alt tag" /></a></li>
-					<li><a href="<?=base_url()?>slider/images/slides/test2.jpg" title=""><img src="<?=base_url()?>slider/images/slides/test2.jpg" alt="A heading of your choice 2:: This is the image description defined in your alt tag" /></a></li>
+					<?php foreach($banner->result() as $row){?>
+					<li><a href="<?=base_url()?>slider/images/slides/<?=$row->main_image_dir?>" title="" ><img src="<?=base_url()?>slider/images/slides/<?=$row->main_image_dir?>" alt="A heading of your choice 1:: This is the image description defined in your alt tag" /></a></li>
+				<?}?>
 		</ul>
 		<div class="featured_desc">
 				
@@ -158,8 +159,8 @@ padding-bottom: 3px;
 					<div class="single_grid_product"  style="width:<?=$settings->gridimg_width?>px !important;height:<?=$settings->gridimg_height?>px !important;">	
 						<div class="product_med_wrap">
 							<div class="product_meta">৳ &nbsp;<?=$products->price;?></div>
-							<a href="http://localhost/Project-Deshal/index.php/product_details/details/<?=$products->id;?>" title="test product" class="single_product_image_link" >
-								<img  style="width:<?=$settings->gridimg_width?>px !important;" src="http://localhost/Project-Deshal/itemimages/<?=$products->main_image;?>" class="attachment-product_med wp-post-image" alt="" />
+							<a href="<?=base_url();?>index.php/product_details/details/<?=$products->id;?>" title="test product" class="single_product_image_link" >
+								<img  style="width:<?=$settings->gridimg_width?>px !important;" src="<?=base_url();?>itemimages/<?=$products->main_image;?>" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
 					</div>	
