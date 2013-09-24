@@ -30,9 +30,11 @@ class product_details extends CI_Controller {
 		$data['details'] = $this->db->query("select * from tbl_product where id=".$product_id."")->row();
 		
 		$data['fields'] = $this->db->query("select * from tbl_product_info where product_id=".$product_id."");
-		//vaj($data['fields']);
+		
+		$data['colorsize'] = $this->db->query("select * from tbl_size s, tbl_color c , tbl_size_color_product al where c.id=al.color_id and s.id = al.size_id and product_id=".$product_id."");
+		//vaj($data['colorsize']->result());
 		$this->load->view('header',$data);
-		$this->load->view('product_details');
+		$this->load->view('product_details',$data);
 		$this->load->view('footer');
 		
 		

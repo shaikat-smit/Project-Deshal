@@ -7,14 +7,13 @@
 				<div id="product_images" >
 					<a id="main_product_image" class="lightboxNOOOO">
 						<!--<span class="preview"></span>-->
-						<img width="460" height="372" src="http://localhost/Project-Deshal/itemimages/<?=$details->main_image?>" class="attachment-product_main wp-post-image" alt="" />
+						<img width="460" height="372" src="<?=base_url();?>/itemimages/<?=$details->main_image?>" class="attachment-product_main wp-post-image" alt="" />
 					</a>
 
 					<!--<div class="single-product-meta">
 						<span>Product Categories: <a href="../../types/shirts-women/index.html" rel="tag">Shirts</a>, <a href="../../types/women/index.html" rel="tag">Women</a></span>
 					</div>-->
 				</div><!-- end #product_images -->
-				
 				<?php if($details->archived_desc == NULL)
 				{?>
 				<form id='cartButtonForm_1' class="Cart66CartButton" method="post" action="" >
@@ -23,20 +22,28 @@
 						<input type='hidden' name='product_url' value='index.html' />
 						<span class="Cart66Price Cart66PriceBlock">
 							<span class="Cart66PriceLabel">Price: </span>
-							<span class="Cart66CurrencySymbol Cart66CurrencySymbolbefore">৳</span><span class="Cart66PreDecimal"><?=$details->price?></span>
+							<span class="Cart66CurrencySymbol Cart66CurrencySymbolbefore">৳</span>&nbsp;<span class="Cart66PreDecimal"><?=$details->price?></span>
 							<span class="Cart66CurrencySymbol Cart66CurrencySymbolAfter"></span>
 						</span>
 						<span class="Cart66UserQuantity">
 							<label for="Cart66UserQuantityInput_1">Quantity: </label>
-							<input id="Cart66UserQuantityInput_1" name="item_quantity" value="1" size="4"/>
+							<input id="quantity" name="item_quantity" value="1" size="4"/>
 						</span>
-								<select name="options_1" id="options_1" class="cart66Options options_1">
-								<option value="">Color</option>									
+								<select name="options_1" id="options_color" class="cart66Options options_1">
+								<option value="">Color</option>	
+									<?php foreach($colorsize->result() as $row)
+									{?>
+										<option value="<?=$row->id?>"><?=$row->color?></option>	
+									<?}?>
 								</select>
 														
 						
-								<select name="options_2" id="options_2" class="cart66Options options_1">
-								<option value="">Size</option>									
+								<select name="options_2" id="options_size" class="cart66Options options_1">
+								<option value="">Size</option>	
+									<?php foreach($colorsize->result() as $row)
+									{?>
+										<option value="<?=$row->id?>"><?=$row->size?></option>	
+									<?}?>								
 								</select>
 														
 						
@@ -77,6 +84,11 @@
 				</div><!-- end #product_info -->
 				<div class="clear"></div>
 				<!-------------------------------------------------------->
+				<script type="text/javascript">
+					jQuery( "#options_color" ).change(function() {
+						
+					});
+				</script>
 				
 				
 				<style>

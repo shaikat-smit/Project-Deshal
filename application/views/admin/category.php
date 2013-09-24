@@ -571,8 +571,8 @@ display: none;
             </div><!--maincontentinner-->
             
             <div class="footer">
-            	
-            </div><!--footer-->
+        <p>Deshal &copy; 2012. All Rights Reserved. Designed by: <a href="http://www.stonemossit.com">Stone-Moss IT</a></p>
+    </div><!--footer-->
             
         </div><!--maincontent-->
         

@@ -9,7 +9,7 @@
         <div class="content">
             <br/><br/>
             <div class="contenttitle">
-                <h2 class="form" id="vertical"><span>New Product</span></h2>
+                <h2 class="form" id="vertical"><span>Edit Product</span></h2>
             </div>
 			<div class="">
 						<table class="zFormTbl" style="width: 70%;">

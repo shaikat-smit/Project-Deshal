@@ -491,7 +491,7 @@ class product extends CI_Controller {
 		$this->load->view('admin/product/viewproduct', $data);
 	}
 	
-	function editProducts($product = '')
+	/*function editProducts($product = '')
 	{
 		$result = $this->product_mdl->fetchproduct($product);
 		
@@ -513,7 +513,7 @@ class product extends CI_Controller {
 			$this->load->view('admin/header');
 			$this->load->view('admin/product/editproduct', $data);
 		}
-	}
+	}*/
 	
 	public function getValues($product)
 	{
@@ -1042,7 +1042,7 @@ class product extends CI_Controller {
 		$this->load->view('admin/product/assignintproduct', $data);
 	}
         
-        public function new_product()
+    public function new_product()
 	{
 		if($this->session->userdata('admin_logged_in'))
 		{//$data['current_page'] = "Home";
@@ -1130,8 +1130,26 @@ class product extends CI_Controller {
 				$temp['code'] = $this->input->post('code');
 				$temp['title'] = $this->input->post('title');
 				$temp['description'] = $this->input->post('description');
-				$temp['int_available'] = $this->input->post('int_available_flag');
-				$temp['archive'] = $this->input->post('archiveFlag');
+				$int_available_flag = $this->input->post('int_available_flag');
+				if(isset($int_available_flag))
+				{
+					$temp['int_available'] = 1;
+				}
+				else
+				{
+					$temp['int_available'] = 0;
+				}
+				
+				$archiveFlag = $this->input->post('archiveFlag');
+				if(isset($archiveFlag))
+				{
+					$temp['archive'] = 1;
+				}
+				else
+				{
+					$temp['archive'] = 0;
+				}
+				
 				$temp['archived_desc'] = $this->input->post('archived_desc');
 				$temp['stock_available'] = $this->input->post('stock_quan');
 				$temp['price'] = $this->input->post('price');
@@ -1365,6 +1383,20 @@ class product extends CI_Controller {
 			redirect('adminlog');
 		}
 		
+	}
+	
+	function edit_product($product_id='')
+	{
+		if($this->session->userdata('admin_logged_in'))
+		{//$data['current_page'] = "Home";
+			
+			$this->load->view('admin/header');
+			$this->load->view('admin/product/edit_product');
+		}
+		else
+		{
+			redirect('adminlog');
+		}
 	}
 }
 
