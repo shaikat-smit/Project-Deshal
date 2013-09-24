@@ -145,6 +145,8 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 
 
 
+<?php
+/*
 <div id="search_wrap">
 <div id="search_link"></div>
 <form method="get" id="searchform" action="">
@@ -155,6 +157,8 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 </div>
 </form>
 </div>
+*/
+?>
 <div class="clear"></div>
 				</div>
 			</div>

@@ -39,10 +39,10 @@
 	</div>
 	
 			
-		<div id="all_products_call">
-		<a href="" title="(in future)">
-			More &rarr;
-		</a>
+	<div id="all_products_call">
+		<!--<a href="" title="(in future)">More &rarr;</a>-->
+		<a href="<?if($prev_page != 'none'){ echo base_url().'index.php/home/temp_grid/'.$curnt_cat_id.'?offset='.($offset-$per_page);}?>" style="<?if($prev_page == 'none') echo 'display: none;';?>" >&larr; Previous</a>
+		<a href="<?if($next_page != 'none'){ echo base_url().'index.php/home/temp_grid/'.$curnt_cat_id.'?offset='.($offset+$per_page);}?>" style="<?if($next_page == 'none') echo 'display: none;';?>">Next &rarr;</a>
 	</div>
 		
 					<div class="clear"></div>
