@@ -10,14 +10,16 @@
 				<div id="product_images" >
 					<a id="main_product_image" href="<?=base_url();?>/itemimages/<?=$details->main_image?>" class="lightbox">
 						<span class="preview"></span>
-						<img width="460" height="372" src="<?=base_url();?>/itemimages/<?=$details->main_image?>" class="attachment-product_main wp-post-image" alt="" />
+						<img src="<?=base_url();?>/itemimages/<?=$details->main_image?>" class="attachment-product_main wp-post-image" alt="" />
 					</a>
 
 					<div class="single-product-meta">
 						<span>Product Categories: 
-						<?php if(isset($proincate)){ foreach($proincate as $row){?>
+						<?php if(isset($proincate)){
+							$last = end($proincate);
+						foreach($proincate as $row){?>
 						<a href="<?=base_url();?>index.php/home/temp_grid/<?=$row->id?>" rel="tag"><?=$row->name?></a>
-						,
+						<?=(($last == $row)?"":",")?>
 						<?}}?>
 					</div>
 				</div><!-- end #product_images -->

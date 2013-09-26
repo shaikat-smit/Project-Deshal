@@ -91,7 +91,7 @@ padding-bottom: 3px;
 		<div class="featured_image_wrap">
 		<ul class="aviaslider" id="frontpage-slider">
 					<?php foreach($banner->result() as $row){?>
-					<li><a href="<?=base_url()?>slider/images/slides/<?=$row->main_image_dir?>" title="" ><img src="<?=base_url()?>slider/images/slides/<?=$row->main_image_dir?>" alt="A heading of your choice 1:: This is the image description defined in your alt tag" /></a></li>
+					<li><a class="lightbox" href="<?=base_url()?>slider/images/slides/<?=$row->main_image_dir?>" title="" ><img src="<?=base_url()?>slider/images/slides/<?=$row->main_image_dir?>" alt="A heading of your choice 1:: This is the image description defined in your alt tag" /></a></li>
 				<?}?>
 		</ul>
 		<div class="featured_desc">
