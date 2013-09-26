@@ -1393,20 +1393,18 @@ class product extends CI_Controller {
 		
 	}
 	
-	function edit_product($product_id='')
-	{
-		if($this->session->userdata('admin_logged_in'))
-		{//$data['current_page'] = "Home";
-			
-			
-			$this->load->view('admin/header');
-			$this->load->view('admin/product/edit_product');
-		}
-		else
-		{
-			redirect('adminlog');
-		}
-	}
+//	function edit_product($product_id='')
+//	{
+//		if($this->session->userdata('admin_logged_in'))
+//		{//$data['current_page'] = "Home";
+//			$this->load->view('admin/header');
+//			$this->load->view('admin/product/edit_product');
+//		}
+//		else
+//		{
+//			redirect('adminlog');
+//		}
+//	}
 }
 
 /* End of file welcome.php */
