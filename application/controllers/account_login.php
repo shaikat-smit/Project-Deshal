@@ -26,6 +26,15 @@ class account_login extends CI_Controller {
 		$this->load->view('account_login');
 		$this->load->view('footer');
 	}
+	
+	public function register()
+	{
+		//vaj($_POST);
+		$response['status'] = 1;
+		$response['errormsg'] = "";
+		$response['data'] = json_encode($_POST);
+		echo json_encode($response);
+	}
 }
 
 /* End of file welcome.php */

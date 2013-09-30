@@ -121,7 +121,7 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 								
 									<table style="height: 100%;width: 100%;border-collapse: collapse;">
 										<tbody>
-											<tr  id="msg">
+											<tr  id="msg" class="error_msg">
 												<td colspan="4" style="border-width: 0px;"><p>Error message</p></td>
 											</tr>
 											<tr>
@@ -146,6 +146,11 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 												<td><input type="text" name="address" class="login" maxlength="32" ></td>
 											</tr>
 											
+											<tr>
+												<td style="padding-top: 10px;">Contact No.</td>
+												<td><input type="text" name="contact" class="login" maxlength="32" ></td>
+											</tr>
+											
 											
 											
 											
@@ -154,14 +159,82 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 											<tr>
 												<td style="border-width: 0px;"></td>
 												<td style="text-align: right;padding-right: 8px;">
-													<input type="button" class="register_a" value="Register">
+													<input id="reg_submit" type="button" class="register_a" value="Register" onclick="reg_info_post()">
 													with: <a> <img src="<?=base_url();?>img/fb-black.png" style="width: 22px;margin-bottom: -5px; cursor:pointer;"/></a>
 												</td>
 											</tr>
 										</tbody>
 									</table>
 								
+								
 								</div>
+									<script>
+									
+										function reg_info_post()
+										{
+											var user = jQuery('#register_div input[name=user]').val();
+											var username = jQuery('#register_div input[name=username]').val();
+											var password = jQuery('#register_div input[name=password]').val();
+											var repass   = jQuery('#register_div input[name=repassword]').val();
+											var address  = jQuery('#register_div input[name=address]').val();
+											var contact  = jQuery('#register_div input[name=contact]').val();
+											
+											
+											if(repass == password)
+											{
+												if(user.trim()=="" && username.trim()=="" && password.trim()=="" && address.trim()=="" && contact.trim()=="" )
+												{
+													jQuery('#msg p').text('Some fields are empty!');
+													jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+													return;
+												}
+												console.log('comes-1');
+												
+												jQuery.ajax({
+													url: "<?php echo base_url();?>index.php/account_login/register",
+													type: 'POST',
+													data: {
+															'user'	   : user,
+															'username' : username,
+															'password' : password, 
+															'repass'   : repass, 
+															'address'  : address,
+															'contact'  : contact
+														  },
+
+													success: function(response, status, xhr)
+													{
+														//console.log('comes-2');
+														response = jQuery.parseJSON(response);
+														// console.log(response.status);
+														// console.log(response.data['username']);
+														if(response.status == 1)
+														{
+															jQuery('#msg p').text('Successfully added!');
+															jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+														}
+														else
+														{
+															jQuery('#msg p').text(response.errormsg);
+															jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+														}
+													},      
+													error: function (xhr, ajaxOptions, thrownError)
+													{
+														jQuery('#msg p').text('Network error! Try again.');
+														jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+													}
+												});
+											}
+											else
+											{
+												jQuery('#msg p').text('Network error! Try again.');
+												jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+											}
+										}
+										
+									</script>
+								
 								
 							</li>
 							

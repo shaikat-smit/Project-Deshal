@@ -503,10 +503,16 @@ width: 65%;
 }
 
 
-#register_div #msg, #msg p
+#register_div #msg
 {
 margin: 0;
 display: none;
+}
+
+#register_div #msg p
+{
+margin: 0;
+color:red;
 }
 	
 	
