@@ -346,10 +346,182 @@ h6 {
 
     #header .container {
         height: auto;
+		height: 40px;
         padding: 40px 0;
     }
 
-.the_logo {
+	
+	
+
+#notLoggedIn a:hover
+{
+cursor:pointer;
+}
+
+	
+	
+	#header #auth_div
+	{
+height: auto;
+width: 363px;
+border: 1px solid rgb(216, 216, 216);
+position: absolute;
+z-index: 20;
+top: 68px;
+right: -2px;
+background-color: white;
+box-shadow: 0px 1px 11px #F3F3F3;
+-webkit-box-shadow: 0px 1px 11px #F3F3F3;
+-moz-box-shadow: 0px 1px 11px #F3F3F3;
+border-radius: 5px;
+display: none;
+padding: 7px 7px 7px 2px;
+	}
+	#header #register_div
+{
+height: auto;
+width: 378px;
+border: 1px solid rgb(216, 216, 216);
+position: absolute;
+z-index: 20;
+top: 68px;
+right: -8px;
+background-color: white;
+box-shadow: 0px 1px 11px #F3F3F3;
+border-radius: 5px;
+display: none;
+padding: 10px 6px;
+}
+
+#auth_div td
+{
+text-align:center;
+}
+#auth_div a
+{
+	
+}
+#auth_div p
+{
+margin: 0px;
+padding: 0px;
+font-size: 11px;
+height: 19px;
+text-align: justify;
+color: red;
+display:none;
+}
+#auth_div input[type=text],#auth_div input[type=password]
+{
+width: 173px;
+height: 21px;
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+border-width: 0 0 1px 0;
+}
+
+#auth_div  tr td:nth-child(2n+1)
+{
+
+}
+#auth_div  tr td:nth-child(2n)
+{
+text-align:left;
+}
+#auth_div  tr td:last-child
+{
+text-align:right;
+}
+
+.login_a,.register_a
+{
+border-radius: 2px;
+border: 1px solid rgb(207, 207, 207);
+width: 68px;
+color: rgb(109, 107, 107);
+background-color: #FAFAFA;
+/*
+background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #4d4d4d), color-stop(100%, #2f2f2f));
+background: -webkit-linear-gradient(#4d4d4d,#2f2f2f);
+background: -moz-linear-gradient(#4d4d4d,#2f2f2f);
+background: -o-linear-gradient(#4d4d4d,#2f2f2f);
+background: linear-gradient(#4d4d4d,#2f2f2f);
+border-radius: 2px;
+border: 1px solid black;
+width: 68px;
+color: rgb(202, 202, 202);*/
+}
+.register_a {margin: 24px 7px 3px 0;}
+.login_a:hover,.register_a:hover
+{
+cursor:pointer;
+background-color: #FFF;
+}
+.login_a:active,.register_a:active
+{
+cursor:pointer;
+background-color: #FAFAFA;
+}
+	
+#auth_div input[type=text]:focus,#auth_div input[type=password]:focus, #register_div input[type=text]:focus,#register_div input[type=password]:focus
+{
+outline:none;
+}
+	
+
+	
+	
+#register_div input[type=text],#register_div input[type=password]
+{
+
+width: 91%;
+height: auto;
+-webkit-box-shadow: none;
+-moz-box-shadow: none;
+box-shadow: none;
+border-width: 0 0 1px 0;
+}
+	
+#register_div tr td:first-child
+{
+text-align:center;
+}
+#register_div  tr td:nth-child(1)
+{
+border: 1px solid #DFDFDF;
+border-width: 0 0px 6px 0px;
+padding-top: 10px;
+}
+#register_div  tr td:nth-child(2) input
+{
+margin-top: 13px;
+}
+#register_div  tr td:nth-child(2)
+{
+width: 65%;
+}
+
+
+#register_div #msg
+{
+margin: 0;
+display: none;
+}
+
+#register_div #msg p
+{
+margin: 0;
+color:red;
+}
+	
+	
+	
+	
+	
+	
+	
+	.the_logo {
     line-height: 40px;
     min-height: 40px;
     display: block;
@@ -427,6 +599,7 @@ span.select {
     display: block;
     position: relative;
     z-index: 999;
+    z-index: 4;
     width: 100% !important;
 }
 
