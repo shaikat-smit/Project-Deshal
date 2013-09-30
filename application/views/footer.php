@@ -153,9 +153,38 @@ jQuery(document).ready(function($){
 		
 	// sticky header
 		if ( $(window).width() > 1024) {
-		$("#main_menu").sticky({topSpacing:30});
+		$("#main_menu").sticky({topSpacing:0});
 	}
 	
+	
+	$('#login_info').click(function(){
+		if($('#auth_div').hasClass('showed'))
+		{
+			$('#register_div').fadeOut('fast').removeClass('showed');
+			$("#auth_div").fadeOut('fast').removeClass('showed');
+		}
+		else
+		{
+			$('#register_div').fadeOut('fast').removeClass('showed');
+			$("#auth_div").fadeIn("fast").addClass('showed');
+		}
+	});
+	
+	$('#reg_info').click(function(){
+		if($('#register_div').hasClass('showed'))
+		{
+			$('#auth_div').fadeOut('fast').removeClass('showed');
+			$("#register_div").fadeOut('fast').removeClass('showed');
+		}
+		else
+		{
+			$('#auth_div').fadeOut('fast').removeClass('showed');
+			$("#register_div").fadeIn("fast").addClass('showed');
+		}
+	});
+	
+
+
 });
 
 /* ]]> */

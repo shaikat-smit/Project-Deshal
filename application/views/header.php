@@ -87,15 +87,107 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 						
 					<div id="cart_links">
 						<ul>
+							<li id="notLoggedIn">
+								<a id="login_info">Log In | </a>
+								<div id="auth_div">
+									<table style="height: 100%;width: 100%;border-collapse: collapse;">
+										<tbody>
+											<tr>
+												<td colspan="4"><p>Error message</p></td>
+											</tr>
+											<tr>
+												<td style="border: 1px solid #DFDFDF;border-width: 0 0px 6px 0px;padding-left: 11px;">Username:</td>
+												<td><input type="text" name="user" class="login" maxlength="32" style="margin-top: 2px;"></td>
+												<td><input type="button" class="login_a" value="Login"></td>
+											</tr>
+											<tr>
+												<td style="border: 1px solid #DFDFDF;border-width: 0 0px 6px 0px;padding-left: 11px;padding-top: 10px;">Password:</td>
+												<td><input type="password" name="password" class="login" maxlength="32" style="margin-top: 11px;"></td>
+												<td style="padding: 10px 2px 0 0;">
+													with: <a> <img src="<?=base_url();?>img/fb-black.png" style="width: 22px;margin-bottom: -5px; cursor:pointer;"/></a>
+												</td>
+											</tr>
+											
+										</tbody>
+									</table>
+								</div>
+								
+								
+								
+								<?//----------------------------------------------------------Register shit----------------------------------------------------------?>
+								
+								<a id="reg_info">Register</a>
+								<div id="register_div">
+								
+									<table style="height: 100%;width: 100%;border-collapse: collapse;">
+										<tbody>
+											<tr  id="msg">
+												<td colspan="4" style="border-width: 0px;"><p>Error message</p></td>
+											</tr>
+											<tr>
+												<td style="padding-left: 11px;">Name:</td>
+												<td><input type="text" name="user" class="login" maxlength="32" ></td>
+												
+											</tr>
+											<tr>
+												<td style="">Username:</td>
+												<td><input type="text" name="username" class="login" maxlength="32"></td>
+											</tr>
+											<tr>
+												<td style="">Password:</td>
+												<td><input type="text" name="password" class="login" maxlength="32"></td>
+											</tr>
+											<tr>
+												<td style="padding-top: 10px;">Retype password:</td>
+												<td><input type="text" name="repassword" class="login" maxlength="32"></td>
+											</tr>
+											<tr>
+												<td style="padding-top: 10px;">Address</td>
+												<td><input type="text" name="address" class="login" maxlength="32" ></td>
+											</tr>
+											
+											
+											
+											
+											
+											
+											<tr>
+												<td style="border-width: 0px;"></td>
+												<td style="text-align: right;padding-right: 8px;">
+													<input type="button" class="register_a" value="Register">
+													with: <a> <img src="<?=base_url();?>img/fb-black.png" style="width: 22px;margin-bottom: -5px; cursor:pointer;"/></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								
+								</div>
+								
+							</li>
+							
+							
+							
+							
+							
+							
+							
+							<?
+							/* 
+							<li id="LoggedIn">
+								Hello, <?php echo 'user'.'! | ';?> <a href="" title="Log In">Log Out</a>
+							</li>
+							
 							<li><a href="<?=base_url();?>index.php/admin/dashboard" title="Log In">Log In</a></li>
-							<!--	<li><a href="store/cart/index.html" title="cart" id="head_cart">Your Cart(<span id="header_cart_count">0</span>)</a></li>-->
+							<li><a href="store/cart/index.html" title="cart" id="head_cart">Your Cart(<span id="header_cart_count">0</span>)</a></li>
+							*/
+							?>
 						</ul>
 					</div>
 					
 					<div class="clear"></div>
 				</div>
 			</div>
-			<div class="wrapper" id="main_menu" style="margin-top:-30px;">
+			<div class="wrapper" id="main_menu" style="">
 <div class="container">
 <div id="menu_wrap">
 <div class="menu-header-container">
