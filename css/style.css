@@ -401,16 +401,7 @@ text-align:center;
 {
 	
 }
-#auth_div p
-{
-margin: 0px;
-padding: 0px;
-font-size: 11px;
-height: 19px;
-text-align: justify;
-color: red;
-display:none;
-}
+
 #auth_div input[type=text],#auth_div input[type=password]
 {
 width: 173px;
@@ -503,13 +494,13 @@ width: 65%;
 }
 
 
-#register_div #msg
+#register_div #msg, #lg_msg
 {
 margin: 0;
 display: none;
 }
 
-#register_div #msg p
+#register_div #msg p, #lg_msg p
 {
 margin: 0;
 color:red;

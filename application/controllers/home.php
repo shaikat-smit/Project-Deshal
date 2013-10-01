@@ -30,30 +30,7 @@ class home extends CI_Controller {
 		//$data['current_page'] = "Home";
 		
 		
-		//vaj($bigAss);
 		/*
-		for($i=0; $i<count($bigAss); $i++)// $bigAss as $value)
-		{
-			//vaj( $value );
-			foreach($bigAss[$i] as $key => $val)
-			{
-				//echo $key.'=>'.$val.'2<br/>';
-				$category = array(  'id' => $val,
-									'name'=> $val,
-									'data'=> 'somethings');
-				
-			}
-		
-		}
-		vaj($category);
-		
-				// vaj($originalSubcatAr->result_array()); exit;
-		*/
-		
-		
-		
-		
-		
 		$categoryAr = $this->category_mdl->catListRaw();
 		$category = array();  //vaj($categoryAr); exit;;
 		
@@ -86,21 +63,27 @@ class home extends CI_Controller {
 											)
 						  );
 			}
+		
 			//vaj($category);
-			$data['category'] = $category;
+			//$data['category'] = $category;
 			//$this->load->controller('category');
 			// vaj($this->category->menu_categories());
 			// echo 's'; exit;
 		}
 		//$data['query'] = $this->db->query("select * from product ORDER BY created DESC limit 8");
 		//$data['products'] = $this->db->query("select * from product ORDER BY created DESC limit 10");
-		
+			*/
 		
 		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
 		$totimg = $data['settings']->latest_product_row*5;
 		$data['prod'] = $this->db->query("select * from tbl_product ORDER BY created DESC limit ".$totimg."");
                 $data['banner'] = $this->db->query("select * from tbl_slider");
-				
+		
+		if(loggedin())
+		{
+			$data['firstName'] =  his_data('fname');
+		}
+		
 		$this->load->view('header',$data);
 		//echo "ok";die;
 		//$this->load->view('menu');//, $data);

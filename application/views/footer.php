@@ -167,6 +167,7 @@ jQuery(document).ready(function($){
 		{
 			$('#register_div').fadeOut('fast').removeClass('showed');
 			$("#auth_div").fadeIn("fast").addClass('showed');
+			$('#auth_div input[name=username]').focus();
 		}
 	});
 	
@@ -180,6 +181,7 @@ jQuery(document).ready(function($){
 		{
 			$('#auth_div').fadeOut('fast').removeClass('showed');
 			$("#register_div").fadeIn("fast").addClass('showed');
+			jQuery('#register_div input[name=fname]').focus();
 		}
 	});
 	
