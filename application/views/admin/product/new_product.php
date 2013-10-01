@@ -38,7 +38,7 @@
 
 
                             <script>
-                                getmsg(<? echo $message['status']; ?>, '<?= $message['msg']; ?>');
+                                getmsg('<? echo $message['status']; ?>, <?= $message['msg']; ?>');
                             </script>
 
 
@@ -96,9 +96,16 @@
                                 <span class="field"><input type="text" class="longinput" name="description"></span>
                             </p>
                             <p>
-                                <label>Available for Sale</label>
+                                <label>Available for International Sale</label>
                                 <span class="field">
                                     <input type="checkbox" name="int_available_flag" />&nbsp;&nbsp;&nbsp;Yes
+                                </span>
+
+                            </p>
+                            <p>
+                                <label>Available for Sale</label>
+                                <span class="field">
+                                    <input type="checkbox" name="online_sell_available" />&nbsp;&nbsp;&nbsp;Yes
                                 </span>
 
                             </p>
@@ -154,10 +161,10 @@
                                 <tbody>
                                     <tr class='ftd' id='l1'>
                                         <td><input class="zinput" id = "lx1" type="text" value="" name="size[]" onkeyup='javascript:change1("lx1");' placeholder=""/></td>
-                                        <td><input class="zinput" type="text" value="" name="weight[]"/></td>
-                                        <td><input class="zinput" type="text" value="" name="length[]"/></td>
-                                        <td><input class="zinput" type="text" value="" name="width[]"/></td>
-                                        <td><input class="zinput" type="text" value="" name="height[]"/></td>
+                                        <td><input class="zinput" id = "lx1_1" type="text" value="" name="weight[]" onkeyup='javascript:change1("lx1_1");'/></td>
+                                        <td><input class="zinput" id = "lx1_2" type="text" value="" name="length[]" onkeyup='javascript:change1("lx1_2");'/></td>
+                                        <td><input class="zinput" id = "lx1_3" type="text" value="" name="width[]" onkeyup='javascript:change1("lx1_3");'/></td>
+                                        <td><input class="zinput" id = "lx1_4" type="text" value="" name="height[]" onkeyup='javascript:change1("lx1_4");'/></td>
                                         <!--
                                                 In ctrllr, TRY TO push these 5 first.
                                                 Get(old/new) ID.
@@ -315,9 +322,9 @@
 
 
 <script type="text/javascript">
+    
     function change1(id)
     {
-        
         $('.'+id).val($('#'+id).val()); 
     }
     function deleteSizeColorRow(id)
@@ -397,10 +404,10 @@ function addAnother4Color(flag)
 
         var row = '<tr class="ftd" id="l'+totsize+'">';
         row += '<td><input class="zinput" type="text" id="lx'+totsize+'" onkeyup="change1(\'lx'+totsize+'\');" value="" name="size[]"/></td>';
-        row += '<td><input class="zinput" type="text" value="" name="weight[]"/></td>';
-        row += '<td><input class="zinput" type="text" value="" name="length[]"/></td>';
-        row += '<td><input class="zinput" type="text" value="" name="width[]"/></td>';
-        row += '<td><input class="zinput" type="text" value="" name="height[]"/></td>';
+        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_1" onkeyup="change1(\'lx'+totsize+'_1\');"  value="" name="weight[]"/></td>';
+        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_2" onkeyup="change1(\'lx'+totsize+'_2\');"  value="" name="length[]"/></td>';
+        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_3" onkeyup="change1(\'lx'+totsize+'_3\');"  value="" name="width[]"/></td>';
+        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_4" onkeyup="change1(\'lx'+totsize+'_4\');"  value="" name="height[]"/></td>';
 
         row += '<td><input class="zinput" type="text" value="" name="color[]"/></td>';
         row += '<td><input class="zinput" type="text" value="" name="quantity[]"/></td>';
@@ -418,10 +425,10 @@ function addAnother4Color(flag)
         var height = $('#'+flag+' td:nth-child(5) input').val();
         var row = '<tr>';
         row += '<td><input class="zinput lx'+totsize+'" style="display:none" type="text" value="' + size + '" name="size[]" placeholder=""/></td>';
-        row += '<td><input class="zinput" style="display:none" type="text" value="' + weight + '" name="weight[]" placeholder=""/></td>';
-        row += '<td><input class="zinput" style="display:none" type="text" value="' + length + '" name="length[]" placeholder=""/></td>';
-        row += '<td><input class="zinput" style="display:none" type="text" value="' + width + '" name="width[]" placeholder=""/></td>';
-        row += '<td><input class="zinput" style="display:none" type="text" value="' + height + '" name="height[]" placeholder=""/></td>';
+        row += '<td><input class="zinput lx'+totsize+'_1" style="display:none" type="text" value="' + weight + '" name="weight[]" placeholder=""/></td>';
+        row += '<td><input class="zinput lx'+totsize+'_2" style="display:none" type="text" value="' + length + '" name="length[]" placeholder=""/></td>';
+        row += '<td><input class="zinput lx'+totsize+'_3" style="display:none" type="text" value="' + width + '" name="width[]" placeholder=""/></td>';
+        row += '<td><input class="zinput lx'+totsize+'_4" style="display:none" type="text" value="' + height + '" name="height[]" placeholder=""/></td>';
 
         row += '<td><input class="zinput" type="text" name="color[]" placeholder=""/></td>';
         row += '<td><input class="zinput" type="text" name="quantity[]" placeholder=""/></td>';
