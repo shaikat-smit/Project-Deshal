@@ -3,8 +3,9 @@
 class account_login extends CI_Controller {
 
 	public function __construct(){
-		parse_str($_SERVER['QUERY_STRING'], $_REQUEST);
 		parent::__construct();
+		/*
+		parse_str($_SERVER['QUERY_STRING'], $_REQUEST);
 		$this->load->library('facebook', array(
 												"appId" => '201574466691339',
 												"secret" => 'f2fab9de323818740e46531a955a29c2',
@@ -13,6 +14,7 @@ class account_login extends CI_Controller {
 		);
 		
 		$this->user = $this->facebook->getUser();
+		*/
    }
 	/**
 	 * Index Page for this controller.
@@ -93,7 +95,7 @@ class account_login extends CI_Controller {
 			
 		}
 	}
-	
+	/*
 	function fb_login()
 	{
 		if($this->user)
@@ -110,7 +112,7 @@ class account_login extends CI_Controller {
 			}
 		}
 	}
-	
+	*/
 	function logout()
 	{
 		$this->session->sess_destroy();
