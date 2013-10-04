@@ -237,7 +237,8 @@ class settings extends CI_Controller {
 	{
 		if($this->session->userdata('admin_logged_in'))
 		{
-			$this->load->view('admin/settings/editbannermainajax');
+			$this->load->view('admin/header');
+			$this->load->view('admin/settings/change_banner');
 		}
 		else
 		{
