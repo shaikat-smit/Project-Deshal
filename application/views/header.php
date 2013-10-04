@@ -87,15 +87,292 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 						
 					<div id="cart_links">
 						<ul>
+							<li					 style="display:<?php if(loggedin()) echo 'block';?>">
+								<?php 
+									if(loggedin())
+									{
+										echo 'Hello, '.his_data('fname').'!';
+										echo ' | '.'<a href="'.base_url().'index.php/account_login/logout">Log Out</a>';
+									}
+								?>
+							</li>
+							<li id="notLoggedIn" style="display:<?php if(loggedin()) echo 'none';?>">
+								<?//----------------------------------------------------------Login shit----------------------------------------------------------?>
+								<a id="login_info">Log In | </a>
+								<div id="auth_div">
+									
+										<table style="height: 100%;width: 100%;border-collapse: collapse;">
+											<tbody>
+												<tr id="lg_msg">
+													<td colspan="4" style="text-align: center;">
+														<p>Error message</p>
+													</td>
+												</tr>
+												<tr>
+													<td style="border: 1px solid #DFDFDF;border-width: 0 0px 6px 0px;padding-left: 11px;">Username:</td>
+													<td><input type="text" name="username" class="login" maxlength="32" style="margin-top: 2px;"></td>
+													<td><input type="button" class="login_a log_sub" value="Login" onclick="loginUser()"></td>
+												</tr>
+												<tr>
+													<td style="border: 1px solid #DFDFDF;border-width: 0 0px 6px 0px;padding-left: 11px;padding-top: 10px;">Password:</td>
+													<td><input type="password" name="password" class="login" maxlength="32" style="margin-top: 11px;"></td>
+													
+													<td style="padding: 10px 2px 0 0;">
+														with: <a> <img src="<?=base_url();?>img/fb-black.png" style="width: 22px;margin-bottom: -5px; cursor:pointer;"/></a>
+													</td>
+												</tr>
+												
+											</tbody>
+										</table>
+									
+								</div>
+								
+								
+								
+								<?//----------------------------------------------------------Register shit----------------------------------------------------------?>
+								
+								<a id="reg_info">Register</a>
+								<div id="register_div">
+								
+									<table style="height: 100%;width: 100%;border-collapse: collapse;">
+										<tbody>
+											<tr  id="msg" class="error_msg">
+												<td colspan="4" style="border-width: 0px;"><p>Error message</p></td>
+											</tr>
+											<tr>
+												<td style="padding-left: 11px;">Name:</td>
+												<td>
+													<input type="text" name="fname" class="login" maxlength="32" style="width:40%" placeholder="First name">
+													<input type="text" name="lname" class="login" maxlength="32" style="width:40%" placeholder="Last name">
+												</td>
+												
+											</tr>
+											<tr>
+												<td style="">Username:</td>
+												<td><input type="text" name="username" class="login" maxlength="32"></td>
+											</tr>
+											<tr>
+												<td style="padding-top: 10px;">Email:</td>
+												<td><input type="text" name="email" class="login" maxlength="32"></td>
+											</tr>
+											<tr>
+												<td style="">Password:</td>
+												<td><input type="password" name="password" class="login" maxlength="32"></td>
+											</tr>
+											<tr>
+												<td style="padding-top: 10px;">Retype password:</td>
+												<td><input type="password" name="repassword" class="login" maxlength="32"></td>
+											</tr>
+											<tr>
+												<td style="padding-top: 10px;">Address</td>
+												<td><input type="text" name="address" class="login" maxlength="32" ></td>
+											</tr>
+											
+											<tr>
+												<td style="padding-top: 10px;">Contact No.</td>
+												<td><input type="text" name="contact" class="login" maxlength="32" ></td>
+											</tr>
+											
+											
+											
+											
+											
+											
+											<tr>
+												<td style="border-width: 0px;"></td>
+												<td style="text-align: right;padding-right: 8px;">
+													<input id="reg_submit" type="button" class="register_a" value="Register" onclick="reg_info_post()">
+													with: <a> <img src="<?=base_url();?>img/fb-black.png" style="width: 22px;margin-bottom: -5px; cursor:pointer;"/></a>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								
+								
+								</div>
+									<script>
+									
+										jQuery('#auth_div input[name=username]').attr("tabindex", 1);
+										jQuery('#auth_div input[name=password]').attr("tabindex", 2);
+										jQuery('#auth_div .log_sub').attr("tabindex", 3);
+										
+										
+										jQuery('#register_div input[name=password], #register_div input[name=repassword]').keyup(function(){
+										
+											var pass = jQuery('#register_div input[name=password]').val();
+											var repass = jQuery('#register_div input[name=repassword]').val();
+											if(repass != pass || pass.length == 0 || repass.length == 0)
+											{
+												jQuery('#register_div input[name=password]').css('border-color', 'red');
+												jQuery('#register_div input[name=repassword]').css('border-color', 'red');
+											}
+											else if(repass == pass)
+											{
+												jQuery('#register_div input[name=password]').css('border-color', 'green');
+												jQuery('#register_div input[name=repassword]').css('border-color', 'green');
+											}
+											else
+											{
+												jQuery('#register_div input[name=password]').css('border-color', '');
+												jQuery('#register_div input[name=repassword]').css('border-color', '');
+											}
+										
+										});
+										function reg_info_post()
+										{
+											var fname = jQuery('#register_div input[name=fname]').val();
+											var lname = jQuery('#register_div input[name=lname]').val();
+											var username = jQuery('#register_div input[name=username]').val();
+											var email = jQuery('#register_div input[name=email]').val();
+											var password = jQuery('#register_div input[name=password]').val();
+											var repass   = jQuery('#register_div input[name=repassword]').val();
+											var address  = jQuery('#register_div input[name=address]').val();
+											var contact  = jQuery('#register_div input[name=contact]').val();
+											
+											
+											if(repass == password)
+											{
+												if(fname.trim()=="" && username.trim()=="" && password.trim()=="" && address.trim()=="" && contact.trim()=="" )
+												{
+													jQuery('#msg p').text('Some fields are empty!');
+													jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+													return;
+												}
+												console.log('comes-1');
+												
+												jQuery.ajax({
+													url: "<?php echo base_url();?>index.php/account_login/register",
+													type: 'POST',
+													data: {
+															'fname'	   : fname,
+															'lname'	   : lname,
+															'email'	   : email,
+															'username' : username,
+															'password' : password, 
+															'repass'   : repass, 
+															'contact'  : contact,
+															'address'  : address
+														  },
+
+													success: function(response, status, xhr)
+													{
+														//console.log('comes-2');
+														response = jQuery.parseJSON(response);
+														console.log(response);
+														// console.log(response.status);
+														// console.log(response.data['username']);
+														if(response.was == 1)
+														{
+															jQuery('#msg p').text('Successfully added!');
+															jQuery('#msg p').css('color', 'green');
+															jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+														}
+														else if(response.was == 2)
+														{
+															jQuery('#msg p').text('Choose a different USERNAME!');
+															jQuery('#msg p').css('color', 'red');
+															jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+														}
+														else if(response.was == 3)
+														{
+															jQuery('#msg p').text('Failed! Try again..');
+															jQuery('#msg p').css('color', 'red');
+															jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+														}
+														
+													},      
+													error: function (xhr, ajaxOptions, thrownError)
+													{
+														jQuery('#msg p').text('Network error! Try again.');
+															jQuery('#msg p').css('color', 'red');
+														jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+													}
+												});
+											}
+											else
+											{
+												jQuery('#msg p').text('PASSWORDs does not match!');
+												jQuery('#msg').fadeIn("slow").delay(2000).fadeOut();
+											}
+										}
+										
+										function loginUser()
+										{
+											// jQuery('#lg_msg p').text('Please wait..');
+											// jQuery('#lg_msg p').css('color', 'black');
+											// jQuery('#lg_msg').fadeIn("slow").delay(10).fadeOut();
+											
+											var username = jQuery('#auth_div input[name=username]').val();
+											var password = jQuery('#auth_div input[name=password]').val();
+											
+										jQuery.ajax({
+													url: "<?php echo base_url();?>index.php/account_login/login",
+													type: 'POST',
+													data: {
+															'username' : username,
+															'password' : password
+														  },
+
+													success: function(response, status, xhr)
+													{
+														//response = jQuery.parseJSON(response);
+														//console.log(response);
+														
+														if(response == 1)
+														{
+															jQuery('#lg_msg p').text('Login successful!');
+															jQuery('#lg_msg p').css('color', 'green');
+															jQuery('#lg_msg').fadeIn("slow").delay(200).fadeOut(function(){
+																window.location.assign(location.href);
+															});
+															
+														}
+														else if(response == 0)
+														{
+															jQuery('#lg_msg p').text('Username or password does not match.');
+															jQuery('#lg_msg p').css('color', 'red');
+															jQuery('#lg_msg').fadeIn("slow").delay(2000).fadeOut();
+														}
+														
+														
+													},      
+													error: function (xhr, ajaxOptions, thrownError)
+													{
+														jQuery('#lg_msg p').text('Network error! Try again.');
+														jQuery('#lg_msg p').css('color', 'red');
+														jQuery('#lg_msg').fadeIn("slow").delay(2000).fadeOut();
+													}
+												});	
+										}
+										
+									</script>
+								
+								
+							</li>
+							
+							
+							
+							
+							
+							
+							
+							<?
+							/* 
+							<li id="LoggedIn">
+								Hello, <?php echo 'user'.'! | ';?> <a href="" title="Log In">Log Out</a>
+							</li>
+							
 							<li><a href="<?=base_url();?>index.php/admin/dashboard" title="Log In">Log In</a></li>
-							<!--	<li><a href="store/cart/index.html" title="cart" id="head_cart">Your Cart(<span id="header_cart_count">0</span>)</a></li>-->
+							<li><a href="store/cart/index.html" title="cart" id="head_cart">Your Cart(<span id="header_cart_count">0</span>)</a></li>
+							*/
+							?>
 						</ul>
 					</div>
 					
 					<div class="clear"></div>
 				</div>
 			</div>
-			<div class="wrapper" id="main_menu" style="margin-top:-30px;">
+			<div class="wrapper" id="main_menu" style="">
 <div class="container">
 <div id="menu_wrap">
 <div class="menu-header-container">
