@@ -405,7 +405,7 @@ class product extends CI_Controller {
 
 
 
-        $data['query'] = $this->db->query("select * from tbl_product ORDER BY created DESC  LIMIT " . $offset . ", " . $limit . ";");
+        $data['query'] = $this->db->query("select * from tbl_product ORDER BY created ASC  LIMIT " . $offset . ", " . $limit . ";");
 		//echo "select * from tbl_product ORDER BY created DESC  LIMIT " . $offset . ", " . $limit . ";" ; exit;
         $this->load->view('admin/header');
         //$this->load->model('category_mdl');
@@ -540,7 +540,7 @@ class product extends CI_Controller {
         /* ------------------------------( Pagination )----------------------------------- */
 
 
-        $data['query'] = $this->db->query("select * from product ORDER BY created DESC  LIMIT " . $offset . ", " . $limit . ";");
+        $data['query'] = $this->db->query("select * from product ORDER BY created ASC  LIMIT " . $offset . ", " . $limit . ";");
 
         $this->load->view('admin/header');
         //$this->load->model('category_mdl');
@@ -765,9 +765,9 @@ class product extends CI_Controller {
 
                 $archiveFlag = $this->input->post('archiveFlag');
                 if (isset($archiveFlag)) {
-                    $temp['archive'] = 1;
-                } else {
                     $temp['archive'] = 0;
+                } else {
+                    $temp['archive'] = 1;
                 }
 
                 $temp['archived_desc'] = $this->input->post('archived_desc');
@@ -842,6 +842,48 @@ class product extends CI_Controller {
                     }
                     $product_id = $this->session->userdata('product_id');
 
+					////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					$this->load->library('upload');
+					
+					$files = $_FILES;
+					//$cpt = count($_FILES['usersubfile'.$ok]['name']);
+					$ok = $this->input->post('ok');
+					for($i=0; $i<=$ok; $i++)
+					{
+						if (!empty($_FILES["usersubfile".$i]["name"])) //////////////////////////////////
+						{
+							$usersubfile = $this->input->post('usersubfile'.$i);
+
+							$config['upload_path'] = './itemsubimages/';
+							$config['allowed_types'] = 'jpg|jpeg|png';
+							$config['max_size'] = '1000';
+							//$config['max_width'] = '1360';
+							//$config['max_height'] = '768';
+							$config['file_name'] = $product_image.$i;
+							$this->upload->initialize($config);
+
+							//$this->upload->do_upload();
+							if (!$this->upload->do_upload()) {
+								$message['status'] = 0;
+								$message['msg'] = $this->upload->display_errors();
+								$data['message'] = $message;
+								$this->load->view('admin/header');
+								$this->load->view('admin/product/new_product', $data);
+							} 
+							else 
+							{
+								$fInfo = $this->upload->data();
+								$sub_image[$i] = $fInfo['file_name'];
+								
+								$insert = $this->db->insert('tbl_image',array('product_id'=>$product_id,
+																			'image_dir'=>$sub_image[$i] ));   
+																			
+							}
+						}
+					}
+					////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					
+					
                     $field_name = $this->input->post('field_name');
                     $field_value = $this->input->post('value_name');
 
@@ -956,7 +998,20 @@ class product extends CI_Controller {
             redirect('adminlog');
         }
     }
+	
+	private function set_upload_options()
+	{   
+	//  upload an image options
+		$config = array();
+		$config['upload_path'] = './itemsubimages/';
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']      = '0';
+		$config['overwrite']     = FALSE;
 
+
+		return $config;
+	}
+	
     function edit_product($product_id = '')
 	{
         if ($this->session->userdata('admin_logged_in')) {

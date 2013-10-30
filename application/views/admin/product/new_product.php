@@ -504,7 +504,7 @@ $('#archiveFlag').click(function() {
 function addAnother()
 {
     totalSub = totalSub + 1;
-    $("#subimg_div").append('<div class="zFormTbl"><label style="padding: 5px !important; width: 100px;" class="zlable" >Sub Image ' + totalSub + ':</label><input class="zinput" type="file" value="" name="usersubfile[]"/></div><br/>');
+    $("#subimg_div").append('<div class="zFormTbl"><label style="padding: 5px !important; width: 100px;" class="zlable" >Sub Image ' + totalSub + ':</label><input class="zinput" type="file" value="" name="usersubfile'+totalSub+'[]"/></div><br/><input type="hidden" value="'+totalSub+'" name="ok"/>');
 }
 
 function addAnother2()
