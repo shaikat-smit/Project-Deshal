@@ -166,10 +166,10 @@ padding-bottom: 3px;
 							
 							
 							
-							<img class="archivedImg <?=$av?>" style="display:none" src="<?=base_url();?>img/archived_ribbon.png" />
-							<div class="product_meta soldOut <?=$st?>">SOLD OUT !</div>
 							<div class="product_meta">৳ &nbsp;<?=$products->price;?></div>
 							<a href="<?=base_url();?>index.php/product_details/details/<?=$products->id;?>" title="test product" class="single_product_image_link" >
+								<img class="archivedImg <?=$av?>" style="display:none" src="<?=base_url();?>img/archived_ribbon.png" />
+								<div class="product_meta soldOut <?=$st?>">SOLD OUT !</div>
 								<img  style="width:<?=$settings->gridimg_width?>px !important;" src="<?=base_url();?>itemimages/<?=$products->main_image;?>" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>

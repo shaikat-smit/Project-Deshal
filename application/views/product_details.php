@@ -46,46 +46,57 @@
 				</div><!-- end #product_images -->
 				<?php if($details->archived_desc == NULL)
 				{?>
-				<form id='cartButtonForm_1' class="Cart66CartButton" method="post" action="" >
-						<input type='hidden' name='task' id="task_1" value='addToCart' />
-						<input type='hidden' name='cart66ItemId' value='1' />
-						<input type='hidden' name='product_url' value='index.html' />
-						<span class="Cart66Price Cart66PriceBlock">
-							<span class="Cart66PriceLabel">Price: </span>
-							<span class="Cart66CurrencySymbol Cart66CurrencySymbolbefore">৳</span>&nbsp;<span class="Cart66PreDecimal"><?=$details->price?></span>
-							<span class="Cart66CurrencySymbol Cart66CurrencySymbolAfter"></span>
-						</span>
-						<span class="Cart66UserQuantity">
-							<label for="Cart66UserQuantityInput_1">Quantity: </label>
-							<input id="quantity" name="item_quantity" value="1" size="4"/>
-						</span>
-								<select name="options_1" id="options_color" class="cart66Options options_1">
-								<option value="">Color</option>	
-									<?php foreach($colorsize->result() as $row)
-									{?>
-										<option value="<?=$row->id?>"><?=$row->color?></option>	
-									<?}?>
-								</select>
-														
-						
-								<select name="options_2" id="options_size" class="cart66Options options_1">
-								<option value="">Size</option>	
-									<?php foreach($colorsize->result() as $row)
-									{?>
-										<option value="<?=$row->id?>"><?=$row->size?></option>	
-									<?}?>								
-								</select>
-														
-						
-						
-						<input type='submit' value='Add to Cart' class='Cart66ButtonPrimary purAddToCart ajax-button' name='addToCart_1' id='addToCart_1' onclick="alert('Sorry! This option is not available..')" />
-						<div id="stock_message_box_1" class="alert-message alert-error" style="display: none;">
-						<label>We are Sorry</label>
-						<p id="stock_message_1"></p>
-						<input type="button" name="close" value="OK" id="close" class="Cart66ButtonSecondary modalClose" />
-					</div> 
+				<div id="archiveAndCartDv">
+					<div id="archivedDv">
+						<img id="archvBnnrImg" src="<?=base_url();?>/img/archived-banner.png" />
+						<p>
+							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis. Nam magna enim, accumsan eu, blandit sed, blandit a, eros.
+						</p>
+					</div>
+					
+					<form id='cartButtonForm_1' class="Cart66CartButton" method="post" action="" >
+							<input type='hidden' name='task' id="task_1" value='addToCart' />
+							<input type='hidden' name='cart66ItemId' value='1' />
+							<input type='hidden' name='product_url' value='index.html' />
+							<span class="Cart66Price Cart66PriceBlock">
+								<span class="Cart66PriceLabel">Price: </span>
+								<span class="Cart66CurrencySymbol Cart66CurrencySymbolbefore">৳</span>&nbsp;<span class="Cart66PreDecimal"><?=$details->price?></span>
+								<span class="Cart66CurrencySymbol Cart66CurrencySymbolAfter"></span>
+							</span>
+							<span class="Cart66UserQuantity">
+								<label for="Cart66UserQuantityInput_1">Quantity: </label>
+								<input id="quantity" name="item_quantity" value="1" size="4"/>
+							</span>
+									<select name="options_1" id="options_color" class="cart66Options options_1">
+									<option value="">Color</option>	
+										<?php foreach($colorsize->result() as $row)
+										{?>
+											<option value="<?=$row->id?>"><?=$row->color?></option>	
+										<?}?>
+									</select>
+															
+							
+									<select name="options_2" id="options_size" class="cart66Options options_1">
+									<option value="">Size</option>	
+										<?php foreach($colorsize->result() as $row)
+										{?>
+											<option value="<?=$row->id?>"><?=$row->size?></option>	
+										<?}?>								
+									</select>
+															
+							
+							
+							<input type='submit' value='Add to Cart' class='Cart66ButtonPrimary purAddToCart ajax-button' name='addToCart_1' id='addToCart_1' onclick="alert('Sorry! This option is not available..')" />
+							<div id="stock_message_box_1" class="alert-message alert-error" style="display: none;">
+							<label>We are Sorry</label>
+							<p id="stock_message_1"></p>
+							<input type="button" name="close" value="OK" id="close" class="Cart66ButtonSecondary modalClose" />
+						</div> 
 					</form>
-				<?}?>
+				</div>
+			<?
+				}
+			?>
 				<div id="product_info" class="entry-content" style="">
 					<h2>Product information</h2>
 					<style>

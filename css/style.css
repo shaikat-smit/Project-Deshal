@@ -1163,6 +1163,36 @@ z-index: 10;
 display:block!important;
 }
 
+#archiveAndCartDv
+{
+float: right;
+width: 180px;
+margin-top: 30px;
+}
+#archvBnnrImg
+{
+
+}
+#archivedDv
+{
+margin-bottom: 35px;
+border-bottom: 1px solid #DFDFDF;
+}
+#archivedDv p
+{
+margin: 0px 17px 10px 17px;
+font-size: 15px;
+line-height: 20px;
+}
+#archivedDv p:first-letter
+{
+margin-right: 1px;
+font-size: 177%;
+color: #5C5C5C;
+color: #868686;
+}
+
+
 #all_products_call {
     display: block;
     border-top: 1px solid #E5E5E5;
@@ -3124,9 +3154,7 @@ input#checkout-custom-field-single {
     line-height: 30px;
     width: 140px;
 	float: right;
-    position: relative;
-    right: 0;
-    top: 30px;
+   
     padding:0 19px 19px;
     border:1px solid #E5E5E5;
 	background-color:#F5F5F5;
@@ -3874,13 +3902,35 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 		padding:0;
 	}
 	
+	#archiveAndCartDv
+	{
+	float: left;
+	width: 100%;
+	margin: 0;
+	}
+	
+	#archvBnnrImg
+	{
+	width: 100%;
+	}
+	#archivedDv
+	{
+	margin-bottom: 35px;
+	border-bottom: 1px solid #DFDFDF;
+	width: 100%;
+	}
+	#archvBnnrImg 
+	{
+	width: 100%;
+	}
+	
 	.single-products #content .Cart66CartButton,
 	.single-products .gform_wrapper, #cartButtonForm_1 {
 		position: relative;
-		float:none;
-		margin:0 0 40px 0;
-		padding:0 69px 19px;
-		clear:both;
+		float: right;
+		margin: 0 52px 10px 0;
+		clear: both;
+		width: 50%;
 	}
 	
 	.single-products #content .Cart66Price,
