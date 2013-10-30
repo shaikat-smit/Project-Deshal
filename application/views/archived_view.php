@@ -28,12 +28,12 @@
 									if($prod->archive) $av = " archived";
 									if($prod->stock_available > 0) $st = " soldShow";
 								?>
-								<!--<a href="<?=base_url();?>index.php/product_details/details/<?=$prod->id?>" title="<?=$prod->title?>" >-->
-								<img class="archivedImg <?=$av?>" style="display:none" src="<?=base_url();?>img/archived_ribbon.png" />
-								<div class="product_meta soldOut <?=$st?>">SOLD OUT !</div>
-								<!--</a>-->
 								<div class="product_meta">৳<?=$prod->price?></div>
 								<a href="<?=base_url();?>index.php/product_details/details/<?=$prod->id?>" title="<?=$prod->title?>" class="single_product_image_link">
+									<!--<a href="<?=base_url();?>index.php/product_details/details/<?=$prod->id?>" title="<?=$prod->title?>" >-->
+									<img class="archivedImg <?=$av?>" style="display:none" src="<?=base_url();?>img/archived_ribbon.png" />
+									<div class="product_meta soldOut <?=$st?>">SOLD OUT !</div>
+									<!--</a>-->
 									<img width="<?=$settings->gridimg_width;?>" height="<?=$settings->gridimg_height;?>" src="<?=base_url();?>itemimages/<?=$prod->main_image?>" class="attachment-product_med wp-post-image" alt="" />
 								</a>
 							</div>
