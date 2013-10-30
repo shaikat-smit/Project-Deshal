@@ -1151,12 +1151,11 @@ display:block!important;
 .archivedImg
 {
 position: absolute;
-height: 43px!important;
-width: 31px!important;
-top: 2px;
-right: 2px;
+height: 83px!important;
+width: 83px!important;
+top: -3px;
+left: -3px;
 display: none;
--webkit-transform: rotateZ(8deg);
 z-index: 10;
 }
 .archived
