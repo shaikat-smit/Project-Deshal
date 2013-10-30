@@ -106,9 +106,20 @@
 
 
 
-                            <script>
-                                getmsg('<? echo $message['status']; ?>, <?= $message['msg']; ?>');
-                            </script>
+<script>
+<?if(isset( $message['status']) || isset( $message['msg']))
+{
+	echo 'getmsg(';
+	if(isset( $message['status']))
+		echo $message['status'];
+	echo ',';
+	if(isset( $message['msg']))
+		echo $message['msg']; 
+	echo ');';
+
+}
+?>
+</script>
 
 
 
@@ -155,6 +166,7 @@
                             <h2>Step 1: Basic Information</h2> <br>
 
                             <p>
+							
                                 <label>Product Code</label>
                                 <span class="field"><input type="text" class="longinput" name="code" value="<?=$row->code;?>"></span>
                             </p>
@@ -283,23 +295,187 @@
                         </form>
                         
                         
-                        <form action="<?php echo base_url(); ?>index.php/admin/product/updateCategory" method="post" id="categoryForm" class="stdform stdform2" enctype="multipart/form-data">
+                        <form action="<?php echo base_url(); ?>index.php/admin/product/updateCategoryAndTags" method="post" id="categoryForm" class="stdform stdform2" enctype="multipart/form-data">
                         <div id="wiz1step3_5" class="content" style="display: none;">
                             <h2>Step 5: Assign Category</h2>
+							
+							<input type="hidden" name = "id" value="<?=$id?>">
                             <div id="tree">
                                 <?php
                                 $obj = new product();
-                                $obj->dynaCat(); //Thats right!
+								if(isset($cats))
+									$obj->dynaCatEdit("", $cats); //checked loading
+								else
+									$obj->dynaCatEdit(); //Thats right!
                                 ?>
                             </div>
-                            <div class="actionBar">
-                                <a id="finishButt" class="buttonFinish" style="background:none repeat scroll 0 0 #1F8A31" href="javascript:{}" onclick="document.getElementById('categoryForm').submit();">Update Categories</a><br/>
-                            </div>
-                            <hr/>
+							
+							
+							
+								<div id="assignTags">
+									<h2 style="margin: 27px 0px 4px 0px;">Assign Tags</h2>
+									<div id="tagContainer">
+										<?php
+										
+											if(isset($tags))
+											{
+												
+												$TagCounter = 0;
+												for ($i=0; $i<count($tags); $i++)
+												{
+													$Tag = $tags[$i]->tag_name;
+												
+													$newChild  = '<span id="tag-'. $TagCounter .'" class="tagSpan">'.$Tag.'';
+													$newChild .= '<span id="cross-'. $TagCounter++ .'" class="tagCross">&#215;</span>';
+													$newChild .= '<input type="hidden" name="tags[]" value="'.$Tag.'"/>';
+													$newChild .= '</span> ';
+													
+													echo $newChild;
+													//echo $tags[$i]->id; echo '<br/>';
+												}
+												
+											}
+										?>
+										
+										
+									</div>
+									
+									
+									<input id="tagInput" type="text" value="" placeholder="Type tag names"/>
+									
+									
+									
+									
+									<script>
+										var TagCounter = $('.tagSpan').length;
+										$( "#tagInput" ).keyup(function( event ) {
+										  if ( event.which == 13 ) //Enter
+											{
+												$('#tagContainer').show();
+												var Tag = $('#tagInput').val();
+												
+												var newChild  = '<span id="tag-'+ TagCounter +'" class="tagSpan">'+Tag+'';
+													newChild += '<span id="cross-'+ TagCounter++ +'" class="tagCross">&#215;</span>';
+													newChild += '<input type="hidden" name="tags[]" value="'+Tag+'"/>';
+													newChild +=	'</span> ';
+													
+												$('#tagContainer').append(newChild);
+												$('#tagInput').attr('value', '');
+												
+												
+												$('.tagCross').click(function(event){
+													
+													$('#tag-'+event.target.id.split('-')[1]).remove();
+													if($('#tagContainer').has('.tagspan').length == 0)
+														$('#tagContainer').hide('fast');
+													
+													console.log('#tag-'+event.target.id.split('-')[1]);
+												});
+											event.preventDefault();
+											return false;
+											}
+											
+										});
+										
+										$('.tagCross').click(function(event){
+													
+											$('#tag-'+event.target.id.split('-')[1]).remove();
+											if($('#tagContainer').has('.tagspan').length == 0)
+												$('#tagContainer').hide('fast');
+											
+											console.log('#tag-'+event.target.id.split('-')[1]);
+										});
+										
+$(document).ready(function() {
+  $(window).keydown(function(event){
+    if(event.keyCode == 13) {
+      event.preventDefault();
+      return false;
+    }
+  });
+});
+										
+									</script>
+								</div> <!--#assignTags-->
+								
+								<div class="actionBar">
+									<a id="finishButt" class="buttonFinish" style="background:none repeat scroll 0 0 #1F8A31" href="javascript:{}" onclick="document.getElementById('categoryForm').submit();">Update Categories & Tags</a><br/>
+								</div>
+								
+								
+								 <hr/>
+                        </div>
+						<script>
+							//$('.chkBox').prop('checked', false);
+							$('#mother .chkBox').click(function(){
+								//console.log('event');
+								console.log($(this).is(':checked'));
+								//$(this).
+								var bull = $(this).is(':checked');
+								$(this).parent().find('.chkBox').prop('checked', bull);
+								//console.log($(this).parent().children('.chkBox').html());
+								
+							});
+							
+							
+							$('.tree ~ span').click(function() {
+                                if($(this).find('~ ul').css('display') == 'none')
+								{
+									$(this).find('~ ul').show('fast');
+									$(this).toggleClass('toggleTree');
+								}
+								else
+								{
+									$(this).find('~ ul').hide('fast');
+									$(this).toggleClass('toggleTree');
+								}
+									
+                            });
+							$('#mother li:not(:has(ul))  span').remove();//icon removal
+							
+						</script>
+						
+													
+<style>
+.toggleTree:before
+{
+transform: rotateZ(-45deg);
+-webkit-transform: rotateZ(-45deg);
+-moz-transform: rotateZ(-45deg);
+-o-transform: rotateZ(-45deg);
+}
+#tagContainer
+{
+#border: 1px solid #A3A3A3;
+width: 400px;
+padding: 4px 2px;
+margin-bottom: 10px;
+}
+.tagSpan
+{
+background-color: #ECECEC;
+border-radius: 4px;
+border: 1px solid #929292;
+padding: 0px 4px;
+margin: 1px 3px;
+display: inline-block;
+}
+.tagCross
+{
+border-left: 1px solid #BFBFBF;
+padding-left: 4px;
+margin-left: 3px;
+cursor: pointer;
+}
+</style>
+							
+							
+                            
+                           
                         </div>
                         </form>
                         <script>
-                            $('.chkBox').prop('checked', false);
+                            //$('.chkBox').prop('checked', false);
                             $('#mother .chkBox').click(function() {
                                 //console.log('event');
                                 console.log($(this).is(':checked'));
@@ -465,6 +641,9 @@ function next()
         $("#nextButt").addClass("buttonDisabled");
         $("#previousButt").removeClass("buttonDisabled");
         $("#finishButt").removeClass("buttonDisabled");
+		
+		$('#mother li').find('ul').hide('slow');
+		$('#mother li').find('> span').toggleClass('toggleTree');
     }
     else
     {
@@ -480,6 +659,10 @@ function next()
             $("#nextButt").addClass("buttonDisabled");
             $("#previousButt").removeClass("buttonDisabled");
             $("#finishButt").removeClass("buttonDisabled");
+			
+			
+			$('#mother li').find('ul').hide('slow');
+			$('#mother li').find('> span').toggleClass('toggleTree');
         }
         else
         {

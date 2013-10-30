@@ -10,7 +10,7 @@ class admin_login_model extends CI_Model {
 	{
 		$this->db->where('name',$value);
 		$this->db->where('usertypeid',1);
-		$query = $this->db->get('user');
+		$query = $this->db->get('user'); 
         
 		if($query->num_rows()>1||$query->num_rows()<1)
 		{

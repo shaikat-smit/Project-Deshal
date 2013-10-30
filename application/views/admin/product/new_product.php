@@ -38,7 +38,20 @@
 
 
                             <script>
-                                getmsg('<? echo $message['status']; ?>, <?= $message['msg']; ?>');
+                                <?if(isset( $message['status']) || isset( $message['msg']))
+								{
+									echo 'getmsg(';
+									if(isset( $message['status']))
+										echo $message['status'];
+									echo ',';
+									if(isset( $message['msg']))
+										echo $message['msg']; 
+									echo ');';
+								
+								}
+								?>
+								
+								
                             </script>
 
 
@@ -74,7 +87,7 @@
                         </li>
                         <li>
                             <a href="#" id="wiz1step3_a5" class="disabled" isdone="0" rel="3">
-                                <span class="label">Step 5: Assign Category</span>
+                                <span class="label">Step 5: Category & Tags</span>
                             </a>
                         </li>
                     </ul>
@@ -243,6 +256,10 @@
                                 border-bottom-color: grey;
                                 border-left-color: transparent;
                                 opacity: 1;
+								transition: all .5s;
+								-webkit-transition: all .5s;
+								-moz-transition: all .5s;
+								-o-transition: all .5s;
                             }
 
                             .tree:checked ~ span:before {
@@ -273,29 +290,140 @@
                         </script>
                         <div id="wiz1step3_5" class="content" style="display: none;">
                             <h2>Step 5: Assign Category</h2>
-                            <div id="tree">
+                            <div id="tree" style="margin: 10px 0px 0px 12px;">
                                 <?php
                                 $obj = new product();
                                 $obj->dynaCat(); //Thats right!
                                 ?>
-                            </div>
-                        </div>
-                        <script>
+							</div>
+							
+
+							
+							<script>
+							//$('#mother li').find('ul').hide('slow');
+							
+							
+							
                             $('.chkBox').prop('checked', false);
                             $('#mother .chkBox').click(function() {
-                                //console.log('event');
-                                console.log($(this).is(':checked'));
-                                //$(this).
-                                var bull = $(this).is(':checked');
+                                //console.log($(this).is(':checked'));
+                                
+								var bull = $(this).is(':checked');
                                 $(this).parent().find('.chkBox').prop('checked', bull);
                                 //console.log($(this).parent().children('.chkBox').html());
 
                             });
-                            // $('#mother li:not(.chkBox)').click(function(){
-                            // alert('ss');
-                            // });
+							
+							$('.tree ~ span').click(function() {
+                                //console.log($(this).is(':checked'));
+                                
+								if($(this).find('~ ul').css('display') == 'none')
+								{
+									$(this).find('~ ul').show('fast');
+									$(this).toggleClass('toggleTree');
+								}
+								else
+								{
+									$(this).find('~ ul').hide('fast');
+									$(this).toggleClass('toggleTree');
+								}
+									
+                            });
+							
+							//console.log($('#mother li ul'));
+							//$('#mother li ul').hide('slow');
+							
+							
+							$('#mother li:not(:has(ul))  span').remove();
+							
+                            
 
                         </script>
+						
+							
+							
+							
+<style>
+.toggleTree:before
+{
+transform: rotateZ(-45deg);
+-webkit-transform: rotateZ(-45deg);
+-moz-transform: rotateZ(-45deg);
+-o-transform: rotateZ(-45deg);
+}
+#tagContainer
+{
+#border: 1px solid #A3A3A3;
+width: 400px;
+padding: 4px 2px;
+margin-bottom: 10px;
+display: none;
+}
+.tagSpan
+{
+background-color: #ECECEC;
+border-radius: 4px;
+border: 1px solid #929292;
+padding: 0px 4px;
+margin: 1px 3px;
+display: inline-block;
+}
+.tagCross
+{
+border-left: 1px solid #BFBFBF;
+padding-left: 4px;
+margin-left: 3px;
+cursor: pointer;
+}
+</style>
+							<div id="assignTags">
+								<h2 style="margin: 27px 0px 4px 0px;">Assign Tags</h2>
+								<div id="tagContainer">
+									
+									
+									
+								</div>
+								<input id="tagInput" type="text" value="" placeholder="Type tag names"/>
+								
+								<script>
+									var TagCounter = 0;
+									$( "#tagInput" ).keyup(function( event ) {
+									  if ( event.which == 13 ) //Enter
+										{
+											event.preventDefault();
+											$('#tagContainer').show();
+											var Tag = $('#tagInput').val();
+											
+											var newChild  = '<span id="tag-'+ TagCounter +'" class="tagSpan">'+Tag+'';
+												newChild += '<span id="cross-'+ TagCounter++ +'" class="tagCross">&#215;</span>';
+												newChild += '<input type="hidden" name="tags[]" value="'+Tag+'"/>';
+												newChild +=	'</span> ';
+												
+											$('#tagContainer').append(newChild);
+											$('#tagInput').attr('value', '');
+											
+											
+											$('.tagCross').click(function(event){
+												
+												$('#tag-'+event.target.id.split('-')[1]).remove();
+												if($('#tagContainer').has('.tagspan').length == 0)
+													$('#tagContainer').hide('fast');
+											});
+										}
+										
+									});
+									
+									
+								</script>
+							</div> <!--#assignTags-->
+							
+							
+							
+							
+							
+							
+                        </div> <!--wiz1step3_5-->
+                        
                     </div>
                     <div class="actionBar">
                         <a id="finishButt" class="buttonFinish buttonDisabled" href="javascript:{}" onclick="document.getElementById('myform').submit();">Finish</a>
@@ -446,6 +574,8 @@ function next()
         $("#nextButt").addClass("buttonDisabled");
         $("#previousButt").removeClass("buttonDisabled");
         $("#finishButt").removeClass("buttonDisabled");
+		$('#mother li').find('ul').hide('slow');
+		$('#mother li').find('> span').toggleClass('toggleTree');
     }
     else
     {
@@ -461,6 +591,8 @@ function next()
             $("#nextButt").addClass("buttonDisabled");
             $("#previousButt").removeClass("buttonDisabled");
             $("#finishButt").removeClass("buttonDisabled");
+			$('#mother li').find('ul').hide('slow');
+			$('#mother li').find('> span').toggleClass('toggleTree');
         }
         else
         {

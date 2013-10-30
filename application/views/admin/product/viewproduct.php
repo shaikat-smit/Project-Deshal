@@ -78,18 +78,20 @@
                     </thead>
                     <tbody>
 					<?php foreach ($query->result() as $row)
-					{if($row->archive == 0)
 					{
-					?>
-                        <tr>
-                            <td class="center"><?=$row->code?></td>
-                            <td class="center"><?=$row->title?></td>
-                            <td class="center"><?=$row->price?></td>
-                            <td class="center"><?=$row->stock_available?></td>
-                            <td class="center"><a href="<?=base_url();?>index.php/admin/product/edit_product/<?=$row->id?>" class="edit">Edit</a>&nbsp;|&nbsp;<a href="<?=base_url();?>index.php/admin/product/deleteProducts/<?=$row->id?>" class="">Delete</a></td>
-                            <!--<td class="center">X</td>-->
-                        </tr>
-					<?}}?>
+						if($row->archive == 0)
+						{
+						?>
+							<tr>
+								<td class="center"><?=$row->code?></td>
+								<td class="center"><?=$row->title?></td>
+								<td class="center"><?=$row->price?></td>
+								<td class="center"><?=$row->stock_available?></td>
+								<td class="center"><a href="<?=base_url();?>index.php/admin/product/edit_product/<?=$row->id?>" class="edit">Edit</a>&nbsp;|&nbsp;<a href="<?=base_url();?>index.php/admin/product/deleteProducts/<?=$row->id?>" class="">Delete</a></td>
+								<!--<td class="center">X</td>-->
+							</tr>
+						<?}
+					}?>
 					<tr>
 						<td colspan='5' class="paginationLinks" style="padding: 32px 0; text-align: right;"> <?php echo $pages;?> </td>
 					</tr>

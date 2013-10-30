@@ -111,5 +111,53 @@ class product_mdl extends CI_Model {
 		
 		return $ingredient;
 	}
+	
+	function fetchTags($productID)
+	{
+		$sql = "select * from tags_table where id in (select tag_id from tag_product where product_id = ".$productID.")";
+		$result = $this->db->query($sql);
+																	
+		if ($result->num_rows() > 0)
+			return $result->result();
+		else return null;
+	}
+	
+	function fetchJustTags($productID)
+	{
+		$sql = "select * from tags_table where id in (select tag_id from tag_product where product_id = ".$productID.")";
+		$result = $this->db->query($sql);
+		$tagsArr = array();
+		
+		if ($result->num_rows() > 0)
+		{
+			$tags = $result->result();
+			for ($i=0; $i<count($tags); $i++)
+			{
+				array_push($tagsArr, $tags[$i]->id);
+			}
+			return $tagsArr;
+		}
+		else return null;
+	}
+	
+	function fetchJustCats($productID)
+	{
+		$sql = "select * from tbl_productincatagory where product_id = ".$productID."";
+		$result = $this->db->query($sql);
+		$catsArr = array();
+		
+		if ($result->num_rows() > 0)
+		{
+			$cats = $result->result();
+			for ($i=0; $i<count($cats); $i++)
+			{
+				array_push($catsArr, $cats[$i]->categoryId);
+			}
+			return $catsArr;
+		}
+		else return null;
+	}
+	
+	
 }
 ?>

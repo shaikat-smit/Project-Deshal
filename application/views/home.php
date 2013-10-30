@@ -158,14 +158,25 @@ padding-bottom: 3px;
 			
 					<div class="single_grid_product"  style="width:<?=$settings->gridimg_width?>px !important;height:<?=$settings->gridimg_height?>px !important;">	
 						<div class="product_med_wrap">
+							<?php
+								$av = ""; $st = "";
+								if($products->archive) $av = " archived";
+								if($products->stock_available > 0) $st = " soldShow";
+							?>
+							
+							
+							
+							<img class="archivedImg <?=$av?>" style="display:none" src="<?=base_url();?>img/archived.png" />
+							<div class="product_meta soldOut <?=$st?>">SOLD OUT !</div>
 							<div class="product_meta">৳ &nbsp;<?=$products->price;?></div>
 							<a href="<?=base_url();?>index.php/product_details/details/<?=$products->id;?>" title="test product" class="single_product_image_link" >
 								<img  style="width:<?=$settings->gridimg_width?>px !important;" src="<?=base_url();?>itemimages/<?=$products->main_image;?>" class="attachment-product_med wp-post-image" alt="" />
 							</a>
 						</div>
 					</div>	
-					
-				<?}}?>	
+		<?		}
+			}
+		?>	
 					
 		
 		<?/*

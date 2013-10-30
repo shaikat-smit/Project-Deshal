@@ -393,7 +393,8 @@ class product extends CI_Controller {
 
         $config['base_url'] = base_url() . 'index.php/admin/product/ViewProducts' . '?';
         $config['total_rows'] = $this->db->query("select count(*) as total from tbl_product ORDER BY created DESC;")->row()->total;
-
+		// echo $this->db->last_query();
+		// echo $config['total_rows']; exit;
         $config['per_page'] = $limit;
         $config['num_links'] = 3; //4
 
@@ -405,7 +406,7 @@ class product extends CI_Controller {
 
 
         $data['query'] = $this->db->query("select * from tbl_product ORDER BY created DESC  LIMIT " . $offset . ", " . $limit . ";");
-
+		//echo "select * from tbl_product ORDER BY created DESC  LIMIT " . $offset . ", " . $limit . ";" ; exit;
         $this->load->view('admin/header');
         //$this->load->model('category_mdl');
         //$data['categoryList'] = $this->category_mdl->catList();
@@ -666,7 +667,7 @@ class product extends CI_Controller {
 
             foreach ($arr as $row) {
                 // echo '<li><span class="formwrapper"><input type="checkbox" id="ui-accordian-accordian-header-0">'.$row->name.'';
-                echo '<li><input  type="checkbox" class="tree"/><span></span><input type="checkbox" id="' . $row->id . '" class="chkBox" checked="checked" name="catlist[]" value="' . $row->id . '"/>' . $row->name . '';
+                echo '<li><input  type="checkbox" class="tree"/><span></span><input type="checkbox" id="' . $row->id . '" class="chkBox" checked="checked" name="catlist[]" value="' . $row->id . '"/> '.$row->name . '';
                 $this->dynaCat($row->id);
                 echo '</li>';
             }
@@ -677,6 +678,45 @@ class product extends CI_Controller {
         }
     }
 
+	public function dynaCatEdit($bilai = "", $catsArr = array() ) //SHOW
+	{
+        if ($this->session->userdata('admin_logged_in')) {
+            $arr = array();
+            if ($bilai == "")
+                $arr = $this->category_mdl->catListRaw()->result();
+            else
+                $arr = $this->category_mdl->subcatListRaw($bilai)->result();
+
+
+            if (count($arr) == 0)
+                return;
+
+            if ($bilai != "")
+                echo '<ul class="">';
+            else
+                echo '<ul id="mother" class="">';
+
+
+            foreach ($arr as $row) {
+                // echo '<li><span class="formwrapper"><input type="checkbox" id="ui-accordian-accordian-header-0">'.$row->name.'';
+				$chckd = "nainai";
+				if(in_array($row->id, $catsArr))
+					$chckd = "checked";
+				// else
+					// vaj($catsArr);
+					
+                echo '<li><input  type="checkbox" class="tree"/><span></span>';
+				echo '<input type="checkbox" id="'.$row->id.'"  name="catlist[]" value="'.$row->id.'"  '.$chckd.'  class="chkBox"/> '.$row->name . '';
+                $this->dynaCatEdit( $row->id, $catsArr );
+                echo '</li>';
+            }
+
+            echo'</ul>';
+        } else {
+            redirect('adminlog');
+        }
+    }
+	
     public function addNewProduct() {//--------------------------------PRODUCT ADD-------------------------------------------------------
         if ($this->session->userdata('admin_logged_in')) {
 
@@ -858,14 +898,36 @@ class product extends CI_Controller {
                     $catlist = $this->input->post('catlist');
 
                     $arrlengthcatlist = count($catlist);
-                    for ($i = 0; $i < $arrlengthcatlist; $i++) {
+                    for ($i = 0; $i < $arrlengthcatlist; $i++)
+					{
                         $datacate = array(
                             'product_id' => $product_id,
                             'categoryId' => $catlist[$i]
                         );
                         $done = $this->product_add_mdl->insertProductInCategory($datacate);
                     }
-
+					
+					
+					
+					//Mahmud----
+					$tagNames = $this->input->post('tags');
+					//vaj($tagNames);
+					for ($i = 0; $i < count($tagNames); $i++)
+					{
+						//echo $tagNames[$i];
+						$tagID = $this->product_add_mdl->tagID( $tagNames[$i] );
+						if($tagID != -1) //-1 ->> Error
+						{
+							if( $this->product_add_mdl->assignTag($product_id, $tagID ) )
+							{
+								$data['status'] = 0;
+								$message = 'Tag adding failed..';
+							}
+						}
+					}
+					//----------
+					
+					
                     $data['status'] = 1;
                     $message = 'Product Was Successfully Added';
                     $data['notification'] = $message;
@@ -895,7 +957,8 @@ class product extends CI_Controller {
         }
     }
 
-    function edit_product($product_id = '') {
+    function edit_product($product_id = '')
+	{
         if ($this->session->userdata('admin_logged_in')) {
             $data['id'] = $product_id;
             $query = "select * from tbl_product where id ='" . $product_id . "'";
@@ -974,6 +1037,12 @@ class product extends CI_Controller {
                 }
             }
             $data['attribute'] = $str;
+			$data['tags'] = $this->product_mdl->fetchTags( $product_id );
+			$data['cats'] = $this->product_mdl->fetchJustCats( $product_id );
+			//vaj($data['cats']);exit;
+			
+			
+			
             $this->load->view('admin/header');
             $this->load->view('admin/product/editproduct', $data);
         } else {
@@ -1162,10 +1231,72 @@ class product extends CI_Controller {
         }
     }
 
-    function updateCategory() {
-        
+    function updateCategoryAndTags()
+	{
+		$product_id = $_POST['id'];//exit;
+		$catlist = $this->input->post('catlist');
+		$taglist = $this->input->post('tags');
+		//vaj($taglist);exit;
+		
+		$status = 0;
+		//---UPDATE CATS----
+		$done = $this->product_add_mdl->removeOldCategories($product_id);
+		for ($i = 0; $i < count($catlist); $i++)
+		{
+			
+			if( $this->product_add_mdl->insertProductInCategory( array(
+																		'product_id' => $product_id,
+																		'categoryId' => $catlist[$i]
+																	  )
+																)
+			  )$status = 1;
+		}
+		
+		
+		
+		
+		
+		
+		//---UPDATE TAGS----
+		$done = $this->product_add_mdl->removeOldTags($product_id);
+		for ($i = 0; $i < count($taglist); $i++)
+		{
+		
+			$tagID = $this->product_add_mdl->tagID( $taglist[$i] );
+			if($tagID != -1) //-1 ->> Error
+			{
+				if( $this->product_add_mdl->assignTag($product_id, $tagID) )
+					$status = 1;
+			}	
+			
+		}
+		
+		
+		if($status == 1)
+			$message = 'Basic Informations Successfully Updated';
+		else
+			$message = 'Error 034: Failed to update categories or tags..';
+		
+		
+		$data['status'] = $status;
+		$data['notification'] = $message;
+		$this->load->view('admin/header');
+		$this->load->view('admin/product/notification', $data);
+		
     }
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
 
 /* End of file welcome.php */

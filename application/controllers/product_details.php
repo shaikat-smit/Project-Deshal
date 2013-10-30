@@ -43,6 +43,10 @@ class product_details extends CI_Controller {
 		$data['proincate'] = $cat;
 }
 		$data['colorsize'] = $this->db->query("select * from tbl_size s, tbl_color c , tbl_size_color_product al where c.id=al.color_id and s.id = al.size_id and product_id=".$product_id."");
+		$data['tags'] = $this->product_mdl->fetchTags( $product_id ); //id => name
+		$data['tagsArr'] = $this->product_mdl->fetchJustTags( $product_id ); //just id array
+		
+		
 		//vaj($data['colorsize']->result());
 		$this->load->view('header',$data);
 		$this->load->view('product_details',$data);

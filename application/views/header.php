@@ -416,7 +416,10 @@ only screen and (min-width: 0px) and (max-width: 767px) {
 		
 	?>
 	
-	
+<script>
+	var node = '<li> <a href="<?php echo base_url();?>index.php/home/archived">Archived</a></li>';
+	jQuery('#menu_wrap ul:first-child').append(node);
+</script>
 	</div>
 </div>
 

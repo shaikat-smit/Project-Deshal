@@ -66,7 +66,18 @@
 
 
 <script>
-getmsg(<? echo $message['status'];?>,'<?=$message['msg'];?>');
+<?if(isset( $message['status']) || isset( $message['msg']))
+{
+	echo 'getmsg(';
+	if(isset( $message['status']))
+		echo $message['status'];
+	echo ',';
+	if(isset( $message['msg']))
+		echo $message['msg']; 
+	echo ');';
+
+}
+?>
 </script>
 
 
@@ -278,20 +289,9 @@ getmsg(<? echo $message['status'];?>,'<?=$message['msg'];?>');
 						
 						
 						
-						</style>
-						<script>
-						// $("#ui-accordian-accordian-header-0").change(function() {
-							//alert("");
-							// var id = $(this).attr("id");
-							// var items = $("." + id);
-							
-							// this.checked ? items.prop("checked", true) : items.prop("checked", false);
-						// });
+</style>
 						
-						// $('#mother input[type=checkbox]:checked)
-						
-						</script>
-                        <div id="wiz1step3_5" class="content" style="display: none;">
+						<div id="wiz1step3_5" class="content" style="display: none;">
                             <h2>Step 5: Assign Category</h2>
 								<div id="tree">
 									<?php
@@ -299,6 +299,48 @@ getmsg(<? echo $message['status'];?>,'<?=$message['msg'];?>');
 											$obj->dynaCat();//Thats right!
 									?>
 								</div>
+								
+								<div id="assignTags">
+									<h2 style="margin: 27px 0px 4px 0px;">Assign Tags</h2>
+									<div id="tagContainer">
+										
+										
+										
+									</div>assignTags
+									<input id="tagInput" type="text" value="" placeholder="Type tag names"/>
+									
+									<script>
+										var TagCounter = 0;
+										$( "#tagInput" ).keyup(function( event ) {
+										  if ( event.which == 13 ) //Enter
+											{
+												event.preventDefault();
+												$('#tagContainer').show();
+												var Tag = $('#tagInput').val();
+												
+												var newChild  = '<span id="tag-'+ TagCounter +'" class="tagSpan">'+Tag+'';
+													newChild += '<span id="cross-'+ TagCounter++ +'" class="tagCross">&#215;</span>';
+													newChild += '<input type="hidden" name="tags[]" value="'+Tag+'"/>';
+													newChild +=	'</span> ';
+													
+												$('#tagContainer').append(newChild);
+												$('#tagInput').attr('value', '');
+												
+												
+												$('.tagCross').click(function(event){
+													
+													$('#tag-'+event.target.id.split('-')[1]).remove();
+													if($('#tagContainer').has('.tagspan').length == 0)
+														$('#tagContainer').hide('fast');
+												});
+											}
+											
+										});
+										
+										
+									</script>
+								</div> <!--#assignTags-->
+								
                         </div>
 						<script>
 							$('.chkBox').prop('checked', false);
@@ -311,11 +353,64 @@ getmsg(<? echo $message['status'];?>,'<?=$message['msg'];?>');
 								//console.log($(this).parent().children('.chkBox').html());
 								
 							});
-							// $('#mother li:not(.chkBox)').click(function(){
-								// alert('ss');
-							// });
+							
+							
+							$('.tree ~ span').click(function() {
+                                if($(this).find('~ ul').css('display') == 'none')
+								{
+									$(this).find('~ ul').show('fast');
+									$(this).toggleClass('toggleTree');
+								}
+								else
+								{
+									$(this).find('~ ul').hide('fast');
+									$(this).toggleClass('toggleTree');
+								}
+									
+                            });
+							$('#mother li:not(:has(ul))  span').remove();
 							
 						</script>
+						
+													
+<style>
+.toggleTree:before
+{
+transform: rotateZ(-45deg);
+-webkit-transform: rotateZ(-45deg);
+-moz-transform: rotateZ(-45deg);
+-o-transform: rotateZ(-45deg);
+}
+#tagContainer
+{
+#border: 1px solid #A3A3A3;
+width: 400px;
+padding: 4px 2px;
+margin-bottom: 10px;
+display: none;
+}
+.tagSpan
+{
+background-color: #ECECEC;
+border-radius: 4px;
+border: 1px solid #929292;
+padding: 0px 4px;
+margin: 1px 3px;
+display: inline-block;
+}
+.tagCross
+{
+border-left: 1px solid #BFBFBF;
+padding-left: 4px;
+margin-left: 3px;
+cursor: pointer;
+}
+</style>
+						
+						
+						
+						
+						
                     </div>
                     <div class="actionBar">
                   <a id="finishButt" class="buttonFinish buttonDisabled" href="javascript:{}" onclick="document.getElementById('myform').submit();">Finish</a>

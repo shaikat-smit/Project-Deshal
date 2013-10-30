@@ -266,5 +266,71 @@ class product_add_mdl extends CI_Model {
 		
 	}
 	
+	function removeOldCategories($product_id)
+	{
+        if($this->db->delete('tbl_productincatagory', array('product_id' => $product_id)) )
+			return true;
+		else
+			return false;
+		
+	}
+	
+	function removeOldTags($product_id)
+	{
+        if($this->db->delete('tag_product', array('product_id' => $product_id)) )
+			return true;
+		else
+			return false;
+		
+	}
+	
+	
+	
+	
+	//---Mahmud---
+	function tagID($tagName) //tag_name based
+	{
+		$tagName = strtolower($tagName);
+		$this->db->where('tag_name', $tagName  );
+		$this->db->select('id');
+		$result = $this->db->get('tags_table');
+		
+		if($result->num_rows() == 0 )//Tag banano nai
+		{
+			if($this->db->insert('tags_table', array( 'tag_name' => $tagName )) ) //Making New Tag
+			{
+				$this->db->where('tag_name', $tagName  );
+				$this->db->select('id');
+				$result = $this->db->get('tags_table');
+				
+				if($result->num_rows() == 1 )//New Tag selected (safe way) >> no insert_id() used.
+				{
+					$data = $result->row();
+					return $data->id;
+				}
+			}
+			else return -1;
+		}
+		else//Puran Tag found
+		{
+			$data = $result->row();
+			return $data->id;
+		}
+	}
+	
+	
+	
+	
+	function assignTag($product_id, $tagID ) //Just INSERT
+	{
+		if($this->db->insert('tag_product',array(
+													'tag_id'     => $tagID,
+													'product_id' => $product_id
+											    )
+							)
+          ) return true;
+		return false;
+	}
+	//----------
 }
 ?>

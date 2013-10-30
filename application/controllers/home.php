@@ -102,13 +102,16 @@ class home extends CI_Controller {
 		
 		$data['curnt_cat_id'] = $val;
 		//$admin_setting_row = 3; //admin's settings value can be given here..
-		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
+				 $data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
 		$limit = $data['settings']->latest_product_row*5;
 		$offset = 0;
 		
 		$data['prev_page'] = 'none';
 		$data['next_page'] = 'true';
-		$total_rows = $this->db->query("select  count(*) as total from tbl_product where id in (select product_id from tbl_productincatagory where categoryId = ".$val.")")->row()->total;
+		if(isset($_GET['is_a_tag']))
+			$total_rows = $this->db->query("select  count(*) as total from tbl_product where id in (select product_id from tag_product where tag_id = ".$val.")")->row()->total;
+		else
+			$total_rows = $this->db->query("select  count(*) as total from tbl_product where id in (select product_id from tbl_productincatagory where categoryId = ".$val.")")->row()->total;
 		
 		if(($offset + $limit) > $total_rows )
 				$data['next_page'] = 'none';
@@ -136,9 +139,22 @@ class home extends CI_Controller {
 		
 		$data['offset'] = $offset;
 		$data['per_page'] = $limit;
-		$data['products'] = $this->db->query("select * from tbl_product where id in (select product_id from tbl_productincatagory where categoryId = ".$val.") LIMIT ".$offset.", ".$limit.";");
-		$x = $this->db->query("select * from category where id = ".$val.";");
-		$data['categoryName']= $x->row()->name;
+		if(isset($_GET['is_a_tag']))
+			$data['products'] = $this->db->query("select * from tbl_product where id in (select product_id from tag_product where tag_id = ".$val.") LIMIT ".$offset.", ".$limit.";");
+		else
+			$data['products'] = $this->db->query("select * from tbl_product where id in (select product_id from tbl_productincatagory where categoryId = ".$val.") LIMIT ".$offset.", ".$limit.";");
+		
+		if(isset($_GET['is_a_tag']))
+		{	
+			$x = $this->db->query("select * from tags_table where id = ".$val.";");
+			$data['tagName']= $x->row()->tag_name;
+		}
+		else
+		{
+			$x = $this->db->query("select * from category where id = ".$val.";");
+			$data['categoryName']= $x->row()->name;
+		}
+		$data['is_tag'] = true;
 		$data['settings'] = $this->db->query("select * from tbl_site_settings")->row();
 		$this->load->view('header', $data);//, $data);
 		//$this->load->view('menu');//, $data);

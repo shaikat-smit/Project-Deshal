@@ -15,12 +15,33 @@
 
 					<div class="single-product-meta">
 						<span>Product Categories: 
-						<?php if(isset($proincate)){
+						<?php if(isset($proincate))
+						{
 							$last = end($proincate);
-						foreach($proincate as $row){?>
-						<a href="<?=base_url();?>index.php/home/temp_grid/<?=$row->id?>" rel="tag"><?=$row->name?></a>
-						<?=(($last == $row)?"":",")?>
-						<?}}?>
+							foreach($proincate as $row)
+							{?>
+								<a href="<?=base_url();?>index.php/home/temp_grid/<?=$row->id?>" rel="tag"><?=$row->name?></a>
+								<?=(($last == $row)?"":",")?>
+					<?
+							}
+						}
+					?>
+						
+						<span>
+						<?php if(isset($tags))
+						{ //vaj($tags);exit;
+							echo'Tags: ';
+							$last = end($tags);
+							foreach($tags as $row)
+							{?>
+								<a href="<?=base_url();?>index.php/home/temp_grid/<?=$row->id?>/?is_a_tag=true" rel="tag"><?=$row->tag_name?></a>
+								<?=(($last == $row)?"":",")?>
+					<?
+							}
+						}
+					?>
+						
+						
 					</div>
 				</div><!-- end #product_images -->
 				<?php if($details->archived_desc == NULL)

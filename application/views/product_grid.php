@@ -4,7 +4,10 @@
 		
 		
 		 
-		<h2 id="latest_products_title" style="margin-bottom: 20px;margin-top: 35px;"><?=$categoryName;?></h2>
+		<h2 id="latest_products_title" style="margin-bottom: 20px;margin-top: 35px;">
+		<?php if(isset($categoryName))echo $categoryName;
+				else if(isset($tagName))echo $tagName;
+		?></h2>
 		
 	<div id="products_grid">
 	
@@ -41,8 +44,14 @@
 			
 	<div id="all_products_call">
 		<!--<a href="" title="(in future)">More &rarr;</a>-->
-		<a href="<?if($prev_page != 'none'){ echo base_url().'index.php/home/temp_grid/'.$curnt_cat_id.'?offset='.($offset-$per_page);}?>" style="<?if($prev_page == 'none') echo 'display: none;';?>" >&larr; Previous</a>
-		<a href="<?if($next_page != 'none'){ echo base_url().'index.php/home/temp_grid/'.$curnt_cat_id.'?offset='.($offset+$per_page);}?>" style="<?if($next_page == 'none') echo 'display: none;';?>">Next &rarr;</a>
+		<?php
+			$t = '';
+			if(isset($is_tag) && $is_tag==true)
+				$tg= 'is_a_tag&';
+		?>
+		
+		<a href="<?if($prev_page != 'none'){ echo base_url().'index.php/home/temp_grid/'.$curnt_cat_id.'?'.$tg.'offset='.($offset-$per_page);}?>" style="<?if($prev_page == 'none') echo 'display: none;';?>" >&larr; Previous</a>
+		<a href="<?if($next_page != 'none'){ echo base_url().'index.php/home/temp_grid/'.$curnt_cat_id.'?'.$tg.'offset='.($offset+$per_page);}?>" style="<?if($next_page == 'none') echo 'display: none;';?>">Next &rarr;</a>
 	</div>
 		
 					<div class="clear"></div>
