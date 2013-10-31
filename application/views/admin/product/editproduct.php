@@ -70,8 +70,9 @@
 </style>
 
 <script type="text/javascript" src="<?= base_url(); ?>admin/js/plugins/jquery-1.7.min.js"></script>
-
-
+<script type="text/javascript" src="<?= base_url(); ?>admin/js/custom/media.js"></script>
+<script type="text/javascript" src="<?= base_url(); ?>admin/js/plugins/jquery.effects.core.min.js"></script>
+<script type="text/javascript" src="<?= base_url(); ?>admin/js/plugins/jquery.effects.explode.min.js"></script>
 
 <div class="maincontent noright">
     <div class="maincontentinner">
@@ -233,7 +234,34 @@
                         <form action="<?php echo base_url(); ?>index.php/admin/product/updateImages" method="post" id="imageForm" class="stdform stdform2" enctype="multipart/form-data">
                         <div class="formwiz content" id="wiz1step3_2" style="display: none;">
                             <h2>Step 2:  Image Section</h2> <br>
-
+							<div>
+							 <label>Main Image</label>
+							<img width="160px" height="160px" src="<?= base_url(); ?>itemimages/<?=$row->main_image;?>" alt="" align="left"/>
+							<label>Sub Images</label>
+							<table cellpadding="0" cellspacing="0" border="0" id="table2" class="stdtable mediatable">
+								<thead>
+									<tr>
+										<td class="head0 center"><input type="checkbox" class="checkall" /></td>
+										<td class="head1 center">Thumb</td>
+										<td class="head0">Filename</td>
+										<td class="head1">&nbsp;</td>
+									</tr>
+								</thead>
+								<tbody>
+								<?php if(count($subimages)!=0){
+								foreach($subimages->result() as $row){
+								?>
+									<tr>
+										<td class="center"><input type="checkbox" /></td>
+										<td class="center"><a href="<?=base_url();?>/itemsubimages/<?php echo $row->image_dir?>" class="view"><img width="60px" height="60px"  src="<?=base_url();?>/itemsubimages/<?php echo $row->image_dir?>" alt="" class="lightbox" /></a></td>
+										<td><?php echo $row->image_dir?></td>
+										<td class="center"><a href="#" class="delete">Delete</a></td>
+									</tr>
+								<?}
+								}?>
+								</tbody>
+							</table>
+							</div>
                             <div class="zFormTbl">
                                 <label style="padding: 5px !important; width: 100px;" class="zlable" >Main Image:</label>
                                 <input class="zinput" type="file" value="" name="userfile"/>

@@ -765,9 +765,9 @@ class product extends CI_Controller {
 
                 $archiveFlag = $this->input->post('archiveFlag');
                 if (isset($archiveFlag)) {
-                    $temp['archive'] = 0;
-                } else {
                     $temp['archive'] = 1;
+                } else {
+                    $temp['archive'] = 0;
                 }
 
                 $temp['archived_desc'] = $this->input->post('archived_desc');
@@ -1095,7 +1095,7 @@ class product extends CI_Controller {
 			$data['tags'] = $this->product_mdl->fetchTags( $product_id );
 			$data['cats'] = $this->product_mdl->fetchJustCats( $product_id );
 			//vaj($data['cats']);exit;
-			
+			$data['subimages'] = $this->db->query("select * from tbl_image where product_id=".$product_id."");
 			
 			
             $this->load->view('admin/header');

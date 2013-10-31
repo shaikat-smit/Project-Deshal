@@ -155,8 +155,8 @@
                         <div id="wiz1step3_3" class="content" style="display: none;">
                             <h2 style="margin-bottom: 10px;">Step 3: Product Details</h2>
                             <div class="zFormTbl">
-                                <input class="zinput" type="text" value="" name="field_name[]" placeholder="Field Name"/>
-                                <input class="zinput" type="text" value="" name="value_name[]" placeholder="Field Value"/>
+                                <input class="zinput" type="text" value="" name="field_name[]" placeholder="Field Name" required/>
+                                <input class="zinput" type="text" value="" name="value_name[]" placeholder="Field Value" required/>
                                 <!--<input class="stdbtn customAdd" type="button" value="Add" id="add"/><br/>-->
                             </div><br/>
                             <div id ="subdet_div">
@@ -173,11 +173,11 @@
                                 </thead>
                                 <tbody>
                                     <tr class='ftd' id='l1'>
-                                        <td><input class="zinput" id = "lx1" type="text" value="" name="size[]" onkeyup='javascript:change1("lx1");' placeholder=""/></td>
-                                        <td><input class="zinput" id = "lx1_1" type="text" value="" name="weight[]" onkeyup='javascript:change1("lx1_1");'/></td>
-                                        <td><input class="zinput" id = "lx1_2" type="text" value="" name="length[]" onkeyup='javascript:change1("lx1_2");'/></td>
-                                        <td><input class="zinput" id = "lx1_3" type="text" value="" name="width[]" onkeyup='javascript:change1("lx1_3");'/></td>
-                                        <td><input class="zinput" id = "lx1_4" type="text" value="" name="height[]" onkeyup='javascript:change1("lx1_4");'/></td>
+                                        <td><input class="zinput" id = "lx1" type="text" value="" name="size[]" onkeyup='javascript:change1("lx1");' placeholder="" required/></td>
+                                        <td><input class="zinput" id = "lx1_1" type="text" value="" name="weight[]" onkeyup='javascript:change1("lx1_1");' required/></td>
+                                        <td><input class="zinput" id = "lx1_2" type="text" value="" name="length[]" onkeyup='javascript:change1("lx1_2");' required/></td>
+                                        <td><input class="zinput" id = "lx1_3" type="text" value="" name="width[]" onkeyup='javascript:change1("lx1_3");' required/></td>
+                                        <td><input class="zinput" id = "lx1_4" type="text" value="" name="height[]" onkeyup='javascript:change1("lx1_4");' required/></td>
                                         <!--
                                                 In ctrllr, TRY TO push these 5 first.
                                                 Get(old/new) ID.
@@ -194,8 +194,8 @@
                                                 end loop
                                                 
                                         -->
-                                        <td><input class="zinput" type="text" value="" name="color[]" placeholder=""/></td>
-                                        <td><input class="zinput" type="text" value="" name="quantity[]" placeholder=""/></td>
+                                        <td><input class="zinput" type="text" value="" name="color[]" placeholder="" required/></td>
+                                        <td><input class="zinput" type="text" value="" name="quantity[]" placeholder="" required/></td>
                                         <td class='dscL1'><a href="javascript:addAnother4Color('l1');">&nbsp;Add&nbsp;Color</a>&nbsp;|&nbsp;<a href="javascript:deleteSizeColorRow('dscl1');">Delete</a></td>
                                     </tr>
                                 </tbody>
@@ -531,14 +531,14 @@ function addAnother4Color(flag)
 
 
         var row = '<tr class="ftd" id="l'+totsize+'">';
-        row += '<td><input class="zinput" type="text" id="lx'+totsize+'" onkeyup="change1(\'lx'+totsize+'\');" value="" name="size[]"/></td>';
-        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_1" onkeyup="change1(\'lx'+totsize+'_1\');"  value="" name="weight[]"/></td>';
-        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_2" onkeyup="change1(\'lx'+totsize+'_2\');"  value="" name="length[]"/></td>';
-        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_3" onkeyup="change1(\'lx'+totsize+'_3\');"  value="" name="width[]"/></td>';
-        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_4" onkeyup="change1(\'lx'+totsize+'_4\');"  value="" name="height[]"/></td>';
+        row += '<td><input class="zinput" type="text" id="lx'+totsize+'" onkeyup="change1(\'lx'+totsize+'\');" value="" name="size[]" required/></td>';
+        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_1" onkeyup="change1(\'lx'+totsize+'_1\');"  value="" name="weight[]" required/></td>';
+        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_2" onkeyup="change1(\'lx'+totsize+'_2\');"  value="" name="length[]" required/></td>';
+        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_3" onkeyup="change1(\'lx'+totsize+'_3\');"  value="" name="width[]" required/></td>';
+        row += '<td><input class="zinput" type="text" id="lx'+totsize+'_4" onkeyup="change1(\'lx'+totsize+'_4\');"  value="" name="height[]" required/></td>';
 
-        row += '<td><input class="zinput" type="text" value="" name="color[]"/></td>';
-        row += '<td><input class="zinput" type="text" value="" name="quantity[]"/></td>';
+        row += '<td><input class="zinput" type="text" value="" name="color[]" required/></td>';
+        row += '<td><input class="zinput" type="text" value="" name="quantity[]" required/></td>';
         row += '<td class="dscl'+totsize+'"><a href="javascript:addAnother4Color(\'l'+totsize+'\');">&nbsp;Add&nbsp;Color</a>&nbsp;|&nbsp;<a href="javascript:deleteSizeColorRow(\'dscl'+totsize+'\');">Delete</a></td>';
         row += '</tr>';
         $("#attribiteTbl tbody").append(row);
@@ -558,8 +558,8 @@ function addAnother4Color(flag)
         row += '<td><input class="zinput lx'+totsize+'_3" style="display:none" type="text" value="' + width + '" name="width[]" placeholder=""/></td>';
         row += '<td><input class="zinput lx'+totsize+'_4" style="display:none" type="text" value="' + height + '" name="height[]" placeholder=""/></td>';
 
-        row += '<td><input class="zinput" type="text" name="color[]" placeholder=""/></td>';
-        row += '<td><input class="zinput" type="text" name="quantity[]" placeholder=""/></td>';
+        row += '<td><input class="zinput" type="text" name="color[]" placeholder="" required/></td>';
+        row += '<td><input class="zinput" type="text" name="quantity[]" placeholder="" required/></td>';
         row += '<td class="dsc'+flag+'" id="dc'+totColor+'">&nbsp;<a href="javascript:deleteColor(\'dc'+totColor+'\');">Delete Color</a></td>';
         row += '</tr>';
         //$("#attribiteTbl tbody").append(row);

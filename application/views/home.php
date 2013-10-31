@@ -8,6 +8,7 @@
 // here you can see the slide options I used in the demo page. depending on the id of the slider a different setup gets activated
 jQuery('#frontpage-slider').aviaSlider({	blockSize: {height: 80, width:80},
 transition: 'slide',
+pauseTime: 500,
 display: 'all',
 transitionOrder: ['diagonaltop', 'diagonalbottom','topleft', 'bottomright', 'random']
 });

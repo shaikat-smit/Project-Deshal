@@ -12,7 +12,18 @@
 						<span class="preview"></span>
 						<img src="<?=base_url();?>/itemimages/<?=$details->main_image?>" class="attachment-product_main wp-post-image" alt="" />
 					</a>
-
+					<div id="product_thumbs">
+					<?php if(count($subimages)!=0){
+					foreach($subimages->result() as $row){
+					?>
+						<a href="<?=base_url();?>/itemsubimages/<?php echo $row->image_dir?>" class="lightbox">
+							<span class="preview"></span>
+							<img width="160" height="160" src="<?=base_url();?>/itemsubimages/<?php echo $row->image_dir?>" class="attachment-product_mini_gallery" alt="060" />				
+						</a>
+					<?}
+					}?>
+						<div class="clear"></div>
+					</div>
 					<div class="single-product-meta">
 						<span>Product Categories: 
 						<?php if(isset($proincate))
@@ -44,16 +55,20 @@
 						
 					</div>
 				</div><!-- end #product_images -->
-				<?php if($details->archived_desc == NULL)
+				<?php if($details->archive == 1)
 				{?>
 				<div id="archiveAndCartDv">
 					<div id="archivedDv">
 						<img id="archvBnnrImg" src="<?=base_url();?>/img/archived-banner.png" />
 						<p>
-							Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis. Nam magna enim, accumsan eu, blandit sed, blandit a, eros.
+							<?php echo $details->archived_desc?>
 						</p>
 					</div>
 					
+				<?
+					}
+				?>
+				<?php if($details->int_available != 0){?>
 					<form id='cartButtonForm_1' class="Cart66CartButton" method="post" action="" >
 							<input type='hidden' name='task' id="task_1" value='addToCart' />
 							<input type='hidden' name='cart66ItemId' value='1' />
@@ -69,7 +84,7 @@
 							</span>
 									<select name="options_1" id="options_color" class="cart66Options options_1">
 									<option value="">Color</option>	
-										<?php foreach($colorsize->result() as $row)
+										<?php foreach($color->result() as $row)
 										{?>
 											<option value="<?=$row->id?>"><?=$row->color?></option>	
 										<?}?>
@@ -78,7 +93,7 @@
 							
 									<select name="options_2" id="options_size" class="cart66Options options_1">
 									<option value="">Size</option>	
-										<?php foreach($colorsize->result() as $row)
+										<?php foreach($size->result() as $row)
 										{?>
 											<option value="<?=$row->id?>"><?=$row->size?></option>	
 										<?}?>								
@@ -93,10 +108,8 @@
 							<input type="button" name="close" value="OK" id="close" class="Cart66ButtonSecondary modalClose" />
 						</div> 
 					</form>
+					<?php } ?>
 				</div>
-			<?
-				}
-			?>
 				<div id="product_info" class="entry-content" style="">
 					<h2>Product information</h2>
 					<style>
@@ -108,7 +121,7 @@
 					
 					<!--<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus neque, id pulvinar odio lorem non turpis. Nullam sit amet enim. Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim nibh eget ipsum. Donec porttitor ligula eu dolor. Maecenas vitae nulla consequat libero cursus venenatis. Nam magna enim, accumsan eu, blandit sed, blandit a, eros.</p>-->
 					<p>
-					<?php if($details->archived_desc == NULL)
+					<?php if($details->archive == 1)
 					{ 
 						if(isset($fields))
 						{
